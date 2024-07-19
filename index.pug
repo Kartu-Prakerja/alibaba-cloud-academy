@@ -1,0 +1,46 @@
+//- INDEX LANDING PAGES
+//- start variable
+- var pageActive = ''
+- var baseURL = ''
+- var contentDescription = {}
+- contentDescription.title = "Indonesia Skills Week by Prakerja - Prakerja.go.id"
+- contentDescription.description = "Indonesia Skills Week adalah event dua bulanan dari Prakerja yang terbuka untuk semua golongan, termasuk alumni Prakerja. Dengan menggunakan akun Prakerja, kamu bisa memilih aneka pelatihan online yang gratis, murah, dan mudah selama 1 minggu."
+
+doctype html
+html(lang="id" page-class="home")
+    include pug/includes/html_head.pug
+    body
+        include pug/includes/analytics_no_script.pug
+        include pug/includes/navigation.pug
+        main
+            //- section hero
+            include pug/home/section_hero.pug
+
+            //- section how to
+            include pug/home/section_howto.pug
+
+            //- section course newest -- Newest Course
+            include pug/home/section_course_newest.pug
+
+            //- section course 3 -- free course
+            include pug/home/section_course3.pug
+
+            //- section course 1 -- big discount
+            include pug/home/section_course.pug
+
+            //- section course 2 -- twenty thousand
+            include pug/home/section_course2.pug
+
+            //- section kategory
+            include pug/home/section_category.pug
+
+            //- section List LP
+            include pug/home/section_institution.pug
+
+            //- section Testimony
+            include pug/home/section_testimony.pug
+            
+           
+        include pug/includes/modal.pug
+        include pug/includes/footer.pug
+    include pug/includes/html_foot.pug

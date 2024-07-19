@@ -1,0 +1,66 @@
+include notification.pug
+
+
+//-- Header start
+
+header.pdt-header
+  .container-md.px-4.px-md-0
+    .d-flex.justify-content-between.align-items-center.position-relative
+      div.d-flex.justify-content-between.align-items-center.col-12.col-lg-auto
+        a(href=baseURL+'index.html')
+          img(src=baseURL+'img/logo-indonesia-skills-week.webp' height='54' width='92' alt='Indonesia Skills Week')
+
+        if(pageActive !== 'pelatihan')
+          include search.pug
+        
+      ul.d-flex.align-items-center.navbar-custom
+        li.nav-item.md-show
+          .menu.burger-menu(data-menu='13')
+            .icon
+        li.nav-item.md-hide
+          a.nav-link(href=baseURL+'index.html' class={"nav-link-active" : pageActive === ''}) Beranda
+        li.nav-item.md-hide
+          a.nav-link(href=baseURL+'pelatihan/index.html'  class={"nav-link-active" : pageActive === 'pelatihan'}) Pelatihan
+        li.nav-item.md-hide
+          a.nav-link(href=baseURL+'tanyajawab/index.html' class={"nav-link-active" : pageActive === 'tanyajawab'}) Tanya Jawab
+        li#profile.nav-item.md-hide.supper-hidden
+          a.nav-link.text-truncate.max-width-200(href=baseURL+'profil/index.html' class={"nav-link-active" : pageActive === 'profil'}) 
+            i.bi.bi-person-circle.me-2
+            span#user-email
+          ul.login-state
+            li
+              a(href="/profil/index.html") Profil Saya 
+            li
+              a(href="/profil/index.html#active-course-container") Pelatihan Saya 
+            li
+              a(href="https://dashboard.prakerja.go.id/?utm_source=ISW-Menu&utm_campaign=ISW&media=button") Dashboard Prakerja 
+                i.bi.bi-arrow-up-right-square
+        li#login.nav-item.md-hide.supper-hidden
+          button#btn-login.btn.btn-primary
+            .text-truncate.max-width-200
+              i.bi.bi-person-circle.me-2 
+              //- i.bi.bi-chevron-down
+              span.text-users.skeleton-box.rounded-pill(style='width:50')
+              //- | Masuk
+              //- | bambang_soehardjo@gmail.com
+
+        //- li.nav-item.md-hide
+          button.nav-link.btn.d-none.d-lg-block
+            .text-truncate.max-width-200
+              i.bi.bi-person-circle.me-2
+              | bambang_soehardjo@gmail.com 
+          ul.isw-dropdown
+            li
+              a(href="#") Profil Saya 
+            li
+              a(href="#") Pelatihan Saya 
+            li
+              a(href="#") Dashboard Prakerja 
+                i.bi.bi-arrow-up-right-square
+  
+
+              
+              
+        
+
+
