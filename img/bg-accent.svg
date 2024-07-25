@@ -1,0 +1,36 @@
+<svg width="1274" height="680" viewBox="0 0 1274 680" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g opacity="0.1">
+	<rect x="1189.05" y="84" width="84" height="84" fill="#f05e00">
+		<animateMotion path="M 0 0 V 50 Z" dur="10s" repeatCount="indefinite" />
+	</rect>
+
+	<rect x="133.052" y="315.586" width="84" height="84" fill="#2a72c7">
+		<animateMotion path="M 0 0 v 50 Z" dur="10s" repeatCount="indefinite" />
+	</rect>
+
+	<rect x="865.052" width="84" height="84" fill="#f05e00">
+		<animateMotion path="M 0 0 H -100 Z" dur="10s" repeatCount="indefinite" />
+	</rect>
+
+
+	<rect x="217.052" y="595.897" width="84" height="84" fill="#F05E00">
+		<animateMotion path="M 0 0 H -180 Z" dur="10s" repeatCount="indefinite" />
+	</rect>
+
+	<rect x="433.052" y="139.548" width="84" height="84" fill="#2a72c7">
+		<animateMotion path="M 0 0 H 300 Z" dur="10s" repeatCount="indefinite" />
+	</rect>
+
+	<rect x="1081.05" y="205.586" width="84" height="168" fill="#2a72c7">
+		<animateMotion path="M 0 0 V -200 Z" dur="10s" repeatCount="indefinite" />
+	</rect>
+
+	<rect x="649.052" y="347.897" width="84" height="168" fill="#F05E00">
+		<animateMotion path="M 0 0 V 300 Z" dur="10s" repeatCount="indefinite" />
+	</rect>
+
+	<rect x="0.313965" y="55.5477" width="84" height="168" fill="#2a72c7">
+		<animateMotion path="M 0 0 V 300 Z" dur="10s" repeatCount="indefinite" />
+	</rect>
+</g>
+</svg>

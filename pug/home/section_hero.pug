@@ -1,51 +1,48 @@
 // Hero start
-section.section-hero
+section.section-hero.bg-accent
   .container.py-4.py-lg-5.px-4.px-md-0
-    .row.d-flex.align-items-center.flex-row-reverse
-      .col-md-5.p-0.hero-wrapper
-       
-        //- .img-hero-slider
-        //-     img.img-hero(src=baseURL+'img/img-isw-girl.webp' alt='Prakerja ISW')
-        //-     img.img-hero(src=baseURL+'img/img-isw-boy.webp' alt='Prakerja ISW')
-
-        .picture-hero-slider
-            picture.picture-hero
-              source(media='(min-width:1024px)' srcset=baseURL+'img/img-isw-boy@2x.webp')
-              img(src=baseURL+'img/img-isw-boy.webp' alt='Prakerja ISW')
-            picture.picture-hero
-              source(media='(min-width:1024px)' srcset=baseURL+'img/img-isw-girl@2x.webp')
-              img(src=baseURL+'img/img-isw-girl.webp' alt='Prakerja ISW')
-
-        
-      //- img.ornament-1(src=baseURL+'img/img-illustartion-1.svg' alt='Prakerja Illustration')
+    .row.d-flex.align-items-center
       
-      .col-md-7.mt-3.mt-md-0
+      .col-md-10.mt-3.mt-md-0
         
-        h1.mb-3.mb-lg-4.display-2.mt-3.md-md-0.font-weight-black
-          | Tingkatkan
+        span.text-secondary #JADIBISA
+        h1.mb-3.mb-lg-2.display-2.md-md-0
+          span Beasiswa
           span.text-wrapper
-            span Keterampilan
-            span Produktivitas
-            span Daya Saing
-            span Kompetensi
-            span Keterampilan
+            span Sertfikasi
+            span Gratis
+            span Sertfikasi
+            span Gratis
+            span Sertfikasi
+          br 
+          | Alibaba Cloud Academy
 
         p.text-secondary.text-subhero.pe-xl-5
-          b.text-dark Indonesia Skills Week 
-          | adalah event dua bulanan dari Prakerja yang terbuka untuk semua golongan, termasuk alumni Prakerja. Dengan menggunakan akun Prakerja, kamu bisa memilih&nbsp;
-          b.text-dark aneka pelatihan online yang gratis, murah, dan mudah
-          //- |  selama 
-          //- b.text-dark 1 minggu
-          //- | .
+          b.text-secondary Oleh Prakerja x Alibaba Cloud
 
-        div
-          //- div.mb-3
-            span.d-block.text-secondary.fs-7.mb-1 Event ini berlangsung
-            span
-              i.bi.bi-calendar-range.text-secondary.me-2
-              b 21 Jun - 04 Juli 2024
-          div
-            span.d-block.text-secondary.fs-7.mb-1 Belum punya akun Prakerja?
-            a.btn.btn-orange.btn-lg.register-account(href="https://dashboard.prakerja.go.id/daftar?utm_source=skillsweek_hero_banner&utm_campaign=skillsweek_campaign&utm_medium=button_hero_banner&utm_content=daftar_sekarang" data-source="button banner") Buat Akun Sekarang 
+        div.d-inline-flex.p-3.rounded-3.shadow-sm.bg-transparent.gap-3
+          .d-flex 
+            i.bi.bi-check2-circle.text-success.pe-2 
+            div 
+              b Pelatihan dan Sertifikasi Global
+              p.fs-7.text-secondary Program 1 bulan | 6-8 jam per minggu
+          .highlight-divider
+          .d-flex 
+            i.bi.bi-check2-circle.text-success.pe-2 
+            div 
+              b Kelas dimulai 1 Sept 2024
+              p.fs-7.text-secondary Pendaftaran dibuka 1 Agustus 2024
+          .highlight-divider
+          .d-flex 
+            i.bi.bi-check2-circle.text-success.pe-2 
+            div 
+              b Kelas Bauran
+              p.fs-7.text-secondary Pembelajaran Mandiri & Webinar (100% daring)
+
+        div.mt-4
+          //- span.d-block.text-secondary.fs-7.mb-1 Belum punya akun Prakerja?
+          a.btn.btn-orange.btn-lg.register-account(href="#JoinNow") 
+            | Gabung Sekarang 
+            i.bi.bi-arrow-right
 // Hero end
 
