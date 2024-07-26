@@ -41,7 +41,7 @@ body{
 .section-hero{
     position: relative;
     padding-top: 4rem;
-    min-height: 80vh;
+    // min-height: 80vh;
     // background-color: var(--o100);
 
     &> div{
@@ -89,6 +89,7 @@ body{
 
 .highlight-divider{
   border-right: dashed 1px var(--border-default);
+  border-bottom: dashed 1px var(--border-default);
 }
 
 
@@ -224,10 +225,13 @@ body{
 
 .card-instructor{
   background-color: var(--b100);
+  height: 100%;
+}
+
+.bg-circuit{
   background-image: url('../img/img-circuit.svg');
   background-repeat: no-repeat;
   background-position: top left;
-  height: 100%;
 }
 
 .avatar{
@@ -2048,6 +2052,9 @@ background-clip: text;
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) { 
+  .box-about{
+    position: absolute;
+  }
   #button-addon1{
     width:auto !important;
     padding: 0 .75rem !important;

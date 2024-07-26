@@ -1752,12 +1752,30 @@ function globalSearch(dataCourse) {
         items:1.25
     });
 
+    $('.owl-carousel').owlCarousel({
+        loop:true,
+        margin:24,
+        nav:false,
+        dots: false,
+        responsive:{
+            0:{
+                items:1.2
+            },
+            600:{
+                items:3
+            },
+            1200:{
+                items:4
+            }
+        }
+    });
+
     $('.howto-carousel').owlCarousel({
         dots: false,
         autoplay: false,
         responsive:{
             1200:{
-                items:5,
+                items:4,
                 margin: 0,
                 loop:false
             },

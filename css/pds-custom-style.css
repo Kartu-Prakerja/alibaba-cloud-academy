@@ -539,7 +539,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .pdt-header {
-  padding: 0.5rem 0;
+  padding: 1rem 0;
   width: 100%;
   position: absolute;
   z-index: 234;
@@ -1445,7 +1445,6 @@ body.freeze {
 .section-hero {
   position: relative;
   padding-top: 4rem;
-  min-height: 80vh;
 }
 .section-hero > div {
   position: relative;
@@ -1475,6 +1474,7 @@ body.freeze {
 
 .highlight-divider {
   border-right: dashed 1px var(--border-default);
+  border-bottom: dashed 1px var(--border-default);
 }
 
 .hero-wrapper {
@@ -1639,10 +1639,13 @@ body.freeze {
 
 .card-instructor {
   background-color: var(--b100);
+  height: 100%;
+}
+
+.bg-circuit {
   background-image: url("../img/img-circuit.svg");
   background-repeat: no-repeat;
   background-position: top left;
-  height: 100%;
 }
 
 .avatar {
@@ -3327,6 +3330,9 @@ body.freeze {
   }
 }
 @media (min-width: 992px) {
+  .box-about {
+    position: absolute;
+  }
   #button-addon1 {
     width: auto !important;
     padding: 0 0.75rem !important;
