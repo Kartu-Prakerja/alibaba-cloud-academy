@@ -364,6 +364,42 @@ body{
 
 /* Section Timeline End*/
 
+.section-forms{
+  &:before{
+      display: block;
+      content: '';
+      width: 100%;
+      height: 50%;
+      position: absolute;
+      left:0;
+      z-index: 0;
+      background: linear-gradient(0deg, #FFFFFF 21.93%, rgba(255, 255, 255, 0) 100%);
+  }
+}
+
+.section-forms{
+  &:before{
+      top: 0;
+      transform: matrix(1, 0, 0, -1, 0, 0);
+  }
+}
+.section-forms{
+  position: relative;
+  background-color: var(--b100);
+  /* Gradient/b100 - o100 */
+// background: linear-gradient(90deg, #EAF1F9 0%, #EEF0FA 14.29%, #F3EFF9 28.57%, #F8EEF7 42.86%, #FDEDF3 57.14%, #FFEDEE 71.43%, #FFEEE9 85.71%, #FEEFE5 100%);
+}
+
+.box-forms{
+  background-color: var(--white);
+  /* Card/Larger Shadow */
+  box-shadow: 0px 0px 0px 1px rgba(214, 219, 224, 0.2), 0px 16px 32px -8px rgba(1, 24, 48, 0.1);
+}
+
+.section-forms > div{
+  position: relative;
+  z-index: 4;
+}
 
 .font-weight-black{
   font-weight: 900;

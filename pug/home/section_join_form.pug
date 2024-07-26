@@ -1,4 +1,72 @@
-section.section-program
+section.section-forms
   .container.py-3.pt-lg-5.pb-lg-5.px-4.px-md-0
-    .d-flex.align-items-center.justify-content-between.mb-3
-        h4.custom-rfs-h4 Gabung Program
+    .d-flex.align-items-center.justify-content-center.mb-3
+      .col-8 
+        .box-forms.rounded-4.p-4
+          h4.custom-rfs-h4 Gabung Program
+          p 
+            | Pastikan yang email kamu gunakan sudah terdaftar di Prakerja dan 
+            a(href="#") Alibaba Cloud Academy.
+          .row.mt-4 
+            .col-lg-6
+              .mb-3
+                label.form-label(for='NamaLengkap') Nama Lengkap
+                input#NamaLengkap.form-control(type='text' placeholder='')
+                
+            .col-lg-6
+              .mb-3
+                label.form-label(for='EmailAddress') Alamat Email yang terdaftar di Prakerja & Alibaba
+                input#EmailAddress.form-control(type='email' placeholder='name@example.com')
+            
+            .col-lg-6
+              .mb-3
+                label.form-label(for='IDAlibaba') ID Alibaba Cloud
+                input#IDAlibaba.form-control(type='text' placeholder='')
+                
+            .col-lg-6
+              .mb-3
+                label.form-label(for='CourseCat') Kategori Pelatihan
+                select#CourseCat.form-select(aria-label='Default select example')
+                  option(selected='') Pilih
+                  option(value='1') Satu
+                  option(value='2') Dua
+                  option(value='3') Tiga
+
+            .col-lg-6
+              .mb-3
+                label.form-label(for='InstitutionCat') Kategori Institusi
+                select#CourseCat.form-select(aria-label='Default select example')
+                  option(selected='') Pilih
+                  option(value='1') Satu
+                  option(value='2') Dua
+                  option(value='3') Tiga
+
+            .col-lg-6
+              .mb-3
+                label.form-label(for='CourseCat') Alasan Mengikuti Pelatihan
+                select#CourseCat.form-select(aria-label='Default select example')
+                  option(selected='') Pilih
+                  option(value='1') Satu
+                  option(value='2') Dua
+                  option(value='3') Tiga
+
+            .col-lg-12
+              .mb-3
+                label.form-label(for='Motivation') Ceritakan motivasi kamu untuk bergabung di program ini agar kamu memiliki kesempatan lebih tinggi untuk lolos terpilih.
+                textarea#Motivation.form-control(rows='3' placeholder="Tulis motivasi kamu")
+                .form-text
+                  | Minimal 200 kata.
+
+            .col-lg-12
+              .mb-3 
+                .form-check.mb-3
+                  input#userConsent.form-check-input(type='checkbox' value='')
+                  label.form-check-label(for='userConsent')
+                    | Dengan mendaftar, saya setuju dengan 
+                    a(href="#") syarat dan ketentuan
+                    |  program ini.
+
+                button.btn.btn-orange
+                  | Gabung Program 
+                  i.bi.bi-arrow-right 
+
