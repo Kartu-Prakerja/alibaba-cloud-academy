@@ -652,7 +652,7 @@ ul.navbar-custom li {
           transition-duration: 0.5s;
   padding: 4px;
   position: absolute;
-  top: 0.5rem;
+  top: -2px;
   right: 0;
 }
 
