@@ -3368,6 +3368,10 @@ body.freeze {
   .text-wrapper {
     margin-bottom: -0.25rem;
   }
+  .section-about {
+    -webkit-transform: translateY(-100px);
+            transform: translateY(-100px);
+  }
   .box-about {
     position: absolute;
   }

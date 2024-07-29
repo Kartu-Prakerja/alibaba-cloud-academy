@@ -1205,6 +1205,7 @@ background-clip: text;
     overflow: hidden;
 }
 
+
 .course-price{
     font-size: 1rem;
 }
@@ -2113,6 +2114,9 @@ background-clip: text;
     span{
       // 
     }
+  }
+  .section-about{
+    transform: translateY(-100px)
   }
   .box-about{
     position: absolute;
