@@ -259,6 +259,9 @@ body{
   overflow: hidden;
 }
 
+$path-size: 1rem;
+$path-border-width: 2px;
+
 .path-item{
   position: relative;
   width: 50%;
@@ -269,21 +272,21 @@ body{
   }
 
   &::before{
-      width: 24px;
-      height: 24px;
+      width: $path-size;
+      height: $path-size;
       border-radius: 12px;
-      border: solid 4px var(--border-default);
-      background-color: #fff;
+      border: solid $path-border-width var(--o500);
+      background-color: white;
       transition: 1s background-color;
   }
 
   &::after{
-      width: 4px;
+      width: $path-border-width;
       height: calc(100% - 16px);
-      background: var(--border-default);
+      background: var(--o500);
       position: absolute;
       z-index: 1;
-      top:36px;
+      top:34px;
   }
 
   &:nth-child(odd){
@@ -291,10 +294,10 @@ body{
       padding: 1rem 1rem 1rem 2rem;
       &::before{
           position: absolute;
-          left: -12px;
+          left: -($path-size / 2);
       }
       &::after{
-          left: -2px;
+          left: -1px;
       }
   }
 
@@ -303,18 +306,18 @@ body{
       text-align: right;
       &::before{
           position: absolute;
-          right: -12px;
+          right: -($path-size / 2);
       }
 
       &::after{
-          right: -2px;
+          right: -1px;
       }
   }
 
   &:hover {
       cursor: pointer;
       &::before{
-          background: var(--primary);;
+          // background: var(--primary);
           transition: 1s background-color;
       }
   }
@@ -337,10 +340,10 @@ body{
   &::before{
       display: block;
       content: '';
-      width: 24px;
-      height: 24px;
-      border-radius: 12px;
-      border: solid 4px var(--border-default);
+      width: $path-size;
+      height: $path-size;
+      border-radius: 8px;
+      border: solid $path-border-width var(--o500);
       top: 0;
       left: 0;
       transform: translateY(-4px);
@@ -349,7 +352,7 @@ body{
   &:hover {
       cursor: pointer;
       &::before{
-          background: var(--primary);;
+          // background: var(--primary);
           transition: 1s background-color;
       }
   }
@@ -369,6 +372,10 @@ body{
 /* Section Timeline End*/
 
 .section-forms{
+  background-image: url('../img/bg-accent.svg');
+      background-repeat: no-repeat;
+      background-position: bottom center;
+      background-size: 90%;
   &:before{
       display: block;
       content: '';
@@ -1968,7 +1975,7 @@ background-clip: text;
             left: 0px;
         }
         &::after{
-            left: 10px;
+            left: 7px;
         }
     }
 
@@ -1981,7 +1988,7 @@ background-clip: text;
         }
 
         &::after{
-            left: 10px;
+            left: 7px;
             right: auto;
         }
     }

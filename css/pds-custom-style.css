@@ -1683,21 +1683,21 @@ body.freeze {
   content: "";
 }
 .path-item::before {
-  width: 24px;
-  height: 24px;
+  width: 1rem;
+  height: 1rem;
   border-radius: 12px;
-  border: solid 4px var(--border-default);
-  background-color: #fff;
+  border: solid 2px var(--o500);
+  background-color: white;
   -webkit-transition: 1s background-color;
   transition: 1s background-color;
 }
 .path-item::after {
-  width: 4px;
+  width: 2px;
   height: calc(100% - 16px);
-  background: var(--border-default);
+  background: var(--o500);
   position: absolute;
   z-index: 1;
-  top: 36px;
+  top: 34px;
 }
 .path-item:nth-child(odd) {
   -webkit-transform: translate(100%);
@@ -1706,10 +1706,10 @@ body.freeze {
 }
 .path-item:nth-child(odd)::before {
   position: absolute;
-  left: -12px;
+  left: -0.5rem;
 }
 .path-item:nth-child(odd)::after {
-  left: -2px;
+  left: -1px;
 }
 .path-item:nth-child(even) {
   padding: 1rem 2rem 1rem 1rem;
@@ -1717,16 +1717,15 @@ body.freeze {
 }
 .path-item:nth-child(even)::before {
   position: absolute;
-  right: -12px;
+  right: -0.5rem;
 }
 .path-item:nth-child(even)::after {
-  right: -2px;
+  right: -1px;
 }
 .path-item:hover {
   cursor: pointer;
 }
 .path-item:hover::before {
-  background: var(--primary);
   -webkit-transition: 1s background-color;
   transition: 1s background-color;
 }
@@ -1747,10 +1746,10 @@ body.freeze {
 .path-end::before {
   display: block;
   content: "";
-  width: 24px;
-  height: 24px;
-  border-radius: 12px;
-  border: solid 4px var(--border-default);
+  width: 1rem;
+  height: 1rem;
+  border-radius: 8px;
+  border: solid 2px var(--o500);
   top: 0;
   left: 0;
   -webkit-transform: translateY(-4px);
@@ -1760,7 +1759,6 @@ body.freeze {
   cursor: pointer;
 }
 .path-end:hover::before {
-  background: var(--primary);
   -webkit-transition: 1s background-color;
   transition: 1s background-color;
 }
@@ -1774,6 +1772,12 @@ body.freeze {
   }
 }
 /* Section Timeline End*/
+.section-forms {
+  background-image: url("../img/bg-accent.svg");
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: 90%;
+}
 .section-forms:before {
   display: block;
   content: "";
@@ -3261,7 +3265,7 @@ body.freeze {
     left: 0px;
   }
   .path-item:nth-child(odd)::after {
-    left: 10px;
+    left: 7px;
   }
   .path-item:nth-child(even) {
     padding: 1rem 1rem 1rem 2rem;
@@ -3272,7 +3276,7 @@ body.freeze {
     left: 0px;
   }
   .path-item:nth-child(even)::after {
-    left: 10px;
+    left: 7px;
     right: auto;
   }
 }
