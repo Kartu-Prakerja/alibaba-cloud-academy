@@ -413,9 +413,10 @@ body{
 }
 .text-wrapper{
   display: inline-block;
-  margin-bottom: -1.5rem;
-  margin-left: .5rem;
-  height: 56px;
+  // margin-bottom: -1.5rem;
+  // margin-left: .5rem;
+  // height: 52px;
+  height: 4rem;
   overflow: hidden;
   // outline: solid 1px red;
   background: var(--o500);;
@@ -425,8 +426,11 @@ body{
     -webkit-text-fill-color: transparent;
   span{
     display: block;
-    height: 60px;
+    // height: 56px;
+    padding-top:4px;
+    height: 4rem;
     color: var(--o500);
+    line-height: 4rem;
     background: var(--o500);;
   background: linear-gradient(90deg, #F2BA01 0%, #F5B203 14.29%, #F8A908 28.57%, #FBA00F 42.86%, #FD9817 57.14%, #FE8F1E 71.43%, #FF8624 85.71%, #FF7D2A 100%);
     background-clip: text;
@@ -1723,6 +1727,15 @@ background-clip: text;
     margin:0;
   }
 }
+.text-wrapper{
+  height: 3.2rem;
+  // outline: solid 1px red;
+  span{
+    height: 3.2rem;
+    padding-top: 0;
+    margin-top: 0;
+  }
+}
 
 }
 // custom accordion
@@ -1866,6 +1879,12 @@ background-clip: text;
 .custom-rfs-h4{
   font-size: calc(1rem + 0.6vw);
 }
+.custom-rfs-h5{
+  font-size: calc(.875rem + 0.6vw);
+}
+.custom-rfs-h6{
+  font-size: calc(.65rem + 0.6vw);
+}
 
 
 .similar-course-empty{
@@ -1938,13 +1957,42 @@ background-clip: text;
       max-width: 50%;
     }
   }
+  .path-item{
+    width: 100%;
+
+    &:nth-child(odd){
+        transform: translate(0%);
+        padding: 1rem 1rem 1rem 2rem;
+        &::before{
+            position: absolute;
+            left: 0px;
+        }
+        &::after{
+            left: 10px;
+        }
+    }
+
+    &:nth-child(even){
+        padding: 1rem 1rem 1rem 2rem;
+        text-align: left;
+        &::before{
+            position: absolute;
+            left: 0px;
+        }
+
+        &::after{
+            left: 10px;
+            right: auto;
+        }
+    }
+}
 }
 
 @media (min-width: 576px) { 
   .text-wrapper{
-    height: 70px;
+    // height: 70px;
     span{
-      height: 86px;
+      // height: 86px;
     }
   }
   .category-card{
@@ -2041,17 +2089,24 @@ background-clip: text;
   .pds-card-list .card-body .pds-card-list-footer .w-100 {
       width: auto !important;
   }
-  .text-wrapper{
-    height: 90px;
-    span{
-      height: 96px;
-    }
-  }
+  // .text-wrapper{
+  //   height: 90px;
+  //   span{
+  //     height: 96px;
+  //   }
+  // }
+  
   
 }
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) { 
+  .text-wrapper{
+    margin-bottom: -.25rem;
+    span{
+      // 
+    }
+  }
   .box-about{
     position: absolute;
   }
