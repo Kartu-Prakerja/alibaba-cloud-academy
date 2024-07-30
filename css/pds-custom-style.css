@@ -2513,8 +2513,8 @@ body.freeze {
 .section-snk,
 .section-highlight {
   position: relative;
-  padding-top: 64px;
-  margin-top: -64px;
+  padding-top: 32px;
+  margin-top: -32px;
   overflow: hidden;
 }
 
