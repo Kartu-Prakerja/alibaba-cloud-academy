@@ -1852,6 +1852,8 @@ function globalSearch(dataCourse) {
 
  })(jQuery);
 
+ AOS.init();
+
  // ads Modal
         
 
