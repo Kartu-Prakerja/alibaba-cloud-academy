@@ -25,7 +25,7 @@
 const sharerURL = 'https://gist.github.com/tZilTM/6eecb26cd8dca3f9f800128c726d6761';
 const BaseURL = '/'
 const loadItem = 12;
-const courseListURL = "https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/list_pelatihan_skillweek_7.json?version=1";
+const courseListURL = "/js/course.json";
 const courseListURLAll = "https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/list_pelatihan_skillweek_all.json?version=1";
 const checkLogin = "https://api-ext.prakerja.go.id/api/v1/user/login-a17ab03c3d1d";
 const checkVoucher = 'https://api-proxy.prakerja.go.id/api/v1/general/voucher/ack';
@@ -68,17 +68,8 @@ var emptyState = "<div class='col-12 col-md-12'>" +
 /** function load course */
 var templateCourse = function(target, data, cardClass, isCourse){ 
     var pills = data.course_type.toLowerCase() == "Online Self-Paced Learning".toLowerCase() ? "text-bg-warning" : "text-bg-help";
-    // var course_form_request = 'https://docs.google.com/forms/d/e/1FAIpQLScc3v4je6bcRHA_0H5ItpjaY_x8ump5K9pdc27ylti4pQo0xQ/viewform?usp=pp_url&entry.841678428=' + data.course_title.split(" ").join("+");
-    // var notif_course_request = 'https://docs.google.com/forms/d/e/1FAIpQLScOs8Qwc9w0ZlFgAOqSes5EpyhkaK46atcT52t8bBXXmuQKUA/viewform?usp=sf_link';
-    // Lazy load from owl carousel
-    // var imageCourse = isCourse ? '<img src="' + data.course_image + '" class="card-img-top" alt="'+ data.course_title +'">' : '<img class="owl-lazy" data-src="https://raw.githubusercontent.com/Kartu-Prakerja/skill-week/main/img/img-placeholder.webp" data-src-retina="' + data.course_image + '" class="card-img-top" alt="'+ data.course_title +'">';
-    // var logoLp = isCourse ? "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +"'>" : "<img class='me-1 card-logo owl-lazy' data-src='https://raw.githubusercontent.com/Kartu-Prakerja/skill-week/main/img/img-placeholder-logo.webp' data-src-retina='" + data.logo_lp +"' alt='"+ data.lp_name +"'>";
-    var imageCourse = isCourse ? '<img src="' + data.course_image + '" class="card-img-top" alt="'+ data.course_title +'">' : '<img src="' + data.course_image + '" class="card-img-top" alt="'+ data.course_title +'">';
-    var logoLp = isCourse ? "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +"'>" : "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +"'>";
+    var imageCourse = isCourse ? '<img src="' + data.course_image + '" class="card-img-top" loading="lazy" alt="'+ data.course_title +'">' : '<img src="' + data.course_image + '" loading="lazy" class="card-img-top" alt="'+ data.course_title +'">';
     var course_detail = BaseURL +'pelatihan/detail.html?title=' + (data.course_title.replace(/[^a-zA-Z0-9 ]/g, '')).replace(/\s+/gi, '-').toLowerCase() +'&id='+ data.course_id;
-    var finalPrice = (data.course_discount == '100%' || data.course_discount == '') ? 'Gratis' : "Rp " + Number(data.course_after_discount).toLocaleString('id');
-    var course_price = data.course_price == '0' ? "-" : "Rp " + Number(data.course_price).toLocaleString('id')
-    var colorPrice = (data.course_discount == '100%' || data.course_discount == '') ? '' : 'color-secondary';
     var listClass = cardClass == null ? 'col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5' : 'wl-carousel-card pb-3';
     var trending = Number(data.total) >= 50 ? "<span class='badge text-bg-light trending text-capitalize'>&#128293; Trending</span>" : ""
     var new_course = data.new_course == "true" ? "<span class='badge text-bg-light new-course trending text-capitalize'>Terbaru</span>" : ""
@@ -88,9 +79,6 @@ var templateCourse = function(target, data, cardClass, isCourse){
             "<div class='card-cover'>" + imageCourse +
                 "<div class='card-cover-overlay'>" +
                     "<div class='d-flex justify-content-between align-middle'>" +
-                        "<div class='align-self-center'>" +
-                            "<div class='card-company'>"+ logoLp +"<span class='course-lp-name'>"+ data.lp_name +"</span></div>" +
-                        "</div>" +
                         "<div class='align-self-center'><span class='badge rounded-pill text-capitalize " + pills +"'>"+ (data.course_type).replace(/Online/g,'') +"</span></div>" +
                         // "<div class='align-self-center'><span class='badge rounded-pill text-capitalize " + pills +"'>Daring LMS</span></div>" +
                     "</div>" +        
@@ -103,15 +91,6 @@ var templateCourse = function(target, data, cardClass, isCourse){
                 "<div class='d-flex my-2'>" +
                     "<span class='badge text-bg-light text-capitalize badge-ellipsis' title='"+ data.course_category +"'>"+ data.course_category + "</span>" + trending + new_course +
                 "</div>" +
-                // Price
-                "<div>" +
-                    "<div class='course-real-price mb-1'><span>"+ course_price +"</span> <span class='badge text-bg-ghost-success'>"+ data.course_discount +"</span></div>" +
-                    "<div class='course-price card-price mb-1 " + colorPrice +"'>"+ finalPrice +"</div>" +
-                "</div>" +
-                // "<div class='mt-3 text-center'>" +
-                //     // "<a href='"+ course_detail +"' class='apply-course "+data.course_id+" btn btn-primary w-100 mb-2 text-truncate' rel='nofollow' data-event='skill_week_apply_course'>Selengkapnya</a>" +
-                //     // "<a id='detail-course"+ data.index +"' href='#deskripsi-pelatihan-"+ data.index +"' class='see-detail-course me-2 link-secondary' target='_blank' rel='nofollow' data-index='"+ data.index +"' data-event='skill_week_click_course_detail text-link'>Deskripsi Pelatihan</a>" +
-                // '</div>'
             "</div>" +
         "</div>" +
         "</a>" +
@@ -123,16 +102,6 @@ var templateCourse = function(target, data, cardClass, isCourse){
         $('.to-detail-course').unbind('click');
         $('.to-detail-course').click(function(e) {
             e.preventDefault();
-            mixpanel.track('See Detail Course', {
-                'course_id' : data.course_id,
-                'course_title': data.course_title,
-                'course_category' : data.course_category,
-                'course_price': data.course_price,
-                'course_discount': data.course_discount,
-                'course_price_after_discount' : data.course_after_discount,
-                'course_lp': data.lp_name,
-                'source' : cardClass
-            });
             window.location.href = $(this).attr('href');
         })
     });
@@ -143,9 +112,9 @@ var templateCourseSearch = function(target, data, cardClass, isCourse){
     var pageClass = $('html').attr('page-class');
     // var course_form_request = 'https://docs.google.com/forms/d/e/1FAIpQLScc3v4je6bcRHA_0H5ItpjaY_x8ump5K9pdc27ylti4pQo0xQ/viewform?usp=pp_url&entry.841678428=' + data.course_title.split(" ").join("+");
     // var notif_course_request = 'https://docs.google.com/forms/d/e/1FAIpQLScOs8Qwc9w0ZlFgAOqSes5EpyhkaK46atcT52t8bBXXmuQKUA/viewform?usp=sf_link';
-    var imageCourse = '<img src="' + data.course_image + '" class="card-img-top" alt="'+ data.course_title +'">'
-    // var logoLp = isCourse ? "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +"'>" : "<img class='me-1 card-logo owl-lazy' data-src='https://raw.githubusercontent.com/Kartu-Prakerja/skill-week/main/img/img-placeholder-logo.webp' data-src-retina='" + data.logo_lp +"' alt='"+ data.lp_name +"'>";
-    var logoLp = isCourse ? "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +"'>" : "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +"'>";
+    var imageCourse = '<img src="' + data.course_image + '" loading="lazy" class="card-img-top" alt="'+ data.course_title +'">'
+    // var logoLp = isCourse ? "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +" loading="lazy"'>" : "<img class='me-1 card-logo owl-lazy' data-src='https://raw.githubusercontent.com/Kartu-Prakerja/skill-week/main/img/img-placeholder-logo.webp' loading='lazy' data-src-retina='" + data.logo_lp +"' alt='"+ data.lp_name +"'>";
+    var logoLp = isCourse ? "<img class='me-1 card-logo' src='" + data.logo_lp +"' loading='lazy' alt='"+ data.lp_name +"'>" : "<img class='me-1 card-logo' loading='lazy' src='" + data.logo_lp +"' alt='"+ data.lp_name +"'>";
     var course_detail = BaseURL +'pelatihan/detail.html?title=' + (data.course_title.replace(/[^a-zA-Z0-9 ]/g, '')).replace(/\s+/gi, '-').toLowerCase() +'&id='+ data.course_id;
     var finalPrice = (data.course_discount == '100%' || data.course_discount == '') ? 'Gratis' : "Rp " + Number(data.course_after_discount).toLocaleString('id');
     var course_price = data.course_price == '0' ? "-" : "Rp " + Number(data.course_price).toLocaleString('id')
@@ -165,16 +134,6 @@ var templateCourseSearch = function(target, data, cardClass, isCourse){
         $('.course-recommend-search').unbind('click');
         $('.course-recommend-search').click(function(e) {
             e.preventDefault();
-            mixpanel.track('See Detail Course', {
-                'course_id' : data.course_id,
-                'course_title': data.course_title,
-                'course_category' : data.course_category,
-                'course_price': data.course_price,
-                'course_discount': data.course_discount,
-                'course_price_after_discount' : data.course_after_discount,
-                'course_lp': data.lp_name,
-                'source' : pageClass
-            });
             window.location.href = $(this).attr('href');
         })
     });
@@ -187,8 +146,8 @@ var templateCourseProfile = function(target, data, cardClass, isCourse){
     // Lazy load from owl carousel
     // var imageCourse = isCourse ? '<img src="' + data.course_image + '" class="card-img-top" alt="'+ data.course_title +'">' : '<img class="owl-lazy" data-src="https://raw.githubusercontent.com/Kartu-Prakerja/skill-week/main/img/img-placeholder.webp" data-src-retina="' + data.course_image + '" class="card-img-top" alt="'+ data.course_title +'">';
     // var logoLp = isCourse ? "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +"'>" : "<img class='me-1 card-logo owl-lazy' data-src='https://raw.githubusercontent.com/Kartu-Prakerja/skill-week/main/img/img-placeholder-logo.webp' data-src-retina='" + data.logo_lp +"' alt='"+ data.lp_name +"'>";
-    var imageCourse = '<img src="' + data.course_image + '" class="card-img-top" alt="'+ data.course_title +'">';
-    var logoLp = isCourse ? "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +"'>" : "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +"'>";
+    var imageCourse = '<img src="' + data.course_image + '" loading="lazy" class="card-img-top" alt="'+ data.course_title +'">';
+    var logoLp = isCourse ? "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +"'>" : "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +"' loading='lazy'>";
     var course_detail = BaseURL +'pelatihan/detail.html?title=' + (data.course_title.replace(/[^a-zA-Z0-9 ]/g, '')).replace(/\s+/gi, '-').toLowerCase() +'&id='+ data.course_id;
     var finalPrice = (data.course_discount == '100%' || data.course_discount == '') ? 'Gratis' : "Rp " + Number(data.course_after_discount).toLocaleString('id');
     var course_price = data.course_price == '0' ? "-" : "Rp " + Number(data.course_price).toLocaleString('id')
@@ -221,16 +180,6 @@ var templateCourseProfile = function(target, data, cardClass, isCourse){
         $('.to-detail-course').unbind('click');
         $('.to-detail-course').click(function(e) {
             e.preventDefault();
-            mixpanel.track('See Detail Course', {
-                'course_id' : data.course_id,
-                'course_title': data.course_title,
-                'course_category' : data.course_category,
-                'course_price': data.course_price,
-                'course_discount': data.course_discount,
-                'course_price_after_discount' : data.course_after_discount,
-                'course_lp': data.lp_name,
-                'source' : cardClass
-            });
             window.location.href = $(this).attr('href');
         })
     });
@@ -257,23 +206,12 @@ var templateDetail = function(data) {
     var getVoucherbtn;
     
     // uncomment if on
-    // if(_.contains(courseTakens, data.course_id)) {
-    //     getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher berhasil diambil</button>'
-    //  } else if (data.quota !== '' && Number(data.quota) == data.total) {
-    //     getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher Habis</button>'
-    //  } else {
-    //     getVoucherbtn = '<button id="get-voucher" class="my-3 btn btn-primary btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Dapatkan Voucher Pelatihan </button>'
-    //  }
-
-    // uncomment if off
     if(_.contains(courseTakens, data.course_id)) {
         getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher berhasil diambil</button>'
      } else if (data.quota !== '' && Number(data.quota) == data.total) {
         getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher Habis</button>'
-     } else if (data.course_discount == '') {
-        getVoucherbtn = '<button id="get-voucher" class="my-3 btn btn-primary btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Dapatkan Voucher Pelatihan </button>'
      } else {
-        getVoucherbtn = '<button id="get-voucher-disabled" class="my-3 btn btn-secondary btn-disabled btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Ambil Voucher Ditutup</button>'
+        getVoucherbtn = '<button id="get-voucher" class="my-3 btn btn-primary btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Dapatkan Voucher Pelatihan </button>'
      }
 
      var contactCenter = '';
@@ -303,22 +241,14 @@ var templateDetail = function(data) {
     return '<section class="section-detail-course">' +
     '<div class="container pt-3 pb-5 px-4 px-md-0">' +
       '<div class="row flex-row-reverse">' +
-        '<div class="col-12 col-md-4 col-lg-4"><div class="course-cover-sticky"><div class="course-cover"><img loading="lazy" class="w-100 rounded" src="'+ data.course_detail_image +'" alt=""/></div>' +
+        '<div class="col-12 col-md-4 col-lg-4"><div class="course-cover-sticky"><div class="course-cover"><img loading="lazy" class="w-100 rounded" src="'+ data.course_image +'" alt=""/></div>' +
           '<div class="mt-3 d-flex justify-content-between">' +
-            '<div>' +
-                '<div class="course-real-price mb-1"><span class="me-1">'+ course_price +'</span><span class="badge text-bg-ghost-success">'+ data.course_discount +'</span></div>' +
-                '<div class="course-price card-price mb-1 fs-4 '+ colorPrice +'">'+ finalPrice +'</div>' +
-            '</div>' +
-            '<div>' +
-                '<button class="btn btn-light share-button" type="button" title="Bagikan halaman ini"><i class="bi bi-share-fill">&nbsp;&nbsp;</i>Bagikan</button>' +
-            '</div>' +
+                '<div class="px-3 px-lg-0 m-r1"><a href="'+ data.course_url +'" id="get-voucher" class="btn btn-primary btn-lg w-90" data-bs-toggle="modal" data-bs-target="#">Lihat Detail Pelatihan</a></div>' +
+                '<button class="btn btn-light btn-md share-button w-30" type="button" title="Bagikan halaman ini"><i class="bi bi-share-fill">&nbsp;&nbsp;</i>Bagikan</button>' +
           '</div>' +
-          '<div class="course-cta px-3 px-lg-0">'+ getVoucherbtn +'</div>' + getTotal +
-          
         '</div></div>' +
         '<div class="col-12 col-md-8 col-lg-8 pe-xl-4">' +
           '<h1 class="mb-3">'+ data.course_title +'</h1>'+
-          '<a class="card-company-link d-inline-flex p-2 text-decoration-none border px-3" href="'+ BaseURL +'pelatihan?topic=&keyword=&price=&lp='+data.lp_name+'"><img loading="lazy" class="me-1 card-logo" src="'+ data.logo_lp +'" alt="'+ data.lp_name +'"/><span class="lp-name fs-7 text-secondary">'+ data.lp_name +'</span></a>' +
           '<div class="row mt-5 mb-4"> ' +
             '<div class="col-12 col-md-6 col-lg-4 mb-4 d-flex"> <i class="bi bi-person-badge"></i>' +
               '<div class="ps-2"> ' +
@@ -344,12 +274,6 @@ var templateDetail = function(data) {
                 '<a href="/pelatihan/index.html?topic='+ data.course_category.replace(/\s+/gi, '-').toLowerCase() +'&keyword=&price=&lp=" class="badge text-bg-light text-capitalize text-decoration-none">'+ data.course_category +'</a>' +
               '</div>' +
             '</div>' +
-            '<div class="col-12 col-md-6 col-lg-4 mb-4 d-flex"> <i class="bi bi-ticket-detailed"> </i>' +
-              '<div class="ps-2"> ' +
-                '<h6 class="fs-7 mb-2">Kuota Pelatihan</h6>' +
-                '<p class="fs-7">' + quota + '</p>' +
-              '</div>' +
-            '</div>' +
             '<div class="col-12 col-md-6 col-lg-4 mb-4 d-flex"> <i class="bi bi-link-45deg"></i>' +
               '<div class="ps-2 overflow-hidden">' +
                 '<h6 class="fs-7 mb-2">Link Pelatihan</h6><a class="fs-7 d-flex align-items-center" href="'+ data.course_url +'" target="_blank" title="'+ data.course_title +'"> <span class="pds-truncate">'+ data.course_url +'</span><i class="bi bi-arrow-up-right-square-fill"></i></a>' +
@@ -362,10 +286,10 @@ var templateDetail = function(data) {
               '<h4 class="mb-4">Deskripsi Pelatihan </h4>' +
               '<article id="description">'+ (data.description).replace(/\n/g,'</br>') +'</article>' +
             '</section>' +
-            '<section class="py-3" id="CaraRedeemVoucher">' +
-              '<h4 class="mb-4">Cara Redeem Voucher</h4>' +
-              '<article id="how-to-redeem">'+ (data.how_to_redeem).replace(/\n/g,'</br>') +'</article>' +
-            '</section>' +
+            // '<section class="py-3" id="CaraRedeemVoucher">' +
+            //   '<h4 class="mb-4">Cara Redeem Voucher</h4>' +
+            //     //   '<article id="how-to-redeem">'+ (data.how_to_redeem).replace(/\n/g,'</br>') +'</article>' +
+            // '</section>' +
             contactCenter +
             '<hr/>' +
           '</article>' +
@@ -446,7 +370,9 @@ var filterCourse = function(target, data, start, end) {
         var filterCategory = [], filterPrice = [], filterLP = [], filterNewCourse = [], filterTrending =[], filterMethod = [],  dataFilter = data;
         var keyword = $('#filter-keyword').val();
 
-        $.each($('.filter-category:checked'), function (i, e) { filterCategory[i] = $(e).val()})
+        $.each($('.filter-category:checked'), function (i, e) { 
+            filterCategory[i] = $(e).val()
+        })
         $.each($('.filter-price:checked'), function (i, e) { filterPrice[i] = $(e).val()})
         $.each($('.filter-lp:checked'), function (i, e) { filterLP[i] = $(e).val()})
         $.each($('.filter-trending:checked'), function (i, e) { filterTrending[i] = $(e).val()})
@@ -455,69 +381,24 @@ var filterCourse = function(target, data, start, end) {
 
         $('.quick-filter').removeClass('btn-primary').addClass('btn-outline-light');
         // to check the datalist based on current filter & keyword applied
-        if (!_.isEmpty(filterPrice)) {
-            if (filterPrice.length == 3) {
-                dataFilter = dataFilter;
-                $('.quick-filter').addClass('btn-outline-light').removeClass('btn-primary');
-                $('.quick-filter[price="diskon besar"], .quick-filter[price="0"], .quick-filter[price="20000"]').addClass('btn-primary').removeClass('btn-outline-light');
-            } else if (_.contains(filterPrice, 'diskon besar') && _.contains(filterPrice, '20000')) {
-                dataFilter = _.filter(data, function(list) { return list.course_after_discount !== "0"});
-                $('.quick-filter').addClass('btn-outline-light').removeClass('btn-primary');
-                $('.quick-filter[price="20000"], .quick-filter[price="diskon besar"]').addClass('btn-primary').removeClass('btn-outline-light');
-            } else if (_.contains(filterPrice, 'diskon besar') && _.contains(filterPrice, '0')) {
-                filterPrice = _.contains(filterPrice, '0') ? filterPrice.concat("") : filterPrice;
-                dataFilter = _.filter(data, function(list) { return list.course_after_discount !== "20000"});
-                $('.quick-filter').addClass('btn-outline-light').removeClass('btn-primary');
-                $('.quick-filter[price="0"], .quick-filter[price="diskon besar"]').addClass('btn-primary').removeClass('btn-outline-light');
-            } else if (_.contains(filterPrice, 'diskon besar')) {
-                dataFilter = _.filter(data, function(list) { return list.course_after_discount !== "20000" && list.course_after_discount !== "0"});
-                $('.quick-filter').addClass('btn-outline-light').removeClass('btn-primary');
-                $('.quick-filter[price="diskon besar"]').addClass('btn-primary').removeClass('btn-outline-light');
-            } else {
-                dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.course_after_discount) > -1; }, {"keys" : filterPrice});
-                _.each(filterPrice, function(val, i) {
-                    $('.quick-filter[price='+ val +']').addClass('btn-primary').removeClass('btn-outline-light');
-                })
-            }
-        }
 
         if (!_.isEmpty(filterCategory)) {
             dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.course_category.toLowerCase()) > -1; }, {"keys" : filterCategory})
+            _.each(filterCategory, function(val, i) {
+                console.log(filterCategory);
+                $('.quick-filter[data-category="'+ val +'"]').addClass('btn-primary').removeClass('btn-outline-light');
+            })
         }  
 
         if (!_.isEmpty(filterLP)) {
             dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.lp_name.toLowerCase()) > -1; }, {"keys" : filterLP})
         }
         
-        if (!_.isEmpty(filterNewCourse)) {
-            dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.new_course.toLowerCase()) > -1; }, {"keys" : filterNewCourse});
-            $('.quick-filter.new_course').addClass('btn-primary').removeClass('btn-outline-light');
-        } else {
-            $('.quick-filter.new_course').addClass('btn-outline-light').removeClass('btn-primary');
-        }
-        
-        if (!_.isEmpty(filterTrending)) {
-            dataFilter = _.filter(dataFilter, function(list) { return list.total >= 20 });
-            $('.quick-filter.trending').addClass('btn-primary').removeClass('btn-outline-light');
-        } else {
-            $('.quick-filter.trending').addClass('btn-outline-light').removeClass('btn-primary');
-        }
-
         if (!_.isEmpty(filterMethod)) {
             dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.course_type.replace(/-|%20/gi, ' ').toLowerCase()) > -1; }, {"keys" : filterMethod});
         }
 
         var dataKeyword = _.filter(dataFilter, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; })
-
-        mixpanel.track('Filter Course Option', {
-            'filter_price': filterPrice,
-            'filter_category' : filterCategory,
-            'filter_lp' : filterLP,
-            'filter_keyword' : keyword,
-            'filter_trending' : filterTrending,
-            'filter_new_course' : filterNewCourse,
-            'filter_method' : filterMethod
-        });
 
         var dataLength = dataKeyword.length;
         var paging = Math.ceil(dataLength/loadItem);
@@ -552,7 +433,7 @@ var filterCourse = function(target, data, start, end) {
         var filterTrendingJoin = filterTrending.join(",");
         var filterMethodJoin = filterMethod.join(",");
 
-        window.history.replaceState(null, null, "?topic="+ filterCategoryJoin.replace(/\s+/gi, '-').toLowerCase() +"&keyword="+ keyword.replace(/\s+/gi, '-').toLowerCase() +"&price="+ filterPriceJoin.replace(/\s+/gi, '-').toLowerCase() +"&lp="+ filterLPJoin.replace(/\s+/gi, '-').toLowerCase()+"&new_course="+ filterNewJoin.replace(/\s+/gi, '-').toLowerCase()+"&trending="+ filterTrendingJoin.replace(/\s+/gi, '-').toLowerCase()+"&method="+ filterMethodJoin.replace(/\s+/gi, '-').toLowerCase())
+        window.history.replaceState(null, null, "?topic="+ filterCategoryJoin.replace(/\s+/gi, '-').toLowerCase() +"&keyword="+ keyword.replace(/\s+/gi, '-').toLowerCase() +"&lp="+ filterLPJoin.replace(/\s+/gi, '-').toLowerCase()+"&method="+ filterMethodJoin.replace(/\s+/gi, '-').toLowerCase())
     })
 }
 
@@ -606,23 +487,13 @@ var filterKeyword = function(formSeaerch, buttonSearch, data, start, end) {
         }
         if (!_.isEmpty(filterCategory)) {
             dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.course_category.toLowerCase()) > -1; }, {"keys" : filterCategory})
+            _.each(filterCategory, function(val, i) {
+                console.log(filterCategory);
+                $('.quick-filter[data-category="'+ val +'"]').addClass('btn-primary').removeClass('btn-outline-light');
+            })
         }  
         if (!_.isEmpty(filterLP)) {
             dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.lp_name.toLowerCase()) > -1; }, {"keys" : filterLP})
-        }
-
-        if (!_.isEmpty(filterNewCourse)) {
-            dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.new_course.toLowerCase()) > -1; }, {"keys" : filterNewCourse});
-            $('.quick-filter.new_course').addClass('btn-primary').removeClass('btn-outline-light');
-        } else {
-            $('.quick-filter.new_course').addClass('btn-outline-light').removeClass('btn-primary');
-        }
-        
-        if (!_.isEmpty(filterTrending)) {
-            dataFilter = _.filter(dataFilter, function(list) { return list.total >= 50 });
-            $('.quick-filter.trending').addClass('btn-primary').removeClass('btn-outline-light');
-        } else {
-            $('.quick-filter.trending').addClass('btn-outline-light').removeClass('btn-primary');
         }
 
         if (!_.isEmpty(filterMethod)) {
@@ -632,15 +503,6 @@ var filterKeyword = function(formSeaerch, buttonSearch, data, start, end) {
         var dataKeyword = _.filter(dataFilter, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; })
 
         // run mixpanel event
-        mixpanel.track('Filter Course Keyword', {
-            'fiter_keyword': keyword,
-            'filter_price': filterPrice,
-            'filter_category' : filterCategory,
-            'filter_lp' : filterLP,
-            'filter_trending' : filterTrending,
-            'filter_new_course' : filterNewCourse,
-            'filter_method' : filterMethod
-        });
         
         // define pagination
         var dataLength = dataKeyword.length;
@@ -668,13 +530,10 @@ var filterKeyword = function(formSeaerch, buttonSearch, data, start, end) {
 
         // final push to the url current state with filter and keyword search
         var filterCategoryJoin =  filterCategory.join(",");
-        var filterPriceJoin = filterPrice.join(",");
         var filterLPJoin = filterLP.join(",");
-        var filterNewJoin = filterNewCourse.join(",");
-        var filterTrendingJoin = filterTrending.join(",");
         var filterMethodJoin = filterMethod.join(",");
 
-        window.history.replaceState(null, null, "?topic="+ filterCategoryJoin.replace(/\s+/gi, '-').toLowerCase() +"&keyword="+ keyword.replace(/\s+/gi, '-').toLowerCase() +"&price="+ filterPriceJoin.replace(/\s+/gi, '-').toLowerCase() +"&lp="+ filterLPJoin.replace(/\s+/gi, '-').toLowerCase()+"&new_course="+ filterNewJoin.replace(/\s+/gi, '-').toLowerCase()+"&trending="+ filterTrendingJoin.replace(/\s+/gi, '-').toLowerCase()+"&method="+ filterMethodJoin.replace(/\s+/gi, '-').toLowerCase())
+        window.history.replaceState(null, null, "?topic="+ filterCategoryJoin.replace(/\s+/gi, '-').toLowerCase() +"&keyword="+ keyword.replace(/\s+/gi, '-').toLowerCase() +"&lp="+ filterLPJoin.replace(/\s+/gi, '-').toLowerCase()+"&method="+ filterMethodJoin.replace(/\s+/gi, '-').toLowerCase())
     });
 
     // to trigger the submit button
@@ -689,51 +548,42 @@ var quickFilter = function (button) {
         var _this = $(this);
         var target = _this.attr('data-target');
         _this.hasClass('btn-primary') ? _this.addClass('btn-outline-light').removeClass('btn-primary') : _this.removeClass('btn-outline-light').addClass('btn-primary');
-        var filterCategory = !_.isEmpty(queryParams.get('topic')) ? ((queryParams.get('topic').toLowerCase()).replace(/-|%20/gi, ' ')) : '';
-        // var filterPrice = !_.isEmpty(queryParams.get('price')) ? ((queryParams.get('price').toLowerCase()).replace(/-|%20/gi, ' ')) : '';
-        var filterLP = !_.isEmpty(queryParams.get('lp')) ? ((queryParams.get('lp').toLowerCase()).replace(/-|%20/gi, ' ')) : '';
+        // var filterCategory = !_.isEmpty(queryParams.get('topic')) ? ((queryParams.get('topic').toLowerCase()).replace(/-|%20/gi, ' ')) : '';
         var keyword = !_.isEmpty(queryParams.get('keyword')) ? (queryParams.get('keyword')).replace(/-|%20/gi, ' ') : '';
-        var filterNewCourse = !_.isEmpty(queryParams.get('new_course')) ? (queryParams.get('new_course')).replace(/-|%20/gi, ' ') : '';
-        var filterTrending = !_.isEmpty(queryParams.get('trending')) ? (queryParams.get('trending')).replace(/-|%20/gi, ' ') : '';
-        var filterMethod = !_.isEmpty(queryParams.get('method')) ? (queryParams.get('method')).replace(/-|%20/gi, ' ') : '';
-        var valTrending = filterTrending, valNewCourse = filterNewCourse, price = [];
-
-        switch(target) {
-            case "trending":
-                valTrending = _this.hasClass('btn-primary') ? "true" : ""
-                _this.hasClass('btn-primary') ? $('.filter-trending[value="true"]').attr('checked', true) : $('.filter-trending[value="true"]').attr('checked', false)
-                break;
-            case "new_course":
-                valNewCourse = _this.hasClass('btn-primary') ? "true" : "";
-                _this.hasClass('btn-primary') ? $('.filter-newcourse[value="true"]').attr('checked', true) : $('.filter-newcourse[value="true"]').attr('checked', false);
-                break;
-            default:
-                var price = [];
-                $('.filter-price').attr('checked', false);
-                $.each($('.quick-filter.btn-primary[data-target="price"]'), function (i, e) { 
-                    price[i] = $(e).attr('price');
-                    $('.filter-price[value="'+ $(e).attr('price') +'"]').attr('checked', true);
-                });
-        }
-
-        mixpanel.track('Quick Filter', {
-            'filter_trending': valTrending,
-            'filter_course_new' : valNewCourse,
-            'filter_course_category' : filterCategory,
-            'filter_price': price,
-            'filter_lp': filterLP,
-            'fitler_method' : filterMethod
+        var category = [];
+        $('.filter-category').attr('checked', false);
+        $.each($('.quick-filter.btn-primary[data-target="course_category"]'), function (i, e) { 
+            category[i] = $(e).attr('data-category');
+            $('input.filter-category[value="'+ $(e).attr('data-category') +'"]').attr('checked', true);
         });
+        // switch(target) {
+        //     case "trending":
+        //         valTrending = _this.hasClass('btn-primary') ? "true" : ""
+        //         _this.hasClass('btn-primary') ? $('.filter-trending[value="true"]').attr('checked', true) : $('.filter-trending[value="true"]').attr('checked', false)
+        //         break;
+        //     case "new_course":
+        //         valNewCourse = _this.hasClass('btn-primary') ? "true" : "";
+        //         _this.hasClass('btn-primary') ? $('.filter-newcourse[value="true"]').attr('checked', true) : $('.filter-newcourse[value="true"]').attr('checked', false);
+        //         break;
+        //     default:
+        //         var price = [];
+        //         $('.filter-price').attr('checked', false);
+        //         $.each($('.quick-filter.btn-primary[data-target="price"]'), function (i, e) { 
+        //             price[i] = $(e).attr('price');
+        //             $('.filter-price[value="'+ $(e).attr('price') +'"]').attr('checked', true);
+        //         });
+        // }
 
-        priceJoin = price.join(',');
-        window.history.replaceState(null, null, "?topic="+ filterCategory.replace(/\s+/gi, '-').toLowerCase() +"&keyword="+ keyword.replace(/\s+/gi, '-').toLowerCase() +"&price="+ priceJoin.replace(/\s+/gi, '-').toLowerCase() +"&lp="+ filterLP.replace(/\s+/gi, '-').toLowerCase()+"&new_course="+ valNewCourse.replace(/\s+/gi, '-').toLowerCase()+"&trending="+ valTrending.replace(/\s+/gi, '-').toLowerCase()+"&method="+ filterMethod.replace(/\s+/gi, '-').toLowerCase())
+        categoryJoin = category.join(',');
+        window.history.replaceState(null, null, "?topic="+ categoryJoin.replace(/\s+/gi, '-').toLowerCase() +"&keyword="+ keyword.replace(/\s+/gi, '-').toLowerCase())
         
         $('#btn-apply-filter').trigger('click');
     })
 }
 
 /** function to get unique option */
-var optionList = function(data, filterLP, filterPrice, filterCategory, filterNewCourse, filterTrending,filterMethod) {
+var optionList = function(data, filterLP, filterCategory ,filterMethod) {
+    console.log(filterCategory)
     var lookupCategory = {}, lookupCourseLP = {};
     var resultCategory = [], resultCourseLP = [];
 
@@ -778,24 +628,24 @@ var optionList = function(data, filterLP, filterPrice, filterCategory, filterNew
     })
 
     // loop price selected
-    _.each(filterPrice, function(value) {
-        $('.filter-price[value="'+ value +'"]').attr('checked', true);
-    })
+    // _.each(filterPrice, function(value) {
+    //     $('.filter-price[value="'+ value +'"]').attr('checked', true);
+    // })
 
     // loop method selected
     _.each(filterMethod, function(value) {
         $('.filter-method[value="'+ value +'"]').attr('checked', true);
     })
 
-    if(!_.isEmpty(filterNewCourse)) {
-        $('.filter-newcourse[value="true"]').attr('checked', true);
-    }
+    // if(!_.isEmpty(filterNewCourse)) {
+    //     $('.filter-newcourse[value="true"]').attr('checked', true);
+    // }
 
-    if(!_.isEmpty(filterTrending)) {
-        $('.filter-trending[value="true"]').attr('checked', true);
-    }
+    // if(!_.isEmpty(filterTrending)) {
+    //     $('.filter-trending[value="true"]').attr('checked', true);
+    // }
     
-    if(!_.isEmpty(filterLP) || !_.isEmpty(filterPrice) || !_.isEmpty(filterCategory) || !_.isEmpty(filterMethod) || !_.isEmpty(filterNewCourse) || !_.isEmpty(filterTrending)) {
+    if(!_.isEmpty(filterLP) || !_.isEmpty(filterCategory)) {
         $('#btn-reset-filter').removeClass('disabled')
     }
 
@@ -870,13 +720,10 @@ function courseLoaderInit(){
         var loadItem = 12;
         var currentPage = 1;
         var filterTopic = !_.isEmpty(queryParams.get('topic')) ? ((queryParams.get('topic').toLowerCase()).replace(/-|%20/gi, ' ')).split(',') : '';
-        var filterPrice = !_.isEmpty(queryParams.get('price')) ? ((queryParams.get('price').toLowerCase()).replace(/-|%20/gi, ' ')).split(',') : '';
         var filterLP = !_.isEmpty(queryParams.get('lp')) ? ((queryParams.get('lp').toLowerCase()).replace(/-|%20/gi, ' ')).split(',') : '';
         var keyword = !_.isEmpty(queryParams.get('keyword')) ? (queryParams.get('keyword')).replace(/-|%20/gi, ' ') : '';
-        var filterNewCourse = !_.isEmpty(queryParams.get('new_course')) ? (queryParams.get('new_course')).replace(/-|%20/gi, ' ').split(',') : '';
-        var filterTrending = !_.isEmpty(queryParams.get('trending')) ? (queryParams.get('trending')).replace(/-|%20/gi, ' ').split(',') : '';
         var filterMethod = !_.isEmpty(queryParams.get('method')) ? (queryParams.get('method')).replace(/-|%20/gi, ' ').split(',') : '';
-        if (!_.isEmpty(filterPrice) || !_.isEmpty(filterPrice) || !_.isEmpty(filterLP)) {
+        if (!_.isEmpty(filterTopic) || !_.isEmpty(filterLP)) {
             $('#button-addon1').attr('class', 'btn btn-primary')
         }
         
@@ -887,50 +734,14 @@ function courseLoaderInit(){
                 
                 $('.quick-filter').addClass('btn-outline-light').removeClass('btn-primary');
 
-                if (!_.isEmpty(filterPrice)) {
-                    // data = _.filter(data, function(list) { return this.keys.indexOf(list.course_after_discount) > -1; }, {"keys" : filterPrice})
-                    if (filterPrice.length == 3) {
-                        data = data
-                        $('.quick-filter').addClass('btn-outline-light').removeClass('btn-primary');
-                        $('.quick-filter[price="diskon besar"], .quick-filter[price="0"], .quick-filter[price="20000"]').addClass('btn-primary').removeClass('btn-outline-light');
-                    } else if (_.contains(filterPrice, 'diskon besar') && _.contains(filterPrice, '20000')) {
-                        data = _.filter(data, function(list) { return list.course_after_discount !== "0"});
-                        $('.quick-filter').addClass('btn-outline-light').removeClass('btn-primary');
-                        $('.quick-filter[price="20000"], .quick-filter[price="diskon besar"]').addClass('btn-primary').removeClass('btn-outline-light');
-                    } else if (_.contains(filterPrice, 'diskon besar') && _.contains(filterPrice, '0')) {
-                        filterPrice = _.contains(filterPrice, '0') ? filterPrice.concat("") : filterPrice;
-                        data = _.filter(data, function(list) { return list.course_after_discount !== "20000"})
-                        $('.quick-filter').addClass('btn-outline-light').removeClass('btn-primary');
-                        $('.quick-filter[price="0"], .quick-filter[price="diskon besar"]').addClass('btn-primary').removeClass('btn-outline-light');
-                    } else if (_.contains(filterPrice, 'diskon besar')) {
-                        data = _.filter(data, function(list) { return list.course_after_discount !== "20000" && list.course_after_discount !== "0"})
-                        $('.quick-filter').addClass('btn-outline-light').removeClass('btn-primary');
-                        $('.quick-filter[price="diskon besar"]').addClass('btn-primary').removeClass('btn-outline-light');
-                    } else {
-                        data = _.filter(data, function(list) { return this.keys.indexOf(list.course_after_discount) > -1; }, {"keys" : filterPrice})
-                        _.each(filterPrice, function(val, i) {
-                            $('.quick-filter[price='+ val +']').addClass('btn-primary').removeClass('btn-outline-light');
-                        })
-                    }
-                } 
                 if (!_.isEmpty(filterTopic)) {
                     data = _.filter(data, function(list) { return this.keys.indexOf(list.course_category.toLowerCase()) > -1; }, {"keys" : filterTopic})
+                    _.each(filterTopic, function(val, i) {
+                        $('.quick-filter[data-category="'+ val +'"]').addClass('btn-primary').removeClass('btn-outline-light');
+                    })
                 }  
                 if (!_.isEmpty(filterLP)) {
                     data = _.filter(data, function(list) { return this.keys.indexOf(list.lp_name.toLowerCase()) > -1; }, {"keys" : filterLP})
-                }
-                if (!_.isEmpty(filterNewCourse)) {
-                    data = _.filter(data, function(list) { return this.keys.indexOf(list.new_course.toLowerCase()) > -1; }, {"keys" : filterNewCourse});
-                    $('.quick-filter.new_course').addClass('btn-primary').removeClass('btn-outline-light');
-                } else {
-                    $('.quick-filter.new_course').addClass('btn-outline-light').removeClass('btn-primary');
-                }
-                
-                if (!_.isEmpty(filterTrending)) {
-                    data = _.filter(data, function(list) { return list.total >= 50 });
-                    $('.quick-filter.trending').addClass('btn-primary').removeClass('btn-outline-light');
-                } else {
-                    $('.quick-filter.trending').addClass('btn-outline-light').removeClass('btn-primary');
                 }
 
                 if (!_.isEmpty(filterMethod)) {
@@ -978,7 +789,7 @@ function courseLoaderInit(){
                     btnLoadMore(loadMoreTarget, loadItem, start, end, dataKeyword, appendTarget, currentPage, paging);
                     
                     // load option
-                    optionList(courses, filterLP, filterPrice, filterTopic, filterNewCourse, filterTrending, filterMethod);
+                    optionList(courses, filterLP, filterTopic, filterMethod);
 
                     // trigger reset filter
                     resetFilter('#btn-reset-filter', 'input.form-check-input');
@@ -989,7 +800,7 @@ function courseLoaderInit(){
                     // filter implementation
                     filterCourse(applyFilter, courses, start, end);
                     filterKeyword(formSeaerch, buttonSearch, courses, start, end);
-                    quickFilter('.quick-filter')
+                    quickFilter('.quick-filter');
     
                     // invoke function push event GA
                     // pushEvents('.see-detail-course');
@@ -1154,17 +965,6 @@ function courseLoaderDetail () {
                     var _this = $(this);
                     var channel = _this.attr('data-service');
                     var cc_val = _this.text();
-                    mixpanel.track('Contact Center', {
-                        'course_id': courseId,
-                        'course_title' : detail.course_title,
-                        'course_category' : detail.course_category,
-                        'course_price': detail.course_price,
-                        'course_discount': detail.course_discount,
-                        'course_price_after_discount' : detail.course_after_discount,
-                        'course_lp': detail.lp_name,
-                        'channel' : channel,
-                        'data_contact_center' : cc_val
-                    });
                 });
 
                 shareBtn.click(function() {
@@ -1174,16 +974,6 @@ function courseLoaderDetail () {
                     var shareEmail = $('#share-email');
                     var copyLink = $('#copy-link');
                     var url = $('.pen-url');
-
-                    mixpanel.track('Click Share Button', {
-                        'course_id': courseId,
-                        'course_title' : detail.course_title,
-                        'course_category' : detail.course_category,
-                        'course_price': detail.course_price,
-                        'course_discount': detail.course_discount,
-                        'course_price_after_discount' : detail.course_after_discount,
-                        'course_lp': detail.lp_name
-                    });
 
                     shareFacebook.attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href)
                     shareTwitter.attr('href', 'https://twitter.com/intent/tweet?text=Dapatkan voucher pelatihan ' + detail.course_title + ' hanya di Indonesia Skills Week, dan jutaan voucher lainnya&url='+  window.location.href +'&hashtags=IndonesiSKillsWeek')
@@ -1204,18 +994,6 @@ function courseLoaderDetail () {
 
                         $('#target-share a').click(function() {
                             social = $(this).attr('data-share');
-
-                            mixpanel.track('Share To Social', {
-                                'course_id': courseId,
-                                'course_title' : detail.course_title,
-                                'course_category' : detail.course_category,
-                                'course_price': detail.course_price,
-                                'course_discount': detail.course_discount,
-                                'course_price_after_discount' : detail.course_after_discount,
-                                'course_lp': detail.lp_name,
-                                'url' : window.location.href,
-                                'social_media' : social
-                            });
                         })
 
                         copyLink.click(function() {
@@ -1224,16 +1002,6 @@ function courseLoaderDetail () {
                             $('#toast-sucess-copy').toast('show');
                             $('.close-toast-copy').click(function() {
                                 $('#toast-sucess-copy').toast('hide');
-                            });
-                            mixpanel.track('Copy URL', {
-                                'course_id': courseId,
-                                'course_title' : detail.course_title,
-                                'course_category' : detail.course_category,
-                                'course_price': detail.course_price,
-                                'course_discount': detail.course_discount,
-                                'course_price_after_discount' : detail.course_after_discount,
-                                'course_lp': detail.lp_name,
-                                'url' : window.location.href
                             });
                         })
                     }
@@ -1259,16 +1027,6 @@ function courseLoaderDetail () {
                             var dataPost = {
                                 course_id : courseId
                             }
-                            // run mixpanel event
-                            mixpanel.track('Get Voucher Request', {
-                                'course_id': courseId,
-                                'course_title' : detail.course_title,
-                                'course_category' : detail.course_category,
-                                'course_price': detail.course_price,
-                                'course_discount': detail.course_discount,
-                                'course_price_after_discount' : detail.course_after_discount,
-                                'course_lp': detail.lp_name
-                            });
 
                             $.ajax({
                                 dataType: "json",
@@ -1293,33 +1051,6 @@ function courseLoaderDetail () {
                                 // set course taken to localstorage
                                 localStorage.setItem('course_takens',JSON.stringify(courseTakens));
 
-                                // run mixpanel event
-                                mixpanel.track('Get Voucher Success', {
-                                    'course_id': courseId,
-                                    'course_title' : detail.course_title,
-                                    'course_category' : detail.course_category,
-                                    'course_price': detail.course_price,
-                                    'course_discount': detail.course_discount,
-                                    'course_price_after_discount' : detail.course_after_discount,
-                                    'course_lp': detail.lp_name
-                                });
-
-                                mixpanel.people.increment("total_trx");
-                                mixpanel.people.increment("amount_trx", detail.course_price);
-                                
-                                switch(Number(detail.course_price)) {
-                                    case 0:
-                                        mixpanel.people.increment("total_course_free");
-                                        break;
-                                    case 20000:
-                                        mixpanel.people.increment("total_trx_20k");
-                                        mixpanel.people.increment("total_amount_20k", detail.course_price);
-                                        break;
-                                    default:
-                                     mixpanel.people.increment("total_course_free");
-                                     mixpanel.people.increment("total_amount_big_discount", detail.course_price);
-                                  }
-
 
                             }).fail(function(responses) {
                                 var response = responses.responseJSON;
@@ -1329,25 +1060,12 @@ function courseLoaderDetail () {
                                         requestFormLogin.find('.alert').addClass('alert-danger').removeClass('alert-info').html('<i class="fs-5 bi bi-exclamation-triangle-fill me-3"></i><div><h6 class="text-danger">Ambil Voucher Pelatihan Gagal</h6><div class="fs-7">Sesi Login sudah berakhir, silahkan login kembali untuk mengambil voucher pelatihan</div></div> ');
                                         $('#get-voucher-botton').click(function() {
                                             localStorage.removeItem('users');
-                                            mixpanel.reset();
                                             window.location.reload();
                                         })
                                     } else {
                                         requestFormLogin.find('.alert').addClass('alert-danger').removeClass('alert-info').html('<i class="fs-5 bi bi-exclamation-triangle-fill me-3"></i><div><h6 class="text-danger">Ambil Voucher Pelatihan Gagal</h6><div class="fs-7">'+ response.message +'.</div></div> ')
                                     }
                                 } 
-
-                                // run mixpanel event
-                                mixpanel.track('Get Voucher Failed', {
-                                    'course_id': courseId,
-                                    'course_title' : detail.course_title,
-                                    'course_category' : detail.course_category,
-                                    'course_price': detail.course_price,
-                                    'course_discount': detail.course_discount,
-                                    'course_price_after_discount' : detail.course_after_discount,
-                                    'course_lp': detail.lp_name,
-                                    'error_message' : response.message
-                                });
                             })
                         })
                     } else {
@@ -1425,10 +1143,6 @@ function homeCheckLogin() {
         // e.preventDefault();
         var _this = $(this);
         var source = _this.attr('data-source');
-
-        mixpanel.track('Create Account', {
-            'source' : source
-        });
     });
 
     // trigger popup
@@ -1480,10 +1194,6 @@ function homeCheckLogin() {
                         // loginButton.find('.text-users').html(dataPost.email);
                         $('#user-email').html(dataPost.email);
 
-                        mixpanel.track('Login Success', {
-                            'email' : dataPost.email
-                        });
-
                         formLogin.find('.alert.alert-danger').addClass('visually-hidden');
                         btnFormLogin.removeClass('disabled').html('Masuk');
                         // hide modal login
@@ -1501,11 +1211,7 @@ function homeCheckLogin() {
                             afterLoginModal.find('.text-email').text('(' + dataUser.email + ')');
                             afterLoginModal.modal('show');
                             logoutButton.click(function() {
-                                mixpanel.track('Logout Success', {
-                                    'email' : dataPost.email
-                                });
                                 localStorage.removeItem('users');
-                                mixpanel.reset();
                                 localStorage.removeItem('course_takens');
                                 window.location.reload();
                             })
@@ -1515,11 +1221,6 @@ function homeCheckLogin() {
                     var response = data.responseJSON;
                     formLogin.find('.alert.alert-danger').removeClass('visually-hidden').find('.alert.alert-danger .text-error').html('Alamat email atau password salah. Mohon periksa kembali.');
                     btnFormLogin.removeClass('disabled').html('Masuk');
-                    mixpanel.track('Login Error', {
-                        'email' : dataPost.email,
-                        'error Code' : response.errorCode,
-                        'error Message' : response.message
-                    });
                 })
             }
 
@@ -1531,7 +1232,6 @@ function homeCheckLogin() {
         // })
         
     } else {
-        console.log(dataUser)
         // loginButton.find('span').after(loginText).remove();
         profileLink.removeClass('supper-hidden');
         $('#user-email').html(dataUser.email);
@@ -1543,7 +1243,6 @@ function homeCheckLogin() {
             afterLoginModal.modal('show');
             logoutButton.click(function() {
                 localStorage.removeItem('users');
-                mixpanel.reset();
                 localStorage.removeItem('course_takens');
                 window.location.reload();
             })
@@ -1551,7 +1250,6 @@ function homeCheckLogin() {
         // logout actions
         logoutButton.click(function() {
             localStorage.removeItem('users');
-            mixpanel.reset();
             localStorage.removeItem('course_takens');
             window.location.reload();
         })
@@ -1600,7 +1298,6 @@ function profile(dataCourseProfile) {
                 // if expired token then reload
                 // window.location.reload();
                 localStorage.removeItem('users');
-                mixpanel.reset();
                 loginModal.modal('show');
                 profile.find('p').html('Untuk mendapatkan Voucher Pelatihan, masuk ke Indonesia Skill Weeks dengan menggunakan email yang sudah terdaftar sebagai peserta di Prakerja.');
                 profile.find('button').attr('class', 'btn btn-primary').html('Masuk');
@@ -1629,10 +1326,6 @@ function globalSearch(dataCourse) {
         formSearch.submit(function(e) {
             e.preventDefault();
             keyword = formSearch.find('input.modal-search-input').val();
-            mixpanel.track('Search Course', {
-                'keyword' : keyword,
-                'source' : pageClass
-            });
             window.location.replace("/pelatihan/index.html?&keyword="+ keyword.replace(/\s+/gi, '-').toLowerCase() +"&price=&lp=&topic=")
         });
 
