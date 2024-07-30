@@ -4,9 +4,33 @@
 <path d="M44.3524 69.6956V91.9901L26.3728 109.97" stroke="#2A72C7" stroke-width="2.55281" stroke-dasharray="6.29 6.29"/>
 <path d="M63.2157 69.6956V112.827" stroke="#2A72C7" stroke-width="2.55281" stroke-dasharray="6.29 6.29"/>
 <path d="M82.079 69.6956V91.9901L100.059 109.97" stroke="#2A72C7" stroke-width="2.55281" stroke-dasharray="6.29 6.29"/>
-<circle cx="100.059" cy="109.97" r="4.07357" fill="#F2BA01"/>
-<circle cx="63.2157" cy="116.901" r="4.07357" fill="#2A72C7"/>
-<circle cx="26.373" cy="109.97" r="4.07357" fill="#F05E00"/>
+<circle cx="100.059" cy="109.97" r="4.07357" fill="#F2BA01">
+<animate
+      attributeType="XML"
+      attributeName="fill"
+      from="#F2BA01"
+      to="#2A72C7"
+      dur="3s"
+      repeatCount="indefinite" />
+</circle>
+<circle cx="63.2157" cy="116.901" r="4.07357" fill="#2A72C7">
+<animate
+      attributeType="XML"
+      attributeName="fill"
+      from="#2A72C7"
+      to="#F05E00"
+      dur="2s"
+      repeatCount="indefinite" />
+</circle>
+<circle cx="26.373" cy="109.97" r="4.07357" fill="#F05E00">
+    <animate
+      attributeType="XML"
+      attributeName="fill"
+      from="#F05E00"
+      to="#2A72C7"
+      dur="1s"
+      repeatCount="indefinite" />
+</circle>
 <defs>
 <linearGradient id="paint0_linear_194_9875" x1="0.850098" y1="11.3035" x2="125.581" y2="11.3035" gradientUnits="userSpaceOnUse">
 <stop stop-color="#1D508B"/>
