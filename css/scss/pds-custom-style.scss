@@ -193,7 +193,6 @@ body{
   background-color: $y100;
   border-radius: 1rem;
   border: 3px dashed $o500;
-
   top:0;
   right:0;
 }
@@ -203,13 +202,16 @@ body{
   background-image: url('../img/cloud-computing.svg');
   background-repeat: no-repeat;
   background-position: bottom 1rem right 1rem;
+  background-size: calc(6rem + 0.6vw);
   height: 100%;
+  
 }
 .box-data{
   background-color: $o100;
   background-image: url('../img/data-ai.svg');
   background-repeat: no-repeat;
   background-position: bottom 1rem right 1rem;
+  background-size: calc(8rem + 0.6vw);
   height: 100%;
 }
 

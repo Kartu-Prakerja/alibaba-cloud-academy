@@ -1615,6 +1615,7 @@ body.freeze {
   background-image: url("../img/cloud-computing.svg");
   background-repeat: no-repeat;
   background-position: bottom 1rem right 1rem;
+  background-size: calc(6rem + 0.6vw);
   height: 100%;
 }
 
@@ -1623,6 +1624,7 @@ body.freeze {
   background-image: url("../img/data-ai.svg");
   background-repeat: no-repeat;
   background-position: bottom 1rem right 1rem;
+  background-size: calc(8rem + 0.6vw);
   height: 100%;
 }
 

@@ -6,7 +6,7 @@ section.section-forms.adjust-anchor#JoinNow
           h4.custom-rfs-h4 Gabung Program
           p 
             | Pastikan yang email kamu gunakan sudah terdaftar di Prakerja dan 
-            a(href="#") Alibaba Cloud Academy. 
+            a(href="https://edu.alibabacloud.com/" target="_blank") Alibaba Cloud Academy. 
           form.row.mt-4(name="FormRequest" action="/index.html" method="post")
             .col-lg-6
               .mb-3
@@ -15,13 +15,16 @@ section.section-forms.adjust-anchor#JoinNow
                 
             .col-lg-6
               .mb-3
-                label.form-label(for='EmailAddress') Alamat Email yang terdaftar di Prakerja & Alibaba
+                label.form-label(for='EmailAddress') Alamat Email yang Terdaftar di Prakerja & Alibaba
                 input#EmailAddress.form-control(type='email' placeholder='name@example.com' required oninvalid="this.setCustomValidity('Masukan email terdaftar di Prakerja dan Alibaba Cloud Kamu')" oninput="this.setCustomValidity('')")
             
             .col-lg-6
               .mb-3
-                label.form-label(for='IDAlibaba') ID Alibaba Cloud
-                input#IDAlibaba.form-control(type='text' placeholder='1234567890' required oninvalid="this.setCustomValidity('Masukan ID Alibaba Cloud Kamu')" oninput="this.setCustomValidity('')")
+                label.form-label(for='IDAlibaba') 
+                  | ID Alibaba Cloud 
+                i.bi.bi-info-circle-fill.text-info.ms-2(data-bs-toggle='tooltip' data-bs-placement='right' data-bs-custom-class='custom-tooltip' data-bs-title='Untuk mendapatkan ID Alibaba Cloud, daftarkan Individual Account di alibabacloud.com menggunakan email yang sama dengan akun Prakerja. ID Alibaba Cloud bisa ditemukan di halaman Account Management.')
+
+                input#IDAlibaba.form-control(type='text' placeholder='Masukkan 16 digit ID Alibaba' required oninvalid="this.setCustomValidity('Masukan ID Alibaba Cloud Kamu')" oninput="this.setCustomValidity('')")
                 
             .col-lg-6
               .mb-3
@@ -33,7 +36,7 @@ section.section-forms.adjust-anchor#JoinNow
 
             .col-lg-6
               .mb-3
-                label.form-label(for='Background') Latar Belakang
+                label.form-label(for='Background') Status Pekerjaan
                 select#Background.form-select(aria-label='Default select example')
                   option(selected='') Pilih
                   option(value='1') Mahasiswa Universitas
@@ -85,12 +88,12 @@ section.section-forms.adjust-anchor#JoinNow
 
             .col-lg-12
               .mb-3 
-                .form-check.mb-3
-                  input#userConsent.form-check-input(type='checkbox' value='')
-                  label.form-check-label(for='userConsent')
-                    | Dengan mendaftar, saya setuju dengan 
-                    a(href="#") syarat dan ketentuan
-                    |  program ini.
+                //- .form-check.mb-3
+                //-   input#userConsent.form-check-input(type='checkbox' value='')
+                //-   label.form-check-label(for='userConsent')
+                //-     | Dengan mendaftar, saya setuju dengan 
+                //-     a(href="#") syarat dan ketentuan
+                //-     |  program ini.
 
                 button.btn.btn-orange
                   | Gabung Program 

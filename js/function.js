@@ -1156,41 +1156,10 @@ function profile(dataCourseProfile) {
         $('body').toggleClass('freeze');
       });
 
-    
 
-    $('.testimony-carousel').owlCarousel({
-        loop:true,
-        // margin:24,
-        autoplay: true,
-        center: true,
-        dots: true,
-        // lazyLoad:true,
-        responsive:{
-            1000:{
-                items:3,
-                margin: 0
-            },
-            756:{
-                items:2,
-                margin: 0
-            },
-            0:{
-                items:1,
-                margin: 0
-            }
-        }
-    });
 
-    $('.boost-ads-carousel').owlCarousel({
-        loop:true,
-        autoplay: false,
-        dots: true,
-        lazyLoad:true,
-        items:1.25
-    });
-
-    $('.owl-carousel').owlCarousel({
-        loop:true,
+    $('.owl-carousel-btb').owlCarousel({
+        loop:false,
         margin:24,
         nav:false,
         dots: false,
@@ -1199,7 +1168,7 @@ function profile(dataCourseProfile) {
                 items:1.2
             },
             600:{
-                items:3
+                items:2.2
             },
             1200:{
                 items:4
@@ -1207,36 +1176,6 @@ function profile(dataCourseProfile) {
         }
     });
 
-    $('.howto-carousel').owlCarousel({
-        dots: false,
-        autoplay: false,
-        responsive:{
-            1200:{
-                items:4,
-                margin: 0,
-                loop:false
-            },
-            1000:{
-                items:3.5,
-                margin: 0
-            },
-            800:{
-                items:3.2,
-                margin: 0,
-                loop:true
-            },
-            600:{
-                items:2.2,
-                margin: 0,
-                loop:true
-            },
-            0:{
-                items:1.5,
-                margin: 0,
-                loop:true
-            }
-        }
-    });
 
 
     // show hide password 
@@ -1278,3 +1217,7 @@ function profile(dataCourseProfile) {
  })(jQuery);
 
  AOS.init();
+
+ // load bootstrap popover
+ const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+ const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
