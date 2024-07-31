@@ -27,7 +27,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&amp;family=Poppins:wght@700;900&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&amp;family=Poppins:wght@600;700;900&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/pds-custom-style.css">
@@ -40,6 +40,15 @@
       j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
       })(window,document,'script','dataLayer','GTM-TTFX6N6');
+    </script>
+    <script type="text/javascript">
+      (function (f, b) { if (!b.__SV) { var e, g, i, h; window.mixpanel = b; b._i = []; b.init = function (e, f, c) { function g(a, d) { var b = d.split("."); 2 == b.length && ((a = a[b[0]]), (d = b[1])); a[d] = function () { a.push([d].concat(Array.prototype.slice.call(arguments, 0))); }; } var a = b; "undefined" !== typeof c ? (a = b[c] = []) : (c = "mixpanel"); a.people = a.people || []; a.toString = function (a) { var d = "mixpanel"; "mixpanel" !== c && (d += "." + c); a || (d += " (stub)"); return d; }; a.people.toString = function () { return a.toString(1) + ".people (stub)"; }; i = "disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split( " "); for (h = 0; h < i.length; h++) g(a, i[h]); var j = "set set_once union unset remove delete".split(" "); a.get_group = function () { function b(c) { d[c] = function () { call2_args = arguments; call2 = [c].concat(Array.prototype.slice.call(call2_args, 0)); a.push([e, call2]); }; } for ( var d = {}, e = ["get_group"].concat( Array.prototype.slice.call(arguments, 0)), c = 0; c < j.length; c++) b(j[c]); return d; }; b._i.push([e, f, c]); }; b.__SV = 1.2; e = f.createElement("script"); e.type = "text/javascript"; e.async = !0; e.src = "undefined" !== typeof MIXPANEL_CUSTOM_LIB_URL ? MIXPANEL_CUSTOM_LIB_URL : "file:" === f.location.protocol && "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//) ? "https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js" : "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js"; g = f.getElementsByTagName("script")[0]; g.parentNode.insertBefore(e, g); } })(document, window.mixpanel || []);
+      var users = JSON.parse(localStorage.getItem('users'));
+      mixpanel.init('ef0d1649ccb886338ac7d13f7854fd15', {debug: false, track_pageview: true, persistence: 'localStorage'});
+      if (users) {
+          mixpanel.people.set({'distinct_id': users.email, '$email': users.email, '$name': (users.email).split('@',1)[0]});
+          mixpanel.identify(users.email)
+      }
     </script>
   </head>
   <body>
@@ -73,7 +82,7 @@
         <div class="container py-4 py-lg-5 px-4 px-md-0">
           <div class="row d-flex align-items-center">
             <div class="col-md-10 mt-3 mt-md-0"><span class="text-secondary" data-aos="fade-up" data-aos-delay="50" data-aos-once="true">#JADIBISA</span>
-              <h1 class="mb-3 mb-lg-2 display-2 md-md-0"><span class="me-3" data-aos="fade-up" data-aos-delay="100" data-aos-once="true">Beasiswa</span><span class="text-wrapper" data-aos="fade-up" data-aos-delay="150"><span>Sertfikasi</span><span>Gratis</span><span>Sertfikasi</span><span>Gratis</span><span>Sertfikasi</span></span><br><span data-aos="fade-up" data-aos-delay="200" data-aos-once="true">Alibaba Cloud Academy</span></h1>
+              <h1 class="mb-3 mb-lg-2 display-2 md-md-0"><span class="me-3" data-aos="fade-up" data-aos-delay="100" data-aos-once="true">Beasiswa</span><span class="text-wrapper" data-aos="fade-up" data-aos-delay="150"><span>Sertifikasi</span><span>Gratis</span><span>Sertifikasi</span><span>Gratis</span><span>Sertifikasi</span></span><br><span data-aos="fade-up" data-aos-delay="200" data-aos-once="true">Alibaba Cloud Academy</span></h1>
               <p class="text-secondary text-subhero pe-xl-5" data-aos="fade-up" data-aos-delay="250" data-aos-once="true"><b class="text-secondary">Oleh Prakerja x Alibaba Cloud</b></p>
               <div class="d-lg-inline-flex p-3 rounded-3 shadow-sm bg-transparent gap-3" data-aos="fade-up" data-aos-delay="300" data-aos-once="true">
                 <div class="d-flex" data-aos="fade-up" data-aos-delay="350" data-aos-once="true"> <i class="bi bi-check2-circle text-success pe-2"> </i>
@@ -96,7 +105,7 @@
               </div>
               <div class="mt-4" data-aos="fade-up" data-aos-delay="500" data-aos-once="true">
                 <div class="d-flex gap-5">
-                  <div><span class="d-block text-secondary fs-7 mb-1">Event ini berlangsung</span><span><i class="bi bi-calendar-range text-secondary me-2"></i><b>21 Jun - 04 Juli 2024</b></span></div>
+                  <div><span class="d-block text-secondary fs-7 mb-1">Event ini berlangsung</span><span><i class="bi bi-calendar-range text-secondary me-2"></i><b>01-21 Agustus 2024</b></span></div>
                 </div>
               </div>
               <div class="mt-4" data-aos="fade-up" data-aos-delay="550" data-aos-once="true"><a class="btn btn-orange btn-lg register-account" href="#JoinNow">
@@ -139,14 +148,14 @@
               </div>
               <div class="col-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-once="true" data-aos-delay="200">
                 <div class="card-instructor p-3 rounded-3 bg-circuit text-center">
-                  <div class="avatar avatar-lg overflow-hidden mb-2 rounded-pill ms-auto me-auto"><img class="rounded-pill object-fit-cover" src="https://randomuser.me/api/portraits/men/20.jpg" alt=""></div>
+                  <div class="avatar avatar-lg overflow-hidden mb-2 rounded-pill ms-auto me-auto"><img class="rounded-pill object-fit-cover" src="img/img-tifi-liu.webp" alt="Tifi Liu"></div>
                   <h6>Tifi Liu </h6>
                   <p class="fs-7 m-0 text-secondary">Instruktur untuk kelas Marketing</p>
                 </div>
               </div>
               <div class="col-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-once="true" data-aos-delay="250">
                 <div class="card-instructor p-3 rounded-3 bg-circuit text-center">
-                  <div class="avatar avatar-lg overflow-hidden mb-2 rounded-pill ms-auto me-auto"><img class="rounded-pill object-fit-cover" src="https://randomuser.me/api/portraits/men/26.jpg" alt=""></div>
+                  <div class="avatar avatar-lg overflow-hidden mb-2 rounded-pill ms-auto me-auto"><img class="rounded-pill object-fit-cover" src="img/img-tifi-liu.webp" alt="Pinky Meiska "></div>
                   <h6>Pinky Meiska </h6>
                   <p class="fs-7 m-0 text-secondary">Instruktur untuk kelas Business Development</p>
                 </div>
@@ -400,34 +409,51 @@
                   </div>
                   <div class="col-lg-6">
                     <div class="mb-3">
-                      <label class="form-label" for="InstitutionCat">Kategori Institusi</label>
-                      <select class="form-select" id="CourseCat" aria-label="Default select example">
+                      <label class="form-label" for="Background">Latar Belakang</label>
+                      <select class="form-select" id="Background" aria-label="Default select example">
                         <option selected="">Pilih</option>
-                        <option value="1">Institusi Pendidikan</option>
-                        <option value="2">Institusi Pemerintah</option>
-                        <option value="3">Lembaga Penelitian</option>
-                        <option value="4">Swasta</option>
-                        <option value="5">Non-Profit / NGO</option>
-                        <option value="6">Lainnya</option>
+                        <option value="1">Mahasiswa Universitas</option>
+                        <option value="2">Dosen atau Staff Pengajar</option>
+                        <option value="3">Karyawan Perusahaan IT</option>
+                        <option value="4">Karyawan Perusahaan Startup</option>
+                        <option value="5">Karyawan Perusahaan Non-IT</option>
+                        <option value="6">Pengusaha atau Pemilik UMKM</option>
+                        <option value="7">Freelancer di Bidang IT</option>
+                        <option value="8">Fresh Graduate</option>
+                        <option value="9">Lainnya</option>
                       </select>
                     </div>
                   </div>
                   <div class="col-lg-6">
                     <div class="mb-3">
-                      <label class="form-label" for="CourseCat">Alasan Mengikuti Pelatihan</label>
-                      <select class="form-select" id="CourseCat" aria-label="Default select example">
+                      <label class="form-label" for="Reference">Darimana Kamu Tahu Program Ini</label>
+                      <select class="form-select" id="Reference" aria-label="Default select example">
                         <option selected="">Pilih</option>
-                        <option value="1">Satu</option>
-                        <option value="2">Dua</option>
-                        <option value="3">Tiga</option>
+                        <option value="1">Media Sosial (Instagram, Facebook, Twitter, LinkedIn)</option>
+                        <option value="2">Email dari Prakerja</option>
+                        <option value="3">Teman atau Kolega</option>
+                        <option value="4">Webinar atau Seminar</option>
+                        <option value="5">Kampus</option>
+                        <option value="6">WA komunitas Prakerja</option>
+                        <option value="7">Komunitas</option>
+                        <option value="8">Lainnya</option>
                       </select>
                     </div>
                   </div>
                   <div class="col-lg-12">
                     <div class="mb-3">
-                      <label class="form-label" for="Motivation">Ceritakan motivasi kamu untuk bergabung di program ini agar kamu memiliki kesempatan lebih tinggi untuk lolos terpilih.</label>
-                      <textarea class="form-control" id="Motivation" rows="3" placeholder="Tulis motivasi kamu"></textarea>
-                      <div class="form-text">Minimal 200 kata.</div>
+                      <label class="form-label" for="ReasontoJoin">Alasan Ikut Beasiswa</label>
+                      <select class="form-select" id="ReasontoJoin" aria-label="Default select example">
+                        <option selected="">Pilih</option>
+                        <option value="1">Untuk meningkatkan keterampilan di bidang Cloud Computing atau Big Data</option>
+                        <option value="2">Mendapatkan sertifikasi ACA dari Alibaba Cloud Academy</option>
+                        <option value="3">Mencari peluang untuk kolaborasi dan inovasi di bidang cloud computing atau Big Data</option>
+                        <option value="4">Menambah nilai tambah dalam CV dan prospek karir</option>
+                        <option value="5">Untuk mengembangkan jaringan profesional di bidang teknologi</option>
+                        <option value="6">Untuk berpartisipasi dalam program bergengsi dan diakui internasional</option>
+                        <option value="7">Ingin berkontribusi dalam pengembangan teknologi di Indonesia</option>
+                        <option value="8">Alasan pribadi lainnya</option>
+                      </select>
                     </div>
                   </div>
                   <div class="col-lg-12">
