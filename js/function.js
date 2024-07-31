@@ -26,9 +26,6 @@ const sharerURL = 'https://gist.github.com/tZilTM/6eecb26cd8dca3f9f800128c726d67
 const BaseURL = '/'
 const loadItem = 12;
 const courseListURL = "/js/course.json";
-const checkLogin = "https://api-ext.prakerja.go.id/api/v1/user/login-a17ab03c3d1d";
-const checkVoucher = 'https://api-proxy.prakerja.go.id/api/v1/general/voucher/ack';
-const getTrxList = 'https://api-proxy.prakerja.go.id/api/v1/general/voucher/list';
 const queryParams = new URLSearchParams(window.location.search);
 var dataCourse = !_.isNull(localStorage.getItem('course_list')) ? JSON.parse(localStorage.getItem('course_list')) : $.getJSON(courseListURL).done(function(courses) { localStorage.setItem('course_list', JSON.stringify(courses)) })
 var currentPage = 1;
@@ -319,32 +316,6 @@ var templateBreadCrumb = function(data) {
     '</ol>'
 }
 
-// 
-/** function on click course description  */
-var btnDescription = function (target, data) {
-    // handle or prevent multiple time init the function
-    $(target).unbind('click');
-    $(target).on('click', function (e) {
-        // to cancel the redirect pages
-        e.preventDefault();
-        var _this = $(this);
-        var index = _this.data('index');
-        var description = data.description;
-        var title = data.course_title;
-        var course_url = data.course_url;
-        var course_form_request = 'https://docs.google.com/forms/d/e/1FAIpQLScc3v4je6bcRHA_0H5ItpjaY_x8ump5K9pdc27ylti4pQo0xQ/viewform?usp=pp_url&entry.841678428=' + data.course_title.split(" ").join("+");
-        
-        // manage the content
-        $('#deskripsiPelatihanModal .modal-title').html(title);
-        $('#deskripsiPelatihanModal .course-url .link-pelatihan').attr({'href': course_url, 'title' : title }).html(course_url)
-        $('#deskripsiPelatihanModal .course-descriptions p').html(description);
-        $('#deskripsiPelatihanModal #modal-link-voucher').attr('href', course_form_request);
-
-        // trigger the modal
-        $('#deskripsiPelatihanModal').modal('show');
-    });
-}
-
 /** function to invoke load more */
 var btnLoadMore = function(target, loadItem, start, end, data, appendTarget, currentPage, paging, isListLp) {
     // to unbind the previous event or duplicate event
@@ -424,7 +395,7 @@ var filterCourse = function(target, data, start, end) {
         if (dataKeyword.length !== 0) {
             // loop the content and add to the course list
             $.each(dataKeyword.slice(start, end), function(i, list) {
-                templateCourse(appendTarget, list, 'null', true);
+                templateCourse(appendTarget, list, null, true);
             });
         } else {
             appendTarget.html(emptyState);
@@ -694,33 +665,6 @@ var checkLoadMore = function(target, paging, currentPage) {
     }
 }
 
-// Push event GA function
-var pushEvents = function(target) {
-    $(target).on('click', function(e) {
-        var _this = $(this);
-        var events = _this.attr('data-event');
-        var price = _this.parents('div.card-body').find('.course-price').html();
-        var course_title = _this.parents('div.card-body').find('h6.course-title').html();
-        var lp_name = _this.parents('div.card-cover').find('.course-lp-name').html();
-        if(window.DataLayer !== undefined) {
-            dataLayer.push({'event': events, 'course_title': course_title, 'price': price, 'lp_name' : lp_name});
-        }
-    })
-}
-
-var pushEventsFilter = function(target) {
-    $(target).on('click', function(e) {
-        var _this = $(this);
-        var events = _this.attr('data-event');
-        var price = _this.parents('div.card-body').find('.course-price').html();
-        var course_title = _this.parents('div.card-body').find('h6.course-title').html();
-        var lp_name = _this.parents('div.card-cover').find('.course-lp-name').html();
-        if(window.DataLayer !== undefined) {
-            dataLayer.push({'event': events, 'course_title': course_title, 'price': price, 'lp_name' : lp_name});
-        }
-    })
-}
-
 /** function to init the content at the first time */
 function courseLoaderInit(){
     $(document).ready(function(){
@@ -825,104 +769,6 @@ function courseLoaderInit(){
             });
         }
     });
-}
-
-// function to load course on homepage
-function courseLoaderHome() {
-    // $(document).ready(function(){
-    var appendLimited = $('#courseCarouselDiscount');
-    var appendTwenty = $('#courseCarouselTwenty');
-    var appendFree = $('#courseCarouselFree');
-    var appendNewest = $('#courseCarouselNewest');
-    var appendTarget = $('#course-provider-list');
-    var loadMoreTarget = $('#load-more-lp');
-    var loadItem = 12;
-    var currentPage = 1;
-
-    // console.log(dataUser, 'datauser');
-    
-    // check if this content is available on landing page or not
-    if (appendLimited.length || appendTwenty.length || appendFree.length || appendNewest.length) {
-        // const adsModal = new bootstrap.Modal('#adsModal');
-        // adsModal.show();
-        
-        $.getJSON(courseListURL, function(data){
-            dataLimited = _.sample(_.filter(data, function(list) { return list.course_after_discount !== "0" && list.course_after_discount !== "20000"}), 10);
-            dataTwenty = _.sample(_.filter(data, function(list) { return list.course_after_discount == "20000"}), 10);
-            dataFree = _.sample(_.filter(data, function(list) { return list.course_after_discount == "0"}), 10);
-            dataNewest = _.sample(_.filter(data, function(list) { return list.new_course == "true"}), 10);
-            appendLimited.addClass('owl-carousel').html('');
-            appendTwenty.addClass('owl-carousel').html('');
-            appendFree.addClass('owl-carousel').html('');
-            appendNewest.addClass('owl-carousel').html('');
-
-            var lookupCourseLP = {};
-            var resultCourseLP = [];
-
-            // to get the list of category insert to array
-            for (var item, i = 0; item = data[i++];) {
-                var courseLP = item.lp_name.toLowerCase();
-
-                if (!(courseLP in lookupCourseLP)) {
-                    lookupCourseLP[courseLP] = 1;
-                    resultCourseLP.push({
-                        "lp_name" : item.lp_name,
-                        "lp_logo" : item.logo_lp
-                    });
-                }
-            }
-            // list result lp
-            resultCourseLP = _.sortBy(resultCourseLP, 'lp_name');
-            appendTarget.html('');
-
-            var dataLength = resultCourseLP.length;
-            var paging = Math.ceil(dataLength/loadItem);
-            var start = 0;
-            var end = loadItem;
-
-            // append data to list LP
-        
-            $.each(resultCourseLP.slice(start, end), function(i, list) {
-                templateLP(appendTarget, list);
-            })
-
-            btnLoadMore(loadMoreTarget, loadItem, start, end, resultCourseLP, appendTarget, currentPage, paging, true);
-            
-            // invoke function push event GA
-            // pushEvents('.see-detail-course');
-            // pushEvents('.apply-course');
-        }).done(function() {
-            $('.owl-carousel').owlCarousel({
-                loop:true,
-                margin:24,
-                nav:true,
-                dots: false,
-                // lazyLoad: true,
-                responsiveClass:true,
-                responsive:{
-                    0:{
-                        items:1.2,
-                        margin: 16,
-                        nav:false
-                    },
-                    600:{
-                        items:3,
-                        margin: 16,
-                        nav:false
-                    },
-                    1000:{
-                        items:3.75,
-                        nav:false
-                    },
-                    1200:{
-                        items:4.2,
-                        nav:true
-                    }
-                }
-            });
-        })
-    }  
-    // })
 }
 
 function courseLoaderDetail () {
@@ -1042,61 +888,6 @@ function courseLoaderDetail () {
 
     // })
     // $(target).html('').append(templateDetail)
-}
-
-function profile(dataCourseProfile) {
-    var userProfile = $('#user-profile');
-    var courseList = $('#course-list');
-    var activeCourseContainer = $('#active-course-container');
-    var emptyCourseContainer = $('#empty-list');
-    var loginModal = $('#loginModal');
-    var profile = $('.section-profile');
-    // check if page profile properties is exists
-    // set the text to profile
-    if (userProfile.length) {
-        if (!_.isNull(dataUser)) {
-            // append active email to the user
-            $('.text-email').html('(' + dataUser.email + ')');
-
-            $.ajax({
-                dataType: "json",
-                contentType : "application/json",
-                type: "GET",
-                url: getTrxList,
-                headers: {
-                    'Authorization' : dataUser.token
-                }
-            }).done(function (response) {
-                // console.log(dataCourse);
-                if(!_.isNull(response.voucher)) {
-                    // render the list of the course
-                    courseList.html('');
-                    _.each(response.voucher, function(val, i) {
-                        var detail = _.findWhere(dataCourseProfile, { 'course_id': val.CourseID });
-                        if (!_.isUndefined(detail)) {
-                            templateCourseProfile(courseList, detail, 'profile', true)
-                        }
-                    });
-                } else {
-                    emptyCourseContainer.removeClass('hidden');
-                    activeCourseContainer.addClass('hidden');
-                }
-            }).fail(function (response) {
-                // if expired token then reload
-                // window.location.reload();
-                localStorage.removeItem('users');
-                loginModal.modal('show');
-                profile.find('p').html('Untuk mendapatkan Voucher Pelatihan, masuk ke Indonesia Skill Weeks dengan menggunakan email yang sudah terdaftar sebagai peserta di Prakerja.');
-                profile.find('button').attr('class', 'btn btn-primary').html('Masuk');
-                activeCourseContainer.addClass('hidden')
-            })
-        } else {
-            loginModal.modal('show');
-            profile.find('p').html('Untuk mendapatkan Voucher Pelatihan, masuk ke Indonesia Skill Weeks dengan menggunakan email yang sudah terdaftar sebagai peserta di Prakerja.');
-            profile.find('button').attr('class', 'btn btn-primary').html('Masuk');
-            activeCourseContainer.addClass('hidden');
-        }
-    }
 }
 
 /** init function */
@@ -1237,23 +1028,6 @@ function profile(dataCourseProfile) {
             }
         }
     });
-
-
-    // show hide password 
-    $('.show-password').click(function(e){
-        var target = e.currentTarget
-        $(target).hasClass('show-password-target')?hidePassword($(target)):showPassword($(target))
-    })
-    function hidePassword(e){
-        e.removeClass('show-password-target').addClass('hide')
-        e.prev('input').attr('type','password')
-        e.children().addClass('bi-eye').removeClass('bi-eye-slash')
-    }
-    function showPassword(e){
-        e.removeClass('hide').addClass('show-password-target')
-        e.prev('input').attr('type','text')
-        e.children().removeClass('bi-eye').addClass('bi-eye-slash')
-    }
     
     var toastTrigger = $('#liveToastBtn');
     var toastLiveExample = $('#liveToast');
@@ -1272,6 +1046,7 @@ function profile(dataCourseProfile) {
         
         // run detail courses
         courseLoaderDetail(dataCourse);
+
     })
 
 
