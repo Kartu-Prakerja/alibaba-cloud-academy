@@ -424,7 +424,7 @@ var filterCourse = function(target, data, start, end) {
         if (dataKeyword.length !== 0) {
             // loop the content and add to the course list
             $.each(dataKeyword.slice(start, end), function(i, list) {
-                templateCourse(appendTarget, list, null, true);
+                templateCourse(appendTarget, list, 'null', true);
             });
         } else {
             appendTarget.html(emptyState);
@@ -887,22 +887,6 @@ function courseLoaderHome() {
             })
 
             btnLoadMore(loadMoreTarget, loadItem, start, end, resultCourseLP, appendTarget, currentPage, paging, true);
-
-            $.each(dataLimited, function(i, list) {
-                templateCourse(appendLimited, list, 'home');
-            });
-
-            $.each(dataTwenty, function(i, list) {
-                templateCourse(appendTwenty, list, 'home');
-            });
-
-            $.each(dataFree, function(i, list) {
-                templateCourse(appendFree, list, 'home');
-            });
-
-            $.each(dataNewest, function(i, list) {
-                templateCourse(appendNewest, list, 'home');
-            });
             
             // invoke function push event GA
             // pushEvents('.see-detail-course');
@@ -951,7 +935,7 @@ function courseLoaderDetail () {
     if (appendDetail.length) {
         $.getJSON(courseListURL, function(courses){
             var detail = _.findWhere(courses, { 'course_id': courseId });
-            var similar = _.sample(_.reject(_.filter(courses, function(list) { return list.course_category.toLowerCase().indexOf((detail.course_category).toLowerCase()) !== -1; }), function(list) {return list.course_id == courseId }),10);
+            var similar = _.sample(_.reject(_.filter(courses, function(list) { return list.course_category.toLowerCase().indexOf((detail.course_category).toLowerCase()) !== -1; }), function(list) {return list.course_id == courseId }),4);
             var similarCourseLink = BaseURL + 'pelatihan/index.html?topic='+ (detail.course_category).toLowerCase() +'&keyword=&price=&lp=';
             var similarButton = $('.similar-course');
             appendBreadCrumb.html(templateBreadCrumb(detail));
@@ -1022,15 +1006,11 @@ function courseLoaderDetail () {
             if (!_.isEmpty(similar)) {
                 $.when(
                     $.each(similar, function(i, list) {
-                        templateCourse(appendSimilar, list, 'detail');
+                        templateCourse(appendSimilar, list, null, true);
                     })
                 ).then(function() {
                     $('.owl-carousel').owlCarousel({
                         loop:true,
-                        margin:24,
-                        nav:true,
-                        dots: false,
-                        lazyLoad: true,
                         responsive:{
                             0:{
                                 items:1.2,
@@ -1062,139 +1042,6 @@ function courseLoaderDetail () {
 
     // })
     // $(target).html('').append(templateDetail)
-}
-
-function homeCheckLogin() {
-    var loginText = !_.isNull(dataUser) ? dataUser.email : 'Masuk';
-    var loginButton = $('#btn-login');
-    var loginLink = $('#login');
-    var profileLink = $('#profile');
-    var logoutButton = $('#btn-logout');
-    var loginModal = $('#loginModal');
-    var successLoginModal = $('#loginSuccessModal');
-    var afterLoginModal = $('#loginAlreadyModal');
-    var loginSkip = $('.login-dismiss');
-    var formLogin = $("#login-form");
-    var btnFormLogin = $('#submit-login');
-    var registerBtn = $('.register-account');
-    
-    // create account redirect
-    registerBtn.click(function(e) {
-        // e.preventDefault();
-        var _this = $(this);
-        var source = _this.attr('data-source');
-    });
-
-    // trigger popup
-    if (_.isNull(dataUser)) {
-        // set wording to login
-        loginButton.find('span').removeClass('skeleton-box rounded-pill').html(loginText);
-        loginLink.removeClass('supper-hidden');
-        
-        // handle login
-        loginButton.click(function() {
-            loginModal.modal('show');
-        });
-        
-        // handle popup and skipped popup
-        if(_.isNull(isPopupSkip)) {
-            loginModal.modal('show');
-            loginSkip.click(function() {
-                localStorage.setItem('login-popup-skip', true);
-                formLogin.find('.alert.alert-danger').addClass('visually-hidden');
-                btnFormLogin.removeClass('disabled').html('Masuk');
-            })
-        }
-
-        formLogin.submit(function(e) {
-            e.preventDefault();
-            var dataPost = {
-                "email": formLogin.find('input#userEmail').val(),
-                "password": formLogin.find('input#userPassword').val()
-            };
-
-            if(!_.isEmpty(dataPost.email) && !_.isEmpty(dataPost.password)) {
-                
-                btnFormLogin.addClass('disabled').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"> </span><span class="sr-only"> Loading...</span>');
-
-                $.ajax({
-                    dataType: "json",
-                    contentType : "application/json",
-                    type: "POST",
-                    url: checkLogin,
-                    data: JSON.stringify(dataPost)
-                }).done(function (response) {
-                    var data = response.data
-                    if(data.stat.step !== 7) {
-                        btnFormLogin.removeClass('disabled').html('Masuk');
-                        formLogin.find('.alert.alert-danger').removeClass('visually-hidden').find('.alert.alert-danger .text-error').html('Lengkapi dan selesaikan proses daftar di Prakerja untuk bisa login pada Skillsweek')
-                    } else {
-                        localStorage.setItem('users',  JSON.stringify(_.extend(data, {email : dataPost.email})));
-                        // temp disable for v4.0
-                        // loginButton.find('.text-users').html(dataPost.email);
-                        $('#user-email').html(dataPost.email);
-
-                        formLogin.find('.alert.alert-danger').addClass('visually-hidden');
-                        btnFormLogin.removeClass('disabled').html('Masuk');
-                        // hide modal login
-                        loginModal.modal('hide');
-                        // show success login modal
-                        successLoginModal.find('#emailUserVoucher').text(dataPost.email);
-                        successLoginModal.find('.email-account').text(dataPost.email);
-                        successLoginModal.modal('show');
-                        $('#success-login').click(function(){
-                            window.location.reload()
-                        })
-
-                        loginButton.click(function() {
-                            afterLoginModal.find('#validEmailUser').val(dataUser.email)
-                            afterLoginModal.find('.text-email').text('(' + dataUser.email + ')');
-                            afterLoginModal.modal('show');
-                            logoutButton.click(function() {
-                                localStorage.removeItem('users');
-                                localStorage.removeItem('course_takens');
-                                window.location.reload();
-                            })
-                        });
-                    }
-                }).fail(function(data) {
-                    var response = data.responseJSON;
-                    formLogin.find('.alert.alert-danger').removeClass('visually-hidden').find('.alert.alert-danger .text-error').html('Alamat email atau password salah. Mohon periksa kembali.');
-                    btnFormLogin.removeClass('disabled').html('Masuk');
-                })
-            }
-
-        })
-
-        // btnFormLogin.click(function() {
-        //     console.log('form submit')
-        //     // formLogin.trigger('submit');
-        // })
-        
-    } else {
-        // loginButton.find('span').after(loginText).remove();
-        profileLink.removeClass('supper-hidden');
-        $('#user-email').html(dataUser.email);
-        // handle login
-        loginButton.click(function() {
-            // window.location.href = 'profil/'
-            afterLoginModal.find('#validEmailUser').val(dataUser.email)
-            afterLoginModal.find('.text-email').text('(' + dataUser.email + ')');
-            afterLoginModal.modal('show');
-            logoutButton.click(function() {
-                localStorage.removeItem('users');
-                localStorage.removeItem('course_takens');
-                window.location.reload();
-            })
-        });
-        // logout actions
-        logoutButton.click(function() {
-            localStorage.removeItem('users');
-            localStorage.removeItem('course_takens');
-            window.location.reload();
-        })
-        
-    }
 }
 
 function profile(dataCourseProfile) {
@@ -1249,49 +1096,6 @@ function profile(dataCourseProfile) {
             profile.find('button').attr('class', 'btn btn-primary').html('Masuk');
             activeCourseContainer.addClass('hidden');
         }
-    }
-}
-
-function globalSearch(dataCourse) {
-    var formSearch = $('#form-search-global');
-    var pageClass = $('html').attr('page-class');
-    if (formSearch.length) {
-        var btnFormSearch = formSearch.find('button');
-        var keyword = !_.isEmpty(queryParams.get('keyword')) ? (queryParams.get('keyword')).replace(/-|%20/gi, ' ') : '';
-        var recomendSearchLimited = $('#recomendSearchLimited article');
-        var recomendSearchTwenty = $('#recomendSearchTwenty article');
-        var recomendSearchFree = $('#recomendSearchFree article');
-
-        formSearch.find('input.modal-search-input').val(keyword);
-        formSearch.submit(function(e) {
-            e.preventDefault();
-            keyword = formSearch.find('input.modal-search-input').val();
-            window.location.replace("/pelatihan/index.html?&keyword="+ keyword.replace(/\s+/gi, '-').toLowerCase() +"&price=&lp=&topic=")
-        });
-
-        btnFormSearch.click(function() {
-            formSearch.trigger('submit');
-        });
-
-        dataLimited = _.sample(_.filter(dataCourse, function(list) { return list.course_after_discount !== "0" && list.course_after_discount !== "20000"}), 5);
-        dataTwenty = _.sample(_.filter(dataCourse, function(list) { return list.course_after_discount == "20000"}), 5);
-        dataFree = _.sample(_.filter(dataCourse, function(list) { return list.course_after_discount == "0"}), 5);
-        
-        recomendSearchLimited.html('');
-        recomendSearchTwenty.html('');
-        recomendSearchFree.html('');
-
-        $.each(dataLimited, function(i, list) {
-            templateCourseSearch(recomendSearchLimited, list, 'home');
-        });
-
-        $.each(dataTwenty, function(i, list) {
-            templateCourseSearch(recomendSearchTwenty, list, 'home');
-        });
-
-        $.each(dataFree, function(i, list) {
-            templateCourseSearch(recomendSearchFree, list, 'home');
-        });
     }
 }
 
@@ -1465,54 +1269,12 @@ function globalSearch(dataCourse) {
     $(document).ready(function(){
         // run init course loader on page course
         courseLoaderInit();
-
-        // run init course home
-        courseLoaderHome();
         
         // run detail courses
         courseLoaderDetail(dataCourse);
-
-        // run popup
-        homeCheckLogin();
-
-        // run profile
-        profile(dataCourse);
-        
-        //run script for global search
-        globalSearch(dataCourse);
     })
 
 
  })(jQuery);
 
  AOS.init();
-
- // ads Modal
-        
-
-// function shareCourse(){
-//     const shareButton = document.querySelector('.share-button');
-//     const shareDialog = document.querySelector('.share-dialog');
-//     const closeButton = document.querySelector('.close-button');
-
-//     shareButton.addEventListener('click', event => {
-//     if (navigator.share) { 
-//     navigator.share({
-//         title: 'WebShare API Demo',
-//         url: 'CurrentURL'
-//         }).then(() => {
-//         console.log('Thanks for sharing!');
-//         })
-//         .catch(console.error);
-//         } else {
-//             shareDialog.addClass('is-open');
-//         }
-//     });
-    
-//     $(shareDialog).click(function(){
-//         shareDialog.removeClass('is-open');
-//     });
-// }
-
-// shareCourse();
- 
