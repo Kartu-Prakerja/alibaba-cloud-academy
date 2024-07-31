@@ -87,6 +87,12 @@ body{
     }
 }
 
+.prakerja-jargon{
+  letter-spacing: 1px;
+  // font-family: monospace;
+  font-size: calc(14/16) + rem;
+}
+
 .highlight-divider{
   border-right: dashed 1px var(--border-default);
   border-bottom: dashed 1px var(--border-default);

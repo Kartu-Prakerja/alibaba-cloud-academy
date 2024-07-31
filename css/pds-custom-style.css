@@ -1472,6 +1472,11 @@ body.freeze {
   background-size: 90%;
 }
 
+.prakerja-jargon {
+  letter-spacing: 1px;
+  font-size: 0.875rem;
+}
+
 .highlight-divider {
   border-right: dashed 1px var(--border-default);
   border-bottom: dashed 1px var(--border-default);
