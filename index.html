@@ -377,24 +377,24 @@
               <div class="box-forms rounded-4 p-4" data-aos="fade-up" data-aos-once="true" data-aos-delay="50">
                 <h4 class="custom-rfs-h4">Gabung Program</h4>
                 <p>
-                   Pastikan yang email kamu gunakan sudah terdaftar di Prakerja dan <a href="#">Alibaba Cloud Academy.</a></p>
-                <div class="row mt-4"> 
+                   Pastikan yang email kamu gunakan sudah terdaftar di Prakerja dan <a href="#">Alibaba Cloud Academy. </a></p>
+                <form class="row mt-4" name="FormRequest" action="/index.html" method="post">
                   <div class="col-lg-6">
                     <div class="mb-3">
                       <label class="form-label" for="NamaLengkap">Nama Lengkap</label>
-                      <input class="form-control" id="NamaLengkap" type="text" placeholder="">
+                      <input class="form-control" id="NamaLengkap" type="text" placeholder="Andi Soraya" required oninvalid="this.setCustomValidity('Masukan Nama Lengkap Kamu')" oninput="this.setCustomValidity('')">
                     </div>
                   </div>
                   <div class="col-lg-6">
                     <div class="mb-3">
                       <label class="form-label" for="EmailAddress">Alamat Email yang terdaftar di Prakerja & Alibaba</label>
-                      <input class="form-control" id="EmailAddress" type="email" placeholder="name@example.com">
+                      <input class="form-control" id="EmailAddress" type="email" placeholder="name@example.com" required oninvalid="this.setCustomValidity('Masukan email terdaftar di Prakerja dan Alibaba Cloud Kamu')" oninput="this.setCustomValidity('')">
                     </div>
                   </div>
                   <div class="col-lg-6">
                     <div class="mb-3">
                       <label class="form-label" for="IDAlibaba">ID Alibaba Cloud</label>
-                      <input class="form-control" id="IDAlibaba" type="text" placeholder="">
+                      <input class="form-control" id="IDAlibaba" type="text" placeholder="1234567890" required oninvalid="this.setCustomValidity('Masukan ID Alibaba Cloud Kamu')" oninput="this.setCustomValidity('')">
                     </div>
                   </div>
                   <div class="col-lg-6">
@@ -465,7 +465,7 @@
                       <button class="btn btn-orange">Gabung Program <i class="bi bi-arrow-right"> </i></button>
                     </div>
                   </div>
-                </div>
+                </form>
               </div>
             </div>
           </div>
