@@ -26,13 +26,11 @@ const sharerURL = 'https://gist.github.com/tZilTM/6eecb26cd8dca3f9f800128c726d67
 const BaseURL = '/'
 const loadItem = 12;
 const courseListURL = "/js/course.json";
-const courseListURLAll = "https://public-prakerja.oss-ap-southeast-5.aliyuncs.com/skill_week/list_pelatihan_skillweek_all.json?version=1";
 const checkLogin = "https://api-ext.prakerja.go.id/api/v1/user/login-a17ab03c3d1d";
 const checkVoucher = 'https://api-proxy.prakerja.go.id/api/v1/general/voucher/ack';
 const getTrxList = 'https://api-proxy.prakerja.go.id/api/v1/general/voucher/list';
 const queryParams = new URLSearchParams(window.location.search);
 var dataCourse = !_.isNull(localStorage.getItem('course_list')) ? JSON.parse(localStorage.getItem('course_list')) : $.getJSON(courseListURL).done(function(courses) { localStorage.setItem('course_list', JSON.stringify(courses)) })
-var dataCourseProfile = $.getJSON(courseListURLAll).done(function(courses) { localStorage.setItem('course_list', JSON.stringify(courses)) });
 var currentPage = 1;
 var dataUser = !_.isNull(localStorage.getItem('users')) ? JSON.parse(localStorage.getItem('users')) : null;
 var isPopupSkip = localStorage.getItem('login-popup-skip');
@@ -71,14 +69,17 @@ var templateCourse = function(target, data, cardClass, isCourse){
     var imageCourse = isCourse ? '<img src="' + data.course_image + '" class="card-img-top" loading="lazy" alt="'+ data.course_title +'">' : '<img src="' + data.course_image + '" loading="lazy" class="card-img-top" alt="'+ data.course_title +'">';
     var course_detail = BaseURL +'pelatihan/detail.html?title=' + (data.course_title.replace(/[^a-zA-Z0-9 ]/g, '')).replace(/\s+/gi, '-').toLowerCase() +'&id='+ data.course_id;
     var listClass = cardClass == null ? 'col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5' : 'wl-carousel-card pb-3';
-    var trending = Number(data.total) >= 50 ? "<span class='badge text-bg-light trending text-capitalize'>&#128293; Trending</span>" : ""
-    var new_course = data.new_course == "true" ? "<span class='badge text-bg-light new-course trending text-capitalize'>Terbaru</span>" : ""
+    var logoLp = isCourse ? "<img class='me-1 card-logo' src='" + data.lp_logo +"' alt='"+ data.lp_name +"'>" : "<img class='me-1 card-logo' src='" + data.lp_logo +"' alt='"+ data.lp_name +"'>";
+    var listClass = cardClass == null ? 'col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5' : 'wl-carousel-card pb-3';
     var template = "<div id='" + data.course_id +"' class='"+ listClass +"'>" +
-        "<div class='card pds-card'>" +
+            "<div class='card pds-card'>" +
             "<a href='"+ course_detail +"' class='text-decoration-none to-detail-course' title='"+ data.course_title +"'>"+
             "<div class='card-cover'>" + imageCourse +
                 "<div class='card-cover-overlay'>" +
                     "<div class='d-flex justify-content-between align-middle'>" +
+                        "<div class='align-self-center'>" +
+                            "<div class='card-company'>"+ logoLp +"<span class='course-lp-name'>"+ data.lp_name +"</span></div>" +
+                        "</div>" +
                         "<div class='align-self-center'><span class='badge rounded-pill text-capitalize " + pills +"'>"+ (data.course_type).replace(/Online/g,'') +"</span></div>" +
                         // "<div class='align-self-center'><span class='badge rounded-pill text-capitalize " + pills +"'>Daring LMS</span></div>" +
                     "</div>" +        
@@ -89,12 +90,17 @@ var templateCourse = function(target, data, cardClass, isCourse){
                 "<h6 class='mb-1 course-title text-capitalize' title='"+ data.course_title +"'>"+ data.course_title +"</h6>" +
                 // Bagde
                 "<div class='d-flex my-2'>" +
-                    "<span class='badge text-bg-light text-capitalize badge-ellipsis' title='"+ data.course_category +"'>"+ data.course_category + "</span>" + trending + new_course +
+                    "<span class='badge text-bg-light text-capitalize badge-ellipsis' title='"+ data.course_category +"'>"+ data.course_category + "</span>"+
+                "</div>" +
+                // Price
+                "<div>" +
+                    "<div class='course-real-price mb-1'><span>"+ data.number_of_materials +" Modul</span> <span class='badge text-bg-ghost-success'>"+ data.duration +" (Menit)</span></div>" +
                 "</div>" +
             "</div>" +
         "</div>" +
         "</a>" +
-    "</div>";
+    "</div>"
+    
     $(target).append(template).ready(function () {
         // trigger modal
         // skipped because already have the page detail
@@ -260,6 +266,12 @@ var templateDetail = function(data) {
               '<div class="ps-2"> ' +
                 '<h6 class="fs-7 mb-2">Durasi Pelatihan</h6>' +
                 '<p class="fs-7">'+ data.duration +' (Menit)</p>' +
+              '</div>' +
+            '</div>' +
+            '<div class="col-12 col-md-6 col-lg-4 mb-4 d-flex"> <i class="bi bi-journal-bookmark-fill"> </i>' +
+              '<div class="ps-2"> ' +
+                '<h6 class="fs-7 mb-2">Modul Pelatihan</h6>' +
+                '<p class="fs-7">'+ data.number_of_materials +'</p>' +
               '</div>' +
             '</div>' +
             '<div class="col-12 col-md-6 col-lg-4 mb-4 d-flex"> <i class="bi bi-person-video"> </i>' +
@@ -942,20 +954,12 @@ function courseLoaderDetail () {
             var similar = _.sample(_.reject(_.filter(courses, function(list) { return list.course_category.toLowerCase().indexOf((detail.course_category).toLowerCase()) !== -1; }), function(list) {return list.course_id == courseId }),10);
             var similarCourseLink = BaseURL + 'pelatihan/index.html?topic='+ (detail.course_category).toLowerCase() +'&keyword=&price=&lp=';
             var similarButton = $('.similar-course');
-            var getVoucherButton = $('#get-voucher');
-            var requestFormLogin = $('#getCourseLoginModal');
-            var requestFormNotLogin = $('#getCourseNotLoginModal');
-            // appendDetail.html('').append(templateDetail(detail));
             appendBreadCrumb.html(templateBreadCrumb(detail));
             var courseTakens = _.isNull(localStorage.getItem('course_takens')) ? [] : JSON.parse(localStorage.getItem('course_takens'));
             
             $.when(
                 appendDetail.html('').append(templateDetail(detail))
             ).then(function() {
-                var getVoucherButton = $('#get-voucher');
-                var requestFormLogin = $('#getCourseLoginModal');
-                var requestFormNotLogin = $('#getCourseNotLoginModal');
-                var requetVoucher = $('#get-voucher-botton');
                 var shareBtn = $('.share-button');
                 var shareDialog = $('.share-dialog');
                 var closeButton = $('.close-button');
@@ -1009,70 +1013,6 @@ function courseLoaderDetail () {
 
                 closeButton.click(function() {
                     shareDialog.removeClass('is-open');
-                })
-                
-                getVoucherButton.unbind('click');
-                getVoucherButton.click(function() {
-                    if (!_.isNull(localStorage.getItem('users'))) {
-                        requestFormLogin.modal('show');
-                        requestFormLogin.find('#emailUserVoucher').val(dataUser.email);
-                        requestFormLogin.find('.detail-course img').attr('src', detail.course_image);
-                        requestFormLogin.find('.detail-course h6').html(detail.course_title);
-                        requestFormLogin.find('.alert').addClass('alert-info').removeClass('alert-danger').html('<i class="fs-5 bi bi-info-circle-fill me-3"></i><div><div class="fs-7">Kode Voucher akan dikirim ke email kamu selama <b>kuota </b>pelatihan masih tersedia, silakan cek email secara berkala.</div></div>')
-                        requetVoucher.unbind('click');
-                        requetVoucher.click(function(event) {
-                            event.preventDefault();
-                            _this = $(this);
-                            _this.addClass('disabled').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"> </span><span class="sr-only"> Loading...</span>');
-                            var dataPost = {
-                                course_id : courseId
-                            }
-
-                            $.ajax({
-                                dataType: "json",
-                                contentType : "application/json",
-                                type: "POST",
-                                url: checkVoucher,
-                                headers: {
-                                    'Authorization' : dataUser.token
-                                },
-                                data: JSON.stringify(dataPost)
-                            }).done(function (response) {
-                                // return the button process and hide the modal
-                                _this.removeClass('disabled').html('Ambil Voucher');
-                                requestFormLogin.modal('hide');
-                                // show toast success
-                                $('#success-toast').toast('show');
-                                // set buton request to disabled
-                                getVoucherButton.addClass('disabled btn-secondary').html('Voucher sudah diambil').removeClass('btn-primary');
-                                // push val to variable
-                                courseTakens.push(courseId);
-                                
-                                // set course taken to localstorage
-                                localStorage.setItem('course_takens',JSON.stringify(courseTakens));
-
-
-                            }).fail(function(responses) {
-                                var response = responses.responseJSON;
-                                _this.removeClass('disabled').html('Ambil Voucher');
-                                if(response.code = 'ERR40004') {
-                                    if (response.message == "[ERR40005] sign expired") {
-                                        requestFormLogin.find('.alert').addClass('alert-danger').removeClass('alert-info').html('<i class="fs-5 bi bi-exclamation-triangle-fill me-3"></i><div><h6 class="text-danger">Ambil Voucher Pelatihan Gagal</h6><div class="fs-7">Sesi Login sudah berakhir, silahkan login kembali untuk mengambil voucher pelatihan</div></div> ');
-                                        $('#get-voucher-botton').click(function() {
-                                            localStorage.removeItem('users');
-                                            window.location.reload();
-                                        })
-                                    } else {
-                                        requestFormLogin.find('.alert').addClass('alert-danger').removeClass('alert-info').html('<i class="fs-5 bi bi-exclamation-triangle-fill me-3"></i><div><h6 class="text-danger">Ambil Voucher Pelatihan Gagal</h6><div class="fs-7">'+ response.message +'.</div></div> ')
-                                    }
-                                } 
-                            })
-                        })
-                    } else {
-                        requestFormNotLogin.modal('show');
-                        requestFormNotLogin.find('img').attr('src', detail.course_image);
-                        requestFormNotLogin.find('h6').html(detail.course_title);
-                    }
                 })
             })
             

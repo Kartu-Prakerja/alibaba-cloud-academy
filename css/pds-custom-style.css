@@ -2525,7 +2525,6 @@ body.freeze {
 .course-real-price span:first-child {
   font-size: 0.75rem;
   color: var(--text-disabled);
-  text-decoration: line-through;
 }
 
 .paragraph-md p {
