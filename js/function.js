@@ -1,16 +1,5 @@
 /**
  * TASK LIST
- * 1. HANDLE LOGIN USER (√)
- * 1.1 MUNCULIN POPUP UNTUK USER KALAU BELUM LOGIN (√)
- * 1.1.1 KALAU USER SKIP GAK PERLU MUNCULIN POP-UP (√)
- * 1.2 CEK LOCAL STORAGE UNTUK LOGIN USER (√)
- * 1.2.1 SIMPAN KE LOCAL STORAGE KALAU USER SUDAH LOGIN (√)
- * 1.2.2 SET WAKTU UNTUK NGE TIMEOUT LOCALSTORAGE
- * 1.2.3 HAPUS LOCAL STORAGE KALAU USER MAU GANTI AKUN DAN HAPUS SESSION POPUP UNTUK MINTA USER LOGIN KEMBALI (√)
- * 1.3 POP UP KONFIRMASI UNTUK AMBIL VOUCHER (√)
- * 
- * 2. SIMPAN PELATIHAN YANG SUDAH DIAMBIL PESERTA (FLAG PELATIHAN MANA YANG SUDAH DIAMBIL) (√)
- * 2.1 HANDLE PROSES SUBMISSION PELATIHAN YANG MAU DI AMBIL PESERTA (√)
  * 
  * 3. DETAIL PELATIHAN (√)
  * 3.1 HANDLE DEFAULT CONTENT UNTUK PELATIHAN YANG TIDAK DITEMUKAN (404) PAGE
@@ -26,12 +15,15 @@ const sharerURL = 'https://gist.github.com/tZilTM/6eecb26cd8dca3f9f800128c726d67
 const BaseURL = '/'
 const loadItem = 12;
 const courseListURL = "/js/course.json";
+const submitURL = 'https://aliacademy-api.prakerja.go.id/';
+const apKey = 'PfOS2Vg0zBdHT/Bmgdf6Uw==';
 const queryParams = new URLSearchParams(window.location.search);
 var dataCourse = !_.isNull(localStorage.getItem('course_list')) ? JSON.parse(localStorage.getItem('course_list')) : $.getJSON(courseListURL).done(function(courses) { localStorage.setItem('course_list', JSON.stringify(courses)) })
 var currentPage = 1;
 var dataUser = !_.isNull(localStorage.getItem('users')) ? JSON.parse(localStorage.getItem('users')) : null;
 var isPopupSkip = localStorage.getItem('login-popup-skip');
 var forms = document.querySelectorAll('.needs-validation');
+var formRequestJoin = $('#form-join-program');
 
 // Loop over them and prevent submission
 Array.prototype.slice.call(forms)
@@ -61,7 +53,7 @@ var emptyState = "<div class='col-12 col-md-12'>" +
     "</div>";
 
 /** function load course */
-var templateCourse = function(target, data, cardClass, isCourse){ 
+var templateCourse = function(target, data, cardClass, isCourse) { 
     var pills = data.course_type.toLowerCase() == "Online Self-Paced Learning".toLowerCase() ? "text-bg-warning" : "text-bg-help";
     var imageCourse = isCourse ? '<img src="' + data.course_image + '" class="card-img-top" loading="lazy" alt="'+ data.course_title +'">' : '<img src="' + data.course_image + '" loading="lazy" class="card-img-top" alt="'+ data.course_title +'">';
     var course_detail = BaseURL +'pelatihan/detail.html?title=' + (data.course_title.replace(/[^a-zA-Z0-9 ]/g, '')).replace(/\s+/gi, '-').toLowerCase() +'&id='+ data.course_id;
@@ -199,11 +191,6 @@ var templateDetail = function(data) {
               '<h4 class="mb-4">Deskripsi Pelatihan </h4>' +
               '<article id="description">'+ (data.description).replace(/\n/g,'</br>') +'</article>' +
             '</section>' +
-            // '<section class="py-3" id="CaraRedeemVoucher">' +
-            //   '<h4 class="mb-4">Cara Redeem Voucher</h4>' +
-            //     //   '<article id="how-to-redeem">'+ (data.how_to_redeem).replace(/\n/g,'</br>') +'</article>' +
-            // '</section>' +
-            contactCenter +
             '<hr/>' +
           '</article>' +
         '</div>' +
@@ -272,7 +259,6 @@ var filterCourse = function(target, data, start, end) {
         if (!_.isEmpty(filterCategory)) {
             dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.course_category.toLowerCase()) > -1; }, {"keys" : filterCategory})
             _.each(filterCategory, function(val, i) {
-                console.log(filterCategory);
                 $('.quick-filter[data-category="'+ val +'"]').addClass('btn-primary').removeClass('btn-outline-light');
             })
         }  
@@ -314,10 +300,7 @@ var filterCourse = function(target, data, start, end) {
 
         // final push to the url current state with filter and keyword search
         var filterCategoryJoin =  filterCategory.join(",");
-        var filterPriceJoin = filterPrice.join(",");
         var filterLPJoin = filterLP.join(",");
-        var filterNewJoin = filterNewCourse.join(",");
-        var filterTrendingJoin = filterTrending.join(",");
         var filterMethodJoin = filterMethod.join(",");
 
         window.history.replaceState(null, null, "?topic="+ filterCategoryJoin.replace(/\s+/gi, '-').toLowerCase() +"&keyword="+ keyword.replace(/\s+/gi, '-').toLowerCase() +"&lp="+ filterLPJoin.replace(/\s+/gi, '-').toLowerCase()+"&method="+ filterMethodJoin.replace(/\s+/gi, '-').toLowerCase())
@@ -375,7 +358,6 @@ var filterKeyword = function(formSeaerch, buttonSearch, data, start, end) {
         if (!_.isEmpty(filterCategory)) {
             dataFilter = _.filter(dataFilter, function(list) { return this.keys.indexOf(list.course_category.toLowerCase()) > -1; }, {"keys" : filterCategory})
             _.each(filterCategory, function(val, i) {
-                console.log(filterCategory);
                 $('.quick-filter[data-category="'+ val +'"]').addClass('btn-primary').removeClass('btn-outline-light');
             })
         }  
@@ -470,7 +452,6 @@ var quickFilter = function (button) {
 
 /** function to get unique option */
 var optionList = function(data, filterLP, filterCategory ,filterMethod) {
-    console.log(filterCategory)
     var lookupCategory = {}, lookupCourseLP = {};
     var resultCategory = [], resultCourseLP = [];
 
@@ -608,16 +589,7 @@ function courseLoaderInit(){
                 }
 
                 var dataKeyword = keyword !== null ? _.filter(data, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; }) : data;
-
-
-                // if (!_.isEmpty(filterTopic) || !_.isEmpty(filterPrice) || !_.isEmpty(filterLP)) {
-                //     var dataFilter = _.filter(data, function(list) { return list.course_category.toLowerCase().indexOf(filterTopic.toLowerCase()) !== -1; })
-                //     var dataKeyword = keyword !== null ? _.filter(dataFilter, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; }) : dataFilter;
-                // } else {
-                //     var dataKeyword = keyword !== null ? _.filter(data, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; }) : dataFilter;
-                // }
                 
-                // var dataKeyword = keyword !== null ? _.filter(data, function(list) { return list.course_title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1; }) : dataFilter;
                 if (keyword !== null) {
                     $('#filter-keyword').val(keyword);
                 }
@@ -660,11 +632,6 @@ function courseLoaderInit(){
                     filterCourse(applyFilter, courses, start, end);
                     filterKeyword(formSeaerch, buttonSearch, courses, start, end);
                     quickFilter('.quick-filter');
-    
-                    // invoke function push event GA
-                    // pushEvents('.see-detail-course');
-                    // pushEvents('.apply-course');
-
     
                 }, 1500)
             }).fail(function(){
@@ -753,34 +720,8 @@ function courseLoaderDetail () {
             similarButton.attr('href', similarCourseLink);
             
             if (!_.isEmpty(similar)) {
-                $.when(
-                    $.each(similar, function(i, list) {
-                        templateCourse(appendSimilar, list, null, true);
-                    })
-                ).then(function() {
-                    $('.owl-carousel').owlCarousel({
-                        loop:true,
-                        responsive:{
-                            0:{
-                                items:1.2,
-                                margin: 16,
-                                nav:false,
-                            },
-                            600:{
-                                items:3,
-                                margin: 16,
-                                nav:false,
-                            },
-                            1000:{
-                                items:4,
-                                nav:false
-                            },
-                            1200:{
-                                items:4,
-                                nav:true
-                            }
-                        }
-                    });
+                $.each(similar, function(i, list) {
+                    templateCourse(appendSimilar, list, null, true);
                 })
             } else {
                 appendSimilar.html('<section class="section-course mb-4"><div class="container py-0 px-4 px-md-0"><div class="d-flex align-items-center justify-content-between mb-3"><h4>Pelatihan Serupa</h4></div><div class="d-flex similar-course-empty rounded justify-content-center"><div class="col-lg-8 d-lg-flex p-4 justify-content-center"><div class="p-md-3 mb-3 mb-lg-0"><img loading="lazy" src="img/img-ornament-1.svg" height="116" /></div><div class="p-md-3"><h5>Sepertinya tidak ditemukan pelatihan serupa</h5><p>Yuk cari pelatihan lainnya yang mungkin kamu tertarik untuk ikuti</p><a class="btn btn-primary" href="/pelatihan">Cari Pelatihan Lainnya</a></div></div></div></div></section>').css({"display": "block"})
@@ -788,6 +729,48 @@ function courseLoaderDetail () {
 
         })
     }
+}
+
+function requestForm () {
+   $(formRequestJoin).on('submit', function(e,val) {
+    e.preventDefault();
+
+    var name = formRequestJoin.find('#NamaLengkap').val();
+    var email = formRequestJoin.find('#EmailAddress').val()
+    var idAlibaba = formRequestJoin.find('#IDAlibaba').val();
+    var category = formRequestJoin.find('#CourseCat option:selected').val();
+    var background = formRequestJoin.find('#Background option:selected').val();
+    var reference = formRequestJoin.find('#Reference option:selected').val();
+    var reason = formRequestJoin.find('#ReasontoJoin option:selected').val();
+
+    var data = JSON.stringify({
+        "NamaLengkap": name,
+        "EmailAddress": email,
+        "IDAlibaba": idAlibaba,
+        "CourseCat": category,
+        "Background": background,
+        "Reference": reference,
+        "ReasontoJoin": reason
+    });
+
+    if (!_.isEmpty(name) && !_.isEmpty(email) && !_.isEmpty(category) && !_.isEmpty(background) && !_.isEmpty(reference) && !_.isEmpty(reason)) {
+        console.log(data);
+        $.ajax({
+            dataType: "json",
+            contentType : "application/json",
+            headers: { 
+                'apiKey': apKey, 
+                'Content-Type': 'application/json'
+            },
+            type: "POST",
+            url: submitURL,
+            data: data
+        }).done(function (response) {
+            var data = response.data
+            formRequestJoin.reset();
+        })
+    }
+   })
 }
 
 /** init function */
@@ -851,8 +834,6 @@ function courseLoaderDetail () {
         $('body').toggleClass('freeze');
       });
 
-
-
     $('.owl-carousel-btb').owlCarousel({
         loop:true,
         margin:24,
@@ -871,25 +852,6 @@ function courseLoaderDetail () {
         }
     });
 
-
-
-    // show hide password 
-    $('.show-password').click(function(e){
-        var target = e.currentTarget
-        $(target).hasClass('show-password-target')?hidePassword($(target)):showPassword($(target))
-    })
-    function hidePassword(e){
-        e.removeClass('show-password-target').addClass('hide')
-        e.prev('input').attr('type','password')
-        e.children().addClass('bi-eye').removeClass('bi-eye-slash')
-    }
-    function showPassword(e){
-        e.removeClass('hide').addClass('show-password-target')
-        e.prev('input').attr('type','text')
-        e.children().removeClass('bi-eye').addClass('bi-eye-slash')
-    }
-
-    
     var toastTrigger = $('#liveToastBtn');
     var toastLiveExample = $('#liveToast');
 
@@ -900,15 +862,14 @@ function courseLoaderDetail () {
         })
     }
 
-
-    $(document).ready(function(){
-        // run init course loader on page course
-        courseLoaderInit();
+    // run init course loader on page course
+    courseLoaderInit();
         
-        // run detail courses
-        courseLoaderDetail(dataCourse);
+    // run detail courses
+    courseLoaderDetail(dataCourse);
 
-    })
+    // run script for form
+    requestForm();
 
 
  })(jQuery);

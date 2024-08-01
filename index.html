@@ -377,7 +377,7 @@
                 <h4 class="custom-rfs-h4">Gabung Program</h4>
                 <p>
                    Pastikan email yang kamu gunakan sudah terdaftar di <a href="https://dashboard.prakerja.go.id?utm_source=prakerja_x_alibaba_landing&amp;utm_campaign=alibaba_cloud_program&amp;utm_content=link_prakerja" title="Dashboard Prakerja" target="_blank">Prakerja </a>dan <a href="https://edu.alibabacloud.com/elearning?spm=a3c0i.14527127.4363105600.7.7a716d842fAisq#J_4222514620" title="Alibaba Cloud Academy" target="_blank">Alibaba Cloud Academy. </a></p>
-                <form class="row mt-4 needs-validation" name="FormRequest" action="/index.html" method="post" novalidate> 
+                <form class="row mt-4 needs-validation" id="form-join-program" novalidate> 
                   <div class="col-lg-6">
                     <div class="mb-3">
                       <label class="form-label" for="NamaLengkap">Nama Lengkap</label>
@@ -403,65 +403,65 @@
                   <div class="col-lg-6">
                     <div class="mb-3">
                       <label class="form-label" for="CourseCat">Kategori Pelatihan</label>
-                      <select class="form-select" id="CourseCat" aria-label="Default select example">
+                      <select class="form-select" id="CourseCat" aria-label="Default select example" placeholder="Pilih">
                         <option selected="">Pilih</option>
-                        <option value="1">Cloud Computing</option>
-                        <option value="2">Big Data</option>
+                        <option value="Cloud Computing">Cloud Computing</option>
+                        <option value="Big Data">Big Data</option>
                       </select>
                     </div>
                   </div>
                   <div class="col-lg-6">
                     <div class="mb-3">
                       <label class="form-label" for="Background">Status Pekerjaan</label>
-                      <select class="form-select" id="Background" aria-label="Default select example">
+                      <select class="form-select" id="Background" aria-label="Default select example" placeholder="Pilih">
                         <option selected="">Pilih</option>
-                        <option value="1">Mahasiswa Universitas</option>
-                        <option value="2">Dosen atau Staff Pengajar</option>
-                        <option value="3">Karyawan Perusahaan IT</option>
-                        <option value="4">Karyawan Perusahaan Startup</option>
-                        <option value="5">Karyawan Perusahaan Non-IT</option>
-                        <option value="6">Pengusaha atau Pemilik UMKM</option>
-                        <option value="7">Freelancer di Bidang IT</option>
-                        <option value="8">Fresh Graduate</option>
-                        <option value="9">Lainnya</option>
+                        <option value="Mahasiswa Universitas">Mahasiswa Universitas</option>
+                        <option value="Dosen atau Staff Pengajar">Dosen atau Staff Pengajar</option>
+                        <option value="Karyawan Perusahaan IT">Karyawan Perusahaan IT</option>
+                        <option value="Karyawan Perusahaan Startup">Karyawan Perusahaan Startup</option>
+                        <option value="Karyawan Perusahaan Non-IT">Karyawan Perusahaan Non-IT</option>
+                        <option value="Pengusaha atau Pemilik UMKM">Pengusaha atau Pemilik UMKM</option>
+                        <option value="Freelancer di Bidang IT">Freelancer di Bidang IT</option>
+                        <option value="Fresh Graduate">Fresh Graduate</option>
+                        <option value="Lainnya">Lainnya</option>
                       </select>
                     </div>
                   </div>
                   <div class="col-lg-6">
                     <div class="mb-3">
                       <label class="form-label" for="Reference">Darimana Kamu Tahu Program Ini</label>
-                      <select class="form-select" id="Reference" aria-label="Default select example">
+                      <select class="form-select" id="Reference" aria-label="Default select example" placeholder="Pilih">
                         <option selected="">Pilih</option>
-                        <option value="1">Media Sosial (Instagram, Facebook, Twitter, LinkedIn)</option>
-                        <option value="2">Email dari Prakerja</option>
-                        <option value="3">Teman atau Kolega</option>
-                        <option value="4">Webinar atau Seminar</option>
-                        <option value="5">Kampus</option>
-                        <option value="6">WA komunitas Prakerja</option>
-                        <option value="7">Komunitas</option>
-                        <option value="8">Lainnya</option>
+                        <option value="Media Sosial (Instagram, Facebook, Twitter, LinkedIn)">Media Sosial (Instagram, Facebook, Twitter, LinkedIn)</option>
+                        <option value="Email dari Prakerja">Email dari Prakerja</option>
+                        <option value="Teman atau Kolega">Teman atau Kolega</option>
+                        <option value="Webinar atau Seminar">Webinar atau Seminar</option>
+                        <option value="Kampus">Kampus</option>
+                        <option value="WA komunitas Prakerja">WA komunitas Prakerja</option>
+                        <option value="Komunitas">Komunitas</option>
+                        <option value="Lainnya">Lainnya</option>
                       </select>
                     </div>
                   </div>
                   <div class="col-lg-12">
                     <div class="mb-3">
                       <label class="form-label" for="ReasontoJoin">Alasan Ikut Beasiswa</label>
-                      <select class="form-select" id="ReasontoJoin" aria-label="Default select example">
+                      <select class="form-select" id="ReasontoJoin" aria-label="Default select example" placeholder="Pilih">
                         <option selected="">Pilih</option>
-                        <option value="1">Untuk meningkatkan keterampilan di bidang Cloud Computing atau Big Data</option>
-                        <option value="2">Mendapatkan sertifikasi ACA dari Alibaba Cloud Academy</option>
-                        <option value="3">Mencari peluang untuk kolaborasi dan inovasi di bidang cloud computing atau Big Data</option>
-                        <option value="4">Menambah nilai tambah dalam CV dan prospek karir</option>
-                        <option value="5">Untuk mengembangkan jaringan profesional di bidang teknologi</option>
-                        <option value="6">Untuk berpartisipasi dalam program bergengsi dan diakui internasional</option>
-                        <option value="7">Ingin berkontribusi dalam pengembangan teknologi di Indonesia</option>
-                        <option value="8">Alasan pribadi lainnya</option>
+                        <option value="Untuk meningkatkan keterampilan di bidang Cloud Computing atau Big Data">Untuk meningkatkan keterampilan di bidang Cloud Computing atau Big Data</option>
+                        <option value="Mendapatkan sertifikasi ACA dari Alibaba Cloud Academy">Mendapatkan sertifikasi ACA dari Alibaba Cloud Academy</option>
+                        <option value="Mencari peluang untuk kolaborasi dan inovasi di bidang cloud computing atau Big Data">Mencari peluang untuk kolaborasi dan inovasi di bidang cloud computing atau Big Data</option>
+                        <option value="Menambah nilai tambah dalam CV dan prospek karir">Menambah nilai tambah dalam CV dan prospek karir</option>
+                        <option value="Untuk mengembangkan jaringan profesional di bidang teknologi">Untuk mengembangkan jaringan profesional di bidang teknologi</option>
+                        <option value="Untuk berpartisipasi dalam program bergengsi dan diakui internasional">Untuk berpartisipasi dalam program bergengsi dan diakui internasional</option>
+                        <option value="Ingin berkontribusi dalam pengembangan teknologi di Indonesia">Ingin berkontribusi dalam pengembangan teknologi di Indonesia</option>
+                        <option value="Alasan pribadi lainnya">Alasan pribadi lainnya</option>
                       </select>
                     </div>
                   </div>
                   <div class="col-lg-12">
                     <div class="mb-3"> 
-                      <button class="btn btn-orange">Gabung Program <i class="bi bi-arrow-right"> </i></button>
+                      <button class="btn btn-orange" id="submit-form">Gabung Program <i class="bi bi-arrow-right"> </i></button>
                     </div>
                   </div>
                 </form>

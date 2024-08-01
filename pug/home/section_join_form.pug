@@ -9,7 +9,7 @@ section.section-forms.adjust-anchor#JoinNow
             a(href="https://dashboard.prakerja.go.id?utm_source=prakerja_x_alibaba_landing&utm_campaign=alibaba_cloud_program&utm_content=link_prakerja" title="Dashboard Prakerja" target="_blank") Prakerja 
             | dan 
             a(href="https://edu.alibabacloud.com/elearning?spm=a3c0i.14527127.4363105600.7.7a716d842fAisq#J_4222514620" title="Alibaba Cloud Academy" target="_blank") Alibaba Cloud Academy. 
-          form.row.mt-4.needs-validation(name="FormRequest" action="/index.html" method="post" novalidate) 
+          form#form-join-program.row.mt-4.needs-validation(novalidate) 
             .col-lg-6
               .mb-3
                 label.form-label(for='NamaLengkap') Nama Lengkap
@@ -34,53 +34,53 @@ section.section-forms.adjust-anchor#JoinNow
             .col-lg-6
               .mb-3
                 label.form-label(for='CourseCat') Kategori Pelatihan
-                select#CourseCat.form-select(aria-label='Default select example')
+                select#CourseCat.form-select(aria-label='Default select example' placeholder="Pilih")
                   option(selected='') Pilih
-                  option(value='1') Cloud Computing
-                  option(value='2') Big Data
+                  option(value='Cloud Computing') Cloud Computing
+                  option(value='Big Data') Big Data
 
             .col-lg-6
               .mb-3
                 label.form-label(for='Background') Status Pekerjaan
-                select#Background.form-select(aria-label='Default select example')
+                select#Background.form-select(aria-label='Default select example' placeholder="Pilih")
                   option(selected='') Pilih
-                  option(value='1') Mahasiswa Universitas
-                  option(value='2') Dosen atau Staff Pengajar
-                  option(value='3') Karyawan Perusahaan IT
-                  option(value='4') Karyawan Perusahaan Startup
-                  option(value='5') Karyawan Perusahaan Non-IT
-                  option(value='6') Pengusaha atau Pemilik UMKM
-                  option(value='7') Freelancer di Bidang IT
-                  option(value='8') Fresh Graduate
-                  option(value='9') Lainnya
+                  option(value='Mahasiswa Universitas') Mahasiswa Universitas
+                  option(value='Dosen atau Staff Pengajar') Dosen atau Staff Pengajar
+                  option(value='Karyawan Perusahaan IT') Karyawan Perusahaan IT
+                  option(value='Karyawan Perusahaan Startup') Karyawan Perusahaan Startup
+                  option(value='Karyawan Perusahaan Non-IT') Karyawan Perusahaan Non-IT
+                  option(value='Pengusaha atau Pemilik UMKM') Pengusaha atau Pemilik UMKM
+                  option(value='Freelancer di Bidang IT') Freelancer di Bidang IT
+                  option(value='Fresh Graduate') Fresh Graduate
+                  option(value='Lainnya') Lainnya
 
             .col-lg-6
               .mb-3
                 label.form-label(for='Reference') Darimana Kamu Tahu Program Ini
-                select#Reference.form-select(aria-label='Default select example')
+                select#Reference.form-select(aria-label='Default select example' placeholder="Pilih")
                   option(selected='') Pilih
-                  option(value='1') Media Sosial (Instagram, Facebook, Twitter, LinkedIn)
-                  option(value='2') Email dari Prakerja
-                  option(value='3') Teman atau Kolega
-                  option(value='4') Webinar atau Seminar
-                  option(value='5') Kampus
-                  option(value='6') WA komunitas Prakerja
-                  option(value='7') Komunitas
-                  option(value='8') Lainnya
+                  option(value='Media Sosial (Instagram, Facebook, Twitter, LinkedIn)') Media Sosial (Instagram, Facebook, Twitter, LinkedIn)
+                  option(value='Email dari Prakerja') Email dari Prakerja
+                  option(value='Teman atau Kolega') Teman atau Kolega
+                  option(value='Webinar atau Seminar') Webinar atau Seminar
+                  option(value='Kampus') Kampus
+                  option(value='WA komunitas Prakerja') WA komunitas Prakerja
+                  option(value='Komunitas') Komunitas
+                  option(value='Lainnya') Lainnya
                   
             .col-lg-12
               .mb-3
                 label.form-label(for='ReasontoJoin') Alasan Ikut Beasiswa
-                select#ReasontoJoin.form-select(aria-label='Default select example')
+                select#ReasontoJoin.form-select(aria-label='Default select example' placeholder="Pilih")
                   option(selected='') Pilih
-                  option(value='1') Untuk meningkatkan keterampilan di bidang Cloud Computing atau Big Data
-                  option(value='2') Mendapatkan sertifikasi ACA dari Alibaba Cloud Academy
-                  option(value='3') Mencari peluang untuk kolaborasi dan inovasi di bidang cloud computing atau Big Data
-                  option(value='4') Menambah nilai tambah dalam CV dan prospek karir
-                  option(value='5') Untuk mengembangkan jaringan profesional di bidang teknologi
-                  option(value='6') Untuk berpartisipasi dalam program bergengsi dan diakui internasional
-                  option(value='7') Ingin berkontribusi dalam pengembangan teknologi di Indonesia
-                  option(value='8') Alasan pribadi lainnya
+                  option(value='Untuk meningkatkan keterampilan di bidang Cloud Computing atau Big Data') Untuk meningkatkan keterampilan di bidang Cloud Computing atau Big Data
+                  option(value='Mendapatkan sertifikasi ACA dari Alibaba Cloud Academy') Mendapatkan sertifikasi ACA dari Alibaba Cloud Academy
+                  option(value='Mencari peluang untuk kolaborasi dan inovasi di bidang cloud computing atau Big Data') Mencari peluang untuk kolaborasi dan inovasi di bidang cloud computing atau Big Data
+                  option(value='Menambah nilai tambah dalam CV dan prospek karir') Menambah nilai tambah dalam CV dan prospek karir
+                  option(value='Untuk mengembangkan jaringan profesional di bidang teknologi') Untuk mengembangkan jaringan profesional di bidang teknologi
+                  option(value='Untuk berpartisipasi dalam program bergengsi dan diakui internasional') Untuk berpartisipasi dalam program bergengsi dan diakui internasional
+                  option(value='Ingin berkontribusi dalam pengembangan teknologi di Indonesia') Ingin berkontribusi dalam pengembangan teknologi di Indonesia
+                  option(value='Alasan pribadi lainnya') Alasan pribadi lainnya
 
             .col-lg-12
               .mb-3 
@@ -91,7 +91,7 @@ section.section-forms.adjust-anchor#JoinNow
                 //-     a(href="#") syarat dan ketentuan
                 //-     |  program ini.
 
-                button.btn.btn-orange
+                button#submit-form.btn.btn-orange
                   | Gabung Program 
                   i.bi.bi-arrow-right 
 
