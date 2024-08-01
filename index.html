@@ -493,374 +493,71 @@
           </div>
         </div>
       </section>
-    </main>
-    <!-- Modal start-->
-    <div class="modal modal-lg fade" id="deskripsiPelatihanModal" tabindex="-1" aria-labelledby="deskripsiPelatihanModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
-          <div class="modal-header align-items-start align-items-lg-center">
-            <h1 class="modal-title fs-5" id="deskripsiPelatihanModalLabel">Strategi Pemasaran Agro Wisata Bagi Pengembang Bisnis (Daring)</h1>
-            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <article class="course-url"><b>Link Pelatihan : </b>
-              <p><a class="link-pelatihan" href="" title="" target="_blank">Link Pelatihan</a></p>
-            </article>
-            <article class="course-descriptions paragraph-md"><b>Deskripsi : </b>
-              <p>Judul Program: &quot;Membuat Desain Grafis Dengan Adobe Photoshop Untuk Menjadi Perancang Grafis&quot;</p>
-            </article>
-          </div>
-          <div class="modal-footer">
-            <button class="btn btn-outline-primary" type="button" data-bs-dismiss="modal">Tutup</button><a class="btn btn-primary apply-course disabled" href="https://docs.google.com/forms/d/e/1FAIpQLScc3v4je6bcRHA_0H5ItpjaY_x8ump5K9pdc27ylti4pQo0xQ/viewform" target="_blank" data-event="skill_week_apply_course" title="Pendaftaran sedang ditutup">Dapatkan Voucher Pelatihan</a>
-            <!-- <button type="button" class="btn btn-primary">Dapatkan Voucher Pelatihan</button>-->
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Modal end--><!-- Modal User Login -->
-    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModal" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered pds-modal login-modal">
-        <div class="modal-content">
-          <div class="modal-header modal-header-custom"><img class="ratio-1-1 me-2" src="img/img-ornament-1.svg" alt="ISW Login">
-            <h4 class="modal-title">Masuk Akun</h4>
-            <button class="login-dismiss btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body p-4">
-            <p class="paragraph-sm mb-4 fs-7">Untuk mendapatkan Voucher Pelatihan, masuk ke Indonesia Skill Weeks dengan menggunakan email yang sudah terdaftar sebagai peserta di Prakerja.</p>
-            <form class="row g-3 needs-validation" id="login-form" novalidate>
-              <div class="col-12">
-                <label class="form-label" for="userEmail"><b>Alamat Email yang terdaftar di Prakerja</b></label>
-                <input class="form-control" id="userEmail" type="email" placeholder="nama@email.com" required>
-                <div class="invalid-feedback">Masukan email dan format yang sesuai</div>
-              </div>
-              <div class="col-12">
-                <label class="form-label" for="userPassword"><b>Password akun Prakerja</b></label>
-                <div class="input-group">
-                  <input class="form-control" id="userPassword" type="password" placeholder="Masukkan Password" required>
-                  <button class="btn btn-outline-light show-password" type="button" aria-label="Show Password"><i class="bi bi-eye"></i></button>
-                  <div class="invalid-feedback">Masukan Password yang benar</div>
-                </div>
-              </div>
-              <div class="alert alert-danger mt-3 d-flex align-items-top mb-3 visually-hidden"><i class="fs-5 bi bi-exclamation-triangle-fill me-3"></i>
-                <div>
-                  <div class="fs-7 text-error">Alamat email atau password salah. Mohon periksa kembali.</div>
-                </div>
-              </div>
-              <div class="col-12">
-                <button class="btn btn-primary w-100" id="submit-login" type="submit">Masuk</button>
-              </div>
-              <div> 
-                <button class="login-dismiss btn btn-borderless-primary w-100" type="button" data-bs-dismiss="modal">Nanti Saja</button>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer justify-content-start border-top">
-            <p class="fs-7 px-2">Belum punya akun Prakerja? Yuk <a class="register-account link-primary" href="https://dashboard.prakerja.go.id/daftar?utm_source=ISW_login_popup&amp;utm_campaign=banner_landing&amp;utm_content=link" target="_blank" data-source="button popup"><b>Buat Akun Sekarang</b><i class="bi bi-arrow-up-right-square ms-1"></i></a></p>
-          </div>
-        </div>
-      </div>
-    </div><!-- Modal User Sukses Login -->
-    <div class="modal fade show" id="loginSuccessModal" tabindex="-1" aria-labelledby="loginSuccessModal" aria-hidden="true">
+    </main><!-- Modal User Login -->
+    <div class="modal fade" id="enrollSuccess" tabindex="-1" aria-labelledby="enrollSuccess" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered pds-modal">
-        <div class="modal-content">
-          <div class="modal-header modal-header-custom p-4">
-            <div class="text-center w-100"><img src="img/img-login-success.svg" alt="ISW login success">
-              <h4 class="modal-title mt-3">Berhasil Masuk</h4>
-            </div>
-          </div>
-          <div class="modal-body px-4">
-            <p>Akun kamu <b class="email-account">(bambang@gmail.com)</b> berhasil tervalidasi sebagai akun Prakerja, tetap masuk di website ini untuk memudahkan mendapatkan Voucher Pelatihan pada saat mengambil pelatihan yang kamu pilih.</p>
-          </div>
-          <div class="modal-footer ps-4 pb-4 pe-4">
-            <div class="row p-0 w-100">
-              <div class="col-12 col-md-6 ps-0 pe-0 pe-lg-2">
-                <button class="btn btn-outline-primary w-100 mb-3 mb-lg-0" data-bs-toggle="modal" data-bs-dismiss="modal" onClick="window.location.reload();">Tutup</button>
-              </div>
-              <div class="col-12 col-md-6 ps-0 pe-0 ps-lg-2"><a class="btn btn-primary w-100" href="/profil/index.html" title="Lihat Profile Sekarang">Lihat Profil</a></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div><!-- Modal Error Login -->
-    <div class="modal fade" id="loginErrorModal" tabindex="-1" aria-labelledby="loginErrorModal" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered pds-modal login-modal">
-        <div class="modal-content">
-          <div class="modal-header modal-header-custom"><img class="ratio-1-1 me-2" src="img/img-ornament-1.svg" alt="ISW Login">
-            <h4 class="modal-title">Masuk Akun</h4>
+        <div class="modal-content bg-accent">
+          <div class="modal-header modal-header-custom"><svg width="438" height="98" viewBox="0 0 438 98" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path class="ps-path" d="M1 57.4271C38.0084 26.1352 74.8341 3.97292 137.89 7.19C200.946 10.4071 240.018 67.8208 307.116 67.8208C365.591 67.8208 386.233 53.4209 437 20.3061" stroke="url(#paint0_linear_332_2557)" stroke-dasharray="1.98 1.98"/>
+<path d="M397.581 47.5471C398.06 47.0371 398.189 46.2905 397.909 45.649C397.63 45.0074 396.994 44.5945 396.294 44.5991L341.467 44.962L341.461 44.962L339.76 44.9733C339.103 44.9776 338.504 45.349 338.209 45.9352C337.913 46.5214 337.971 47.2237 338.358 47.7541L339.359 49.1268L339.363 49.1332L351.572 65.8717L353.558 76.0387C354.618 80.7419 355.896 77.4841 356.535 75.8553C359.712 67.759 368.85 63.7707 376.947 66.9472C377.527 67.1748 378.086 67.433 378.622 67.7192L397.581 47.5471ZM389.193 51.3622L355.201 66.197L354.932 64.8194C354.883 64.5681 354.78 64.3306 354.629 64.1237L353.802 62.9896L387.793 48.155L392.235 48.1256L389.193 51.3622Z" fill="url(#paint1_linear_332_2557)"/>
+<path d="M382.597 86.0804C380.126 92.3776 373.019 95.4796 366.721 93.0089C360.424 90.5383 357.322 83.4306 359.793 77.1334C362.264 70.8363 369.371 67.7343 375.668 70.2049C381.966 72.6756 385.068 79.7833 382.597 86.0804ZM378.251 78.0645C377.661 77.299 376.562 77.1566 375.797 77.7464L369.49 82.6057L368.407 80.1238C368.02 79.2381 366.989 78.8335 366.103 79.22C365.218 79.6066 364.813 80.6379 365.2 81.5236L366.731 85.0325C367.414 86.5974 369.386 87.1038 370.738 86.0617L377.933 80.5185C378.698 79.9287 378.841 78.83 378.251 78.0645Z" fill="url(#paint2_linear_332_2557)"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M245.862 53.5631C246.347 53.6067 246.811 53.3571 247.042 52.9286C247.273 52.5001 247.227 51.9752 246.924 51.5941L222.464 20.811C222.18 20.4535 221.72 20.2851 221.272 20.3748C220.824 20.4646 220.465 20.7973 220.34 21.2366L220.021 22.3637C220.02 22.3688 220.018 22.3739 220.017 22.379L216.093 36.2426L205.891 48.0376C205.592 48.3829 205.512 48.8663 205.683 49.2896C205.854 49.7129 206.247 50.0048 206.702 50.0457L207.857 50.1494C207.866 50.1504 207.875 50.1512 207.884 50.152L245.862 53.5631ZM240.175 50.6088L243.252 50.8851L241.33 48.4664L218.627 36.2262L218.361 37.1656C218.313 37.3369 218.227 37.4956 218.111 37.6303L217.472 38.3685L240.175 50.6088Z" fill="url(#paint3_linear_332_2557)"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M102.212 7.78008C102.595 7.47906 102.761 6.97903 102.635 6.50884C102.509 6.03865 102.115 5.68878 101.633 5.61936L62.7173 0.0124654C62.2654 -0.0526401 61.8151 0.140669 61.551 0.513111C61.287 0.885551 61.2536 1.37445 61.4647 1.77931L62.0061 2.81807C62.0085 2.82279 62.0109 2.82751 62.0134 2.83223L68.6728 15.609L69.3452 31.1899C69.3649 31.6461 69.6382 32.0528 70.0531 32.2433C70.468 32.4338 70.9546 32.3761 71.3134 32.0938L72.225 31.3765C72.2322 31.371 72.2393 31.3655 72.2464 31.3599L102.212 7.78008ZM96.0484 9.53341L98.4759 7.6233L95.4181 7.18274L70.5047 13.8583L70.9559 14.724C71.0382 14.8819 71.0849 15.056 71.0926 15.2339L71.1347 16.209L96.0484 9.53341Z" fill="url(#paint4_linear_332_2557)"/>
+<defs>
+<linearGradient id="paint0_linear_332_2557" x1="1" y1="19.0116" x2="436.939" y2="12.0535" gradientUnits="userSpaceOnUse">
+<stop stop-color="#011148"/>
+<stop offset="0.143167" stop-color="#2791D9"/>
+<stop offset="1" stop-color="#1BC47D"/>
+</linearGradient>
+<linearGradient id="paint1_linear_332_2557" x1="346.45" y1="24.9087" x2="398.574" y2="45.359" gradientUnits="userSpaceOnUse">
+<stop stop-color="#6AD87B"/>
+<stop offset="0.333333" stop-color="#4CBE5E"/>
+<stop offset="0.666667" stop-color="#32A544"/>
+<stop offset="1" stop-color="#1D8B2F"/>
+</linearGradient>
+<linearGradient id="paint2_linear_332_2557" x1="346.45" y1="24.9087" x2="398.574" y2="45.359" gradientUnits="userSpaceOnUse">
+<stop stop-color="#6AD87B"/>
+<stop offset="0.333333" stop-color="#4CBE5E"/>
+<stop offset="0.666667" stop-color="#32A544"/>
+<stop offset="1" stop-color="#1D8B2F"/>
+</linearGradient>
+<linearGradient id="paint3_linear_332_2557" x1="205.594" y1="20.3511" x2="247.188" y2="20.3511" gradientUnits="userSpaceOnUse">
+<stop stop-color="#F2BA01"/>
+<stop offset="0.142857" stop-color="#F5B203"/>
+<stop offset="0.285714" stop-color="#F8A908"/>
+<stop offset="0.428571" stop-color="#FBA00F"/>
+<stop offset="0.571429" stop-color="#FD9817"/>
+<stop offset="0.714286" stop-color="#FE8F1E"/>
+<stop offset="0.857143" stop-color="#FF8624"/>
+<stop offset="1" stop-color="#FF7D2A"/>
+</linearGradient>
+<linearGradient id="paint4_linear_332_2557" x1="61.3269" y1="0" x2="102.677" y2="0" gradientUnits="userSpaceOnUse">
+<stop stop-color="#1D508B"/>
+<stop offset="0.142857" stop-color="#225A9C"/>
+<stop offset="0.285714" stop-color="#2765AD"/>
+<stop offset="0.428571" stop-color="#2C6FBE"/>
+<stop offset="0.571429" stop-color="#327ACE"/>
+<stop offset="0.714286" stop-color="#4585D1"/>
+<stop offset="0.857143" stop-color="#5890D4"/>
+<stop offset="1" stop-color="#6A9CD8"/>
+</linearGradient>
+</defs>
+</svg>
             <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body p-4">
-            <p class="paragraph-sm mb-4">Untuk mendapatkan Voucher Pelatihan, masuk ke Indonesia Skill Weeks dengan menggunakan email yang sudah terdaftar sebagai peserta di Prakerja.</p>
-            <form>
-              <div class="mb-3">
-                <label class="form-label" for="exampleInputEmail1"><b>Alamat Email yang terdaftar di Prakerja</b></label>
-                <input class="form-control is-invalid" id="exampleInputEmail1" type="email" aria-describedby="userEmail" placeholder="nama@email.com" value="barambang@gmail.me">
-              </div>
-              <div class="mb-3">
-                <label class="form-label" for="exampleInputPassword1"><b>Password akun Prakerja</b></label>
-                <div class="input-group mb-3">
-                  <input class="form-control show-password-target is-invalid" type="password" placeholder="Masukkan Password" aria-label="Masukkan Password" aria-describedby="button-addon2" value="Prakerja123!">
-                  <button class="btn btn-outline-light show-password" id="button-addon2" type="button"><i class="bi bi-eye"></i></button>
-                </div>
-              </div>
-            </form>
-            <div class="alert alert-danger mt-3 d-flex align-items-top mb-3"><i class="fs-5 bi bi-exclamation-triangle-fill me-3"></i>
-              <div>
-                <div class="fs-7">Alamat email atau password salah. Mohon periksa kembali.</div>
-              </div>
-            </div>
-            <div class="mb-3"> 
-              <button class="btn btn-primary w-100" type="submit">Masuk</button>
-            </div>
-            <div> 
-              <button class="btn btn-borderless-primary w-100" type="button" data-bs-dismiss="modal">Nanti Saja</button>
-            </div>
-          </div>
-          <div class="modal-footer justify-content-start border-top">
-            <p class="fs-7 px-2">Belum punya akun Prakerja? Yuk <a class="link-primary" href="https://dashboard.prakerja.go.id/daftar" target="_blank"><b>Buat Akun Sekarang</b><i class="bi bi-arrow-up-right-square ms-1"></i></a></p>
-          </div>
-        </div>
-      </div>
-    </div><!-- Modal User Sudah Login -->
-    <div class="modal fade" id="loginAlreadyModal" tabindex="-1" aria-labelledby="loginAlreadyModal" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered pds-modal">
-        <div class="modal-content">
-          <div class="modal-header modal-header-custom p-4">
-            <div class="text-center w-100"><img class="ratio-1-1" src="img/img-login-already.svg" alt="ISW Logged In">
-              <h4 class="modal-title mt-3">Kamu Masuk Sebagai</h4>
-            </div>
-          </div>
-          <div class="modal-body px-4">
-            <form>
-              <div class="mb-3">
-                <label class="form-label" for="validEmailUser"><b>Alamat Email yang terdaftar di Prakerja</b></label>
-                <input class="form-control is-valid" id="validEmailUser" type="email" aria-describedby="userEmail" placeholder="nama@email.com" value="your-email@domain.com" readonly>
-              </div>
-            </form>
-            <p>Akun kamu <b class="text-email">(your-email@domain.com)</b> berhasil tervalidasi sebagai akun Prakerja, tetap masuk di website ini untuk memudahkan mendapatkan Voucher Pelatihan pada saat mengambil pelatihan yang kamu pilih.</p>
-          </div>
-          <div class="modal-footer ps-4 pb-4 pe-4">
-            <button class="btn btn-ghost-danger w-100" data-bs-toggle="modal" data-bs-target="#confirmLogoutModal" data-bs-dismiss="modal">Keluar</button>
-            <button class="btn btn-borderless-primary w-100" data-bs-toggle="modal" data-bs-dismiss="modal">Tutup</button>
-          </div>
-        </div>
-      </div>
-    </div><!-- Modal Konfirmasi Logout  -->
-    <div class="modal fade" id="confirmLogoutModal" tabindex="-1" aria-labelledby="confirmLogoutModal" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered pds-modal">
-        <div class="modal-content">
-          <div class="modal-header modal-header-custom p-4 align-items-start position-relative">
-            <div class="text-center w-100"><img src="img/img-login-already.svg" alt="ISW Logout Confirmation">
-              <h4 class="modal-title mt-3">Kamu yakin akan keluar menggunakan akun ini?</h4>
-            </div>
-            <button class="btn-close position-absolute" type="button" data-bs-dismiss="modal" aria-label="Close" style="right:1.5rem;"></button>
-          </div>
-          <div class="modal-footer ps-4 pb-4 pe-4">
-            <div class="row p-0 w-100">
-              <div class="col-12 col-md-6 ps-0 pe-0 pe-lg-2">
-                <button class="btn btn-ghost-danger w-100 mb-3 mb-lg-0" id="btn-logout" data-bs-toggle="modal" data-bs-dismiss="modal">Ya</button>
-              </div>
-              <div class="col-12 col-md-6 ps-0 pe-0 ps-lg-2">
-                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-dismiss="modal">Batal</button>
-              </div>
+            <h5 class="mb-3">Terima Kasih Telah Mendaftar di Program Beasiswa Prakerja x Alibaba Cloud Academy!</h5>
+            <p class="paragraph-sm fs-7">
+               Kami sangat mengapresiasi antusiasme dan minat kamu untuk bergabung dengan program ini.</p>
+            <p class="paragraph-sm mb-4 fs-7">
+               Saat ini, data kamu sedang dalam proses seleksi. Kami akan menghubungi peserta yang terpilih pada tanggal <b>23 Agustus 2024 </b>melalui email yang kamu daftarkan. Pastikan untuk selalu cek email kamu, ya!</p>
+            <div class="text-center">
+              <button class="btn btn-primary" type="button" data-bs-dismiss="modal">Mengerti</button>
             </div>
           </div>
         </div>
       </div>
-    </div><!-- Modal Get Course - Belum Login -->
-    <div class="modal fade" id="getCourseNotLoginModal" tabindex="-1" aria-labelledby="getCourseNotLoginModal" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered pds-modal">
-        <div class="modal-content">
-          <div class="modal-header modal-header-custom p-4">
-            <h4 class="modal-title"> Ambil Voucher Pelatihan?</h4>
-            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body px-4">
-            <div class="row border rounded p-3 m-0">
-              <div class="col-12 col-md-4 p-0"><img class="w-100 object-fit-contain rounded-1" src="img/course-7.jpeg" alt="Pelatihan ABC"></div>
-              <div class="col-12 col-md-8 p-0 ps-md-3 pt-3 pt-md-0">
-                <h6>Menyusun dan Membuat Business Proposal yang Menarik (dengan Microsoft Word dan Power Point)</h6>
-              </div>
-            </div>
-            <div class="alert alert-warning mt-3 d-flex align-items-top mb-0"><i class="fs-5 bi bi-info-circle-fill me-3"></i>
-              <div>
-                <div class="fs-7">Untuk mendapatkan voucher pelatihan, kamu harus<b>&nbsp;masuk&nbsp;</b>terlebih dahulu ke Indonesia Skills Week.</div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer p-0">
-            <div class="d-flex w-100 p-4">
-              <button class="btn w-100 btn-borderless-primary me-1" type="button" data-bs-dismiss="modal">Kembali</button>
-              <button class="btn btn-primary w-100 ms-1" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal"><i class="bi bi-person-circle me-2"></i>Masuk</button>
-            </div>
-            <div class="fs-7 w-100 p-3 border-top text-center">Belum punya akun Prakerja? Yuk <a class="link-primary" href="https://dashboard.prakerja.go.id/daftar?utm_source=skillsweek_popup_banner&amp;utm_campaign=skillsweek_campaign&amp;utm_medium=button_hero_banner&amp;utm_content=buat_akun_sekarang" target="_blank"><b>Buat Akun Sekarang</b><i class="bi bi-arrow-up-right-square ms-1"></i></a></div>
-          </div>
-        </div>
-      </div>
-    </div><!-- Modal Get Course - Sudah Login -->
-    <div class="modal fade" id="getCourseLoginModal" tabindex="-1" aria-labelledby="getCourseLoginModal" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered pds-modal">
-        <div class="modal-content">
-          <div class="modal-header modal-header-custom p-4">
-            <h4 class="modal-title"> Ambil Voucher Pelatihan?</h4>
-            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body px-4">
-            <div class="detail-course row border rounded p-3 m-0">
-              <div class="col-12 col-md-4 p-0"><img class="w-100 object-fit-contain rounded-1" src="img/course-7.jpeg" alt="Pelatihan ABC"></div>
-              <div class="col-12 col-md-8 p-0 ps-md-3 pt-3 pt-md-0">
-                <h6>Menyusun dan Membuat Business Proposal yang Menarik (dengan Microsoft Word dan Power Point)</h6>
-              </div>
-            </div>
-            <form class="mt-3">
-              <div class="mb-3">
-                <label class="form-label" for="emailUserVoucher"><b>Alamat Email yang terdaftar di Prakerja</b></label>
-                <input class="form-control is-valid" id="emailUserVoucher" type="email" aria-describedby="userEmail" placeholder="nama@email.com" value="" readonly>
-              </div>
-            </form>
-            <div class="alert alert-info mt-3 d-flex align-items-top mb-0"><i class="fs-5 bi bi-info-circle-fill me-3"></i>
-              <div>
-                <div class="fs-7">Kode Voucher akan dikirim ke email kamu selama <b>kuota </b>pelatihan masih tersedia, silakan cek email secara berkala.</div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer p-0">
-            <div class="d-flex w-100 p-4">
-              <button class="btn btn-borderless-primary w-100 me-1" type="button" data-bs-dismiss="modal">Kembali</button>
-              <button class="btn btn-primary w-100 ms-1" id="get-voucher-botton">Ambil Voucher</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div><!-- Modal Get Free Course - Belum Login -->
-    <div class="modal fade" id="getFreeCourseNotLoginModal" tabindex="-1" aria-labelledby="getFreeCourseNotLoginModal" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered pds-modal">
-        <div class="modal-content">
-          <div class="modal-header modal-header-custom p-4">
-            <h4 class="modal-title"> Ambil Pelatihan Gratis?</h4>
-            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body px-4">
-            <p class="paragraph-md mb-4">Kamu yakin akan mengambil pelatihan ini?</p>
-            <div class="detail-course row border rounded p-3 m-0">
-              <div class="col-12 col-md-4 p-0"><img class="w-100 object-fit-contain rounded-1" src="img/course-7.jpeg" alt="Pelatihan ABC"></div>
-              <div class="col-12 col-md-8 p-0 ps-md-3 pt-3 pt-md-0">
-                <h6>Menyusun dan Membuat Business Proposal yang Menarik (dengan Microsoft Word dan Power Point)</h6>
-              </div>
-            </div>
-            <div class="alert alert-warning mt-3 d-flex align-items-top mb-0"><i class="fs-5 bi bi-info-circle-fill me-3"></i>
-              <div>
-                <div class="fs-7">Untuk mengambil pelatihan ini, kamu harus<b>&nbsp;masuk&nbsp;</b>terlebih dahulu ke Indonesia Skills Week.</div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer p-0">
-            <div class="d-flex w-100 p-4">
-              <button class="btn w-100 btn-borderless-primary me-1" type="button" data-bs-dismiss="modal">Kembali</button>
-              <button class="btn btn-primary w-100 ms-1" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal"><i class="bi bi-person-circle me-2"></i>Masuk</button>
-            </div>
-            <div class="fs-7 w-100 p-3 border-top text-center">Belum punya akun Prakerja? Yuk <a class="link-primary" href="https://dashboard.prakerja.go.id/daftar" target="_blank"><b>Buat Akun Sekarang</b><i class="bi bi-arrow-up-right-square ms-1"></i></a></div>
-          </div>
-        </div>
-      </div>
-    </div><!-- Modal Get Course - Sudah Login -->
-    <div class="modal fade" id="getFreeCourseLoginModal" tabindex="-1" aria-labelledby="getFreeCourseLoginModal" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered pds-modal">
-        <div class="modal-content">
-          <div class="modal-header modal-header-custom p-4">
-            <h4 class="modal-title"> Ambil Pelatihan Gratis?</h4>
-            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body px-4">
-            <p class="paragraph-md mb-4">Kamu yakin akan mengambil pelatihan ini?</p>
-            <div class="row border rounded p-3 m-0">
-              <div class="col-12 col-md-4 p-0"><img class="w-100 object-fit-contain rounded-1" src="img/course-7.jpeg" alt="Menyusun dan Membuat Business Proposal yang Menarik (dengan Microsoft Word dan Power Point"></div>
-              <div class="col-12 col-md-8 p-0 ps-md-3 pt-3 pt-md-0">
-                <h6>Menyusun dan Membuat Business Proposal yang Menarik (dengan Microsoft Word dan Power Point)</h6>
-              </div>
-            </div>
-            <form class="mt-3">
-              <div class="mb-3">
-                <label class="form-label" for="exampleInputEmail2"><b>Alamat Email yang terdaftar di Prakerja</b></label>
-                <input class="form-control is-valid" id="exampleInputEmail2" type="email" aria-describedby="userEmail" placeholder="nama@email.com" value="bambang@gmail.com" readonly>
-              </div>
-            </form>
-            <div class="alert alert-info mt-3 d-flex align-items-top mb-0"><i class="fs-5 bi bi-info-circle-fill me-3"></i>
-              <div>
-                <div class="fs-7">Pelatihan<b>&nbsp;gratis&nbsp;</b>tidak membutuhkan voucher untuk mengambil pelatihan.</div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer p-0">
-            <div class="d-flex w-100 p-4">
-              <button class="btn btn-borderless-primary w-100 me-1" type="button" data-bs-dismiss="modal">Kembali</button>
-              <button class="btn btn-primary w-100 ms-1" data-bs-toggle="modal" data-bs-target="#" data-bs-dismiss="modal">Ambil Pelatihan</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div><!-- Modal Get Course - Sudah Login - GAGAL -->
-    <div class="modal fade" id="getCourseFailedModal" tabindex="-1" aria-labelledby="getCourseFailedModal" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered pds-modal">
-        <div class="modal-content">
-          <div class="modal-header modal-header-custom p-4">
-            <h4 class="modal-title"> Ambil Voucher Pelatihan?</h4>
-            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body px-4">
-            <div class="row border rounded p-3 m-0">
-              <div class="col-12 col-md-4 p-0"><img class="w-100 object-fit-contain rounded-1" src="img/course-7.jpeg" alt="Menyusun dan Membuat Business Proposal yang Menarik (dengan Microsoft Word dan Power Point"></div>
-              <div class="col-12 col-md-8 p-0 ps-md-3 pt-3 pt-md-0">
-                <h6>Menyusun dan Membuat Business Proposal yang Menarik (dengan Microsoft Word dan Power Point)</h6>
-              </div>
-            </div>
-            <form class="mt-3">
-              <div class="mb-3">
-                <label class="form-label" for="exampleInputEmail3"><b>Alamat Email yang terdaftar di Prakerja</b></label>
-                <input class="form-control is-valid" id="exampleInputEmail3" type="email" aria-describedby="userEmail" placeholder="nama@email.com" value="bambang@gmail.com" readonly>
-              </div>
-            </form>
-            <div class="alert alert-danger mt-3 d-flex align-items-top mb-3"><i class="fs-5 bi bi-exclamation-triangle-fill me-3"></i>
-              <div>
-                <h6 class="text-danger">Ambil Voucher Pelatihan Gagal</h6>
-                <div class="fs-7">Kamu sudah mengambil pelatihan ini atau pelatihan gratis sebelumnya. Pelatihan Gratis hanya bisa diambil 1x.</div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer p-0">
-            <div class="d-flex w-100 p-4">
-              <button class="btn btn-borderless-primary w-100 me-1" type="button" data-bs-dismiss="modal">Kembali</button>
-              <button class="btn btn-primary w-100 ms-1" data-bs-toggle="modal" data-bs-target="#" data-bs-dismiss="modal">Ambil Voucher</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="toast-container position-fixed top-0 start-0 p-3">
-      <div class="toast" id="success-toast" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="d-flex p-3">
-          <div><img src="img/img-success-get-course.svg" alt="ISW Success get Course" style="width: 64px"></div>
-          <div class="px-3">
-            <h6>Voucher Pelatihan Berhasil Diambil</h6>
-            <p class="p-0 m-0">Kode voucher pelatihan akan dikirim ke email kamu, silakan cek secara berkala.</p>
-          </div>
-          <div>
-            <button class="btn-close" type="button" data-bs-dismiss="toast" aria-label="Close"></button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="toast-container position-fixed top-0 start-0 p-3">
-      <div class="toast" id="toast-sucess-copy" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="true">
-        <div class="toast-header">
-          <svg class="bd-placeholder-img rounded mr-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg" preserveaspectratio="xMidYMid slice" focusable="false" role="img">
-            <rect width="100%" height="100%" fill="#007aff"></rect>
-          </svg><strong class="mr-auto">Skillsweek</strong><small class="text-muted">Saat ini</small>
-          <button class="ml-2 mb-1 close close-toast-copy" type="button" data-dismiss="toast" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        </div>
-        <div class="toast-body">Link Pelatihan berhasil di copy</div>
-      </div>
-    </div><!-- Modal Ads --><!-- Footer start -->
+    </div><!-- Footer start -->
     <footer class="section-footer">
       <div class="top-wrapper">
         <div class="container pt-4 pt-md-5 px-4 px-md-0">

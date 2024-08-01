@@ -1,0 +1,43 @@
+<!-- Modal User Login -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered pds-modal login-modal">
+    <div class="modal-content">
+      <div class="modal-header modal-header-custom"><img class="ratio-1-1 me-2" src="undefinedimg/img-ornament-1.svg" alt="ISW Login"/>
+        <h4 class="modal-title">Masuk Akun</h4>
+        <button class="login-dismiss btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4">
+        <p class="paragraph-sm mb-4 fs-7">Untuk mendapatkan Voucher Pelatihan, masuk ke Indonesia Skill Weeks dengan menggunakan email yang sudah terdaftar sebagai peserta di Prakerja.</p>
+        <form class="row g-3 needs-validation" id="login-form" novalidate="novalidate">
+          <div class="col-12">
+            <label class="form-label" for="userEmail"><b>Alamat Email yang terdaftar di Prakerja</b></label>
+            <input class="form-control" id="userEmail" type="email" placeholder="nama@email.com" required="required"/>
+            <div class="invalid-feedback">Masukan email dan format yang sesuai</div>
+          </div>
+          <div class="col-12">
+            <label class="form-label" for="userPassword"><b>Password akun Prakerja</b></label>
+            <div class="input-group">
+              <input class="form-control" id="userPassword" type="password" placeholder="Masukkan Password" required="required"/>
+              <button class="btn btn-outline-light show-password" type="button" aria-label="Show Password"><i class="bi bi-eye"></i></button>
+              <div class="invalid-feedback">Masukan Password yang benar</div>
+            </div>
+          </div>
+          <div class="alert alert-danger mt-3 d-flex align-items-top mb-3 visually-hidden"><i class="fs-5 bi bi-exclamation-triangle-fill me-3"></i>
+            <div>
+              <div class="fs-7 text-error">Alamat email atau password salah. Mohon periksa kembali.</div>
+            </div>
+          </div>
+          <div class="col-12">
+            <button class="btn btn-primary w-100" id="submit-login" type="submit">Masuk</button>
+          </div>
+          <div> 
+            <button class="login-dismiss btn btn-borderless-primary w-100" type="button" data-bs-dismiss="modal">Nanti Saja</button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer justify-content-start border-top">
+        <p class="fs-7 px-2">Belum punya akun Prakerja? Yuk <a class="register-account link-primary" href="https://dashboard.prakerja.go.id/daftar?utm_source=ISW_login_popup&amp;utm_campaign=banner_landing&amp;utm_content=link" target="_blank" data-source="button popup"><b>Buat Akun Sekarang</b><i class="bi bi-arrow-up-right-square ms-1"></i></a></p>
+      </div>
+    </div>
+  </div>
+</div>

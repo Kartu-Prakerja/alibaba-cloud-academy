@@ -1465,13 +1465,30 @@ body.freeze {
   background: -webkit-gradient(linear, left bottom, left top, color-stop(21.93%, #FFFFFF), to(rgba(255, 255, 255, 0)));
   background: linear-gradient(0deg, #FFFFFF 21.93%, rgba(255, 255, 255, 0) 100%);
 }
-.section-hero.bg-accent {
+
+.bg-accent {
   background-image: url("../img/bg-accent.svg");
   background-repeat: no-repeat;
   background-position: top center;
   background-size: 90%;
 }
 
+.ps-path {
+  stroke-dasharray: 6;
+  -webkit-animation: dash 30s linear infinite;
+          animation: dash 30s linear infinite;
+}
+
+@-webkit-keyframes dash {
+  to {
+    stroke-dashoffset: -440;
+  }
+}
+@keyframes dash {
+  to {
+    stroke-dashoffset: -440;
+  }
+}
 .prakerja-jargon {
   letter-spacing: 1px;
   font-size: 0.875rem;
