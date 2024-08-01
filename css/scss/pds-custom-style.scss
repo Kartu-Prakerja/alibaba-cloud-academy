@@ -1933,13 +1933,25 @@ background-clip: text;
   }
 }
 
-
 .btn-contact-center {
   margin-right: 10px;
 }
 
 .trending, .new-course, .custom-badge {
   margin-left: 10px;
+}
+
+.w-70 {
+  min-width: 70%;
+}
+.w-30 {
+  min-width: 30%;
+}
+
+.w-flex {
+  .w-100 {
+      width: 100%;
+  }
 }
 
 /* media querys */

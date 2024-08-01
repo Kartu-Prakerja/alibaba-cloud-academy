@@ -110,84 +110,6 @@ var templateCourse = function(target, data, cardClass, isCourse){
     });
 }
 
-var templateCourseSearch = function(target, data, cardClass, isCourse){ 
-    var pills = data.course_type.toLowerCase() == "Online Self-Paced Learning".toLowerCase() ? "text-bg-warning" : "text-bg-help";
-    var pageClass = $('html').attr('page-class');
-    // var course_form_request = 'https://docs.google.com/forms/d/e/1FAIpQLScc3v4je6bcRHA_0H5ItpjaY_x8ump5K9pdc27ylti4pQo0xQ/viewform?usp=pp_url&entry.841678428=' + data.course_title.split(" ").join("+");
-    // var notif_course_request = 'https://docs.google.com/forms/d/e/1FAIpQLScOs8Qwc9w0ZlFgAOqSes5EpyhkaK46atcT52t8bBXXmuQKUA/viewform?usp=sf_link';
-    var imageCourse = '<img src="' + data.course_image + '" loading="lazy" class="card-img-top" alt="'+ data.course_title +'">'
-    // var logoLp = isCourse ? "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +" loading="lazy"'>" : "<img class='me-1 card-logo owl-lazy' data-src='https://raw.githubusercontent.com/Kartu-Prakerja/skill-week/main/img/img-placeholder-logo.webp' loading='lazy' data-src-retina='" + data.logo_lp +"' alt='"+ data.lp_name +"'>";
-    var logoLp = isCourse ? "<img class='me-1 card-logo' src='" + data.logo_lp +"' loading='lazy' alt='"+ data.lp_name +"'>" : "<img class='me-1 card-logo' loading='lazy' src='" + data.logo_lp +"' alt='"+ data.lp_name +"'>";
-    var course_detail = BaseURL +'pelatihan/detail.html?title=' + (data.course_title.replace(/[^a-zA-Z0-9 ]/g, '')).replace(/\s+/gi, '-').toLowerCase() +'&id='+ data.course_id;
-    var finalPrice = (data.course_discount == '100%' || data.course_discount == '') ? 'Gratis' : "Rp " + Number(data.course_after_discount).toLocaleString('id');
-    var course_price = data.course_price == '0' ? "-" : "Rp " + Number(data.course_price).toLocaleString('id')
-    var colorPrice = (data.course_discount == '100%' || data.course_discount == '') ? '' : 'color-secondary';
-    var listClass = cardClass == null ? 'col-12 col-md-6 col-xl-4 col-xxl-3 mb-4 mb-lg-5' : 'wl-carousel-card pb-3'
-    var template = '<a class="course-list-card d-flex align-items-center course-recommend-searc" href="'+ course_detail +'">'+
-            imageCourse +
-            '<span class="d-block w-100">' +
-                '<span class="course-title">'+ data.course_title +'</span>' +
-                '<span class="d-flex justify-content-between"><span class="course-price">'+ finalPrice +'</span><span class="course-institution">'+ data.lp_name +'</span></span>' +
-            '</span>'+
-        '</a>';
-    $(target).append(template).ready(function () {
-        // trigger modal
-        // skipped because already have the page detail
-        // btnDescription('#detail-course' + data.index, data);
-        $('.course-recommend-search').unbind('click');
-        $('.course-recommend-search').click(function(e) {
-            e.preventDefault();
-            window.location.href = $(this).attr('href');
-        })
-    });
-}
-
-
-/** function load course */
-var templateCourseProfile = function(target, data, cardClass, isCourse){ 
-    var pills = data.course_type.toLowerCase() == "Online Self-Paced Learning".toLowerCase() ? "text-bg-warning" : "text-bg-help";
-    // Lazy load from owl carousel
-    // var imageCourse = isCourse ? '<img src="' + data.course_image + '" class="card-img-top" alt="'+ data.course_title +'">' : '<img class="owl-lazy" data-src="https://raw.githubusercontent.com/Kartu-Prakerja/skill-week/main/img/img-placeholder.webp" data-src-retina="' + data.course_image + '" class="card-img-top" alt="'+ data.course_title +'">';
-    // var logoLp = isCourse ? "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +"'>" : "<img class='me-1 card-logo owl-lazy' data-src='https://raw.githubusercontent.com/Kartu-Prakerja/skill-week/main/img/img-placeholder-logo.webp' data-src-retina='" + data.logo_lp +"' alt='"+ data.lp_name +"'>";
-    var imageCourse = '<img src="' + data.course_image + '" loading="lazy" class="card-img-top" alt="'+ data.course_title +'">';
-    var logoLp = isCourse ? "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +"'>" : "<img class='me-1 card-logo' src='" + data.logo_lp +"' alt='"+ data.lp_name +"' loading='lazy'>";
-    var course_detail = BaseURL +'pelatihan/detail.html?title=' + (data.course_title.replace(/[^a-zA-Z0-9 ]/g, '')).replace(/\s+/gi, '-').toLowerCase() +'&id='+ data.course_id;
-    var finalPrice = (data.course_discount == '100%' || data.course_discount == '') ? 'Gratis' : "Rp " + Number(data.course_after_discount).toLocaleString('id');
-    var course_price = data.course_price == '0' ? "-" : "Rp " + Number(data.course_price).toLocaleString('id')
-    var colorPrice = (data.course_discount == '100%' || data.course_discount == '') ? '' : 'color-secondary';
-    // render the list
-    var template ='<div class="card pds-card pds-card-list mb-3">' +
-            '<div class="card-cover">'+ imageCourse +
-                '<div class="card-cover-overlay">' +
-                    '<div class="d-flex justify-content-between align-middle">'+
-                        '<div class="align-self-center">' +
-                            '<div class="card-company"> '+ logoLp +'<span class="course-lp-name">'+ data.lp_name +'</span></div></div>' +
-                        '<div class="align-self-center"> <span class="badge rounded-pill text-capitalize '+ pills +'">'+ (data.course_type).replace(/Online/g,'') +'</span></div>' +
-                    '</div>' +
-                '</div>' +
-            '</div>' +
-            '<div class="card-body">' +
-                '<h6 class="mb-1 course-title text-capitalize" title="'+ data.course_title +'">'+ data.course_title +'</h6><span class="mb-2 badge text-bg-light text-capitalize">'+ data.course_category +'</span>' +
-                '<div class="d-md-flex">' +
-                    '<div class="course-real-price mb-1 me-md-3"><span>'+ course_price +'</span><span class="badge text-bg-ghost-success">'+ data.course_discount +'</span></div>' +
-                    '<div class="course-price card-price mb-1">'+ finalPrice +'</div>' +
-                '</div>'+
-                '<div class="pds-card-list-footer mt-3 text-center"> <a class="btn btn-outline-primary w-100 mb-2 text-truncate" href="'+ course_detail +'" title="">Selengkapnya</a> <a class="btn btn-primary w-100 mb-2 text-truncate" href="'+ data.course_url +'" target="_blank">Buka Pelatihan <i class="ms-1 bi bi-arrow-up-right-square"></i></a></div>' +
-            '</div>'+
-        '</div>';
-
-    $(target).append(template).ready(function () {
-        // trigger modal
-        // skipped because already have the page detail
-        // btnDescription('#detail-course' + data.index, data);
-        $('.to-detail-course').unbind('click');
-        $('.to-detail-course').click(function(e) {
-            e.preventDefault();
-            window.location.href = $(this).attr('href');
-        })
-    });
-}
-
 var templateLP = function(target, data) {
     var template = '<div class="col-12.col-sm-6 col-md-4 col-xl-3">' +
                         '<a class="text-capitalize card-company-list" href="'+ 'pelatihan/index.html?topic=&keyword=&price=&lp=' + data.lp_name.replace(/\s+/gi, '-').toLowerCase() +'" title="'+ data.course_title  +'">' + 
@@ -199,24 +121,6 @@ var templateLP = function(target, data) {
 }
 
 var templateDetail = function(data) {
-    //var finalPrice = data.course_discount == '100%' ? 'Gratis' : "Rp " + Number(data.course_after_discount).toLocaleString('id');
-    var finalPrice = (data.course_discount == '100%' || data.course_discount == '') ? 'Gratis' : "Rp " + Number(data.course_after_discount).toLocaleString('id');
-    var colorPrice = (data.course_discount == '100%' || data.course_discount == '') ? '' : 'color-secondary';
-    var course_price = data.course_price == '0' ? "" : "Rp " + Number(data.course_price).toLocaleString('id')
-    var courseTakens = JSON.parse(localStorage.getItem('course_takens'));
-    var quota = data.quota !== '' ? data.quota + '<i>&nbsp;(Selama masih tersedia)</i>' : '<span>Tidak terbatas<span>';
-    var getTotal = Number(data.total) >= 20 ? '<p class="text-secondary"><b class="fs-7">&#128293; ' + data.total + '</b>&nbsp;peserta mengambil pelatihan ini</p>' : ''
-    var getVoucherbtn;
-    
-    // uncomment if on
-    if(_.contains(courseTakens, data.course_id)) {
-        getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher berhasil diambil</button>'
-     } else if (data.quota !== '' && Number(data.quota) == data.total) {
-        getVoucherbtn = '<button class="my-3 btn btn-secondary btn-lg w-100 disabled" data-bs-toggle="modal" data-bs-target="#">Voucher Habis</button>'
-     } else {
-        getVoucherbtn = '<button id="get-voucher" class="my-3 btn btn-primary btn-lg w-100" data-bs-toggle="modal" data-bs-target="#">Dapatkan Voucher Pelatihan </button>'
-     }
-
      var contactCenter = '';
      if(!_.isEmpty(data.cs_call_center) || !_.isEmpty(data.cs_email) || !_.isEmpty(data.cs_wa)) {
         var html_call_center = '', html_wa = '', html_email = '';
@@ -245,45 +149,45 @@ var templateDetail = function(data) {
     '<div class="container pt-3 pb-5 px-4 px-md-0">' +
       '<div class="row flex-row-reverse">' +
         '<div class="col-12 col-md-4 col-lg-4"><div class="course-cover-sticky"><div class="course-cover"><img loading="lazy" class="w-100 rounded" src="'+ data.course_image +'" alt=""/></div>' +
-          '<div class="mt-3 d-flex justify-content-between">' +
-                '<div class="px-3 px-lg-0 m-r1"><a href="'+ data.course_url +'" id="get-voucher" class="btn btn-primary btn-lg w-90" data-bs-toggle="modal" data-bs-target="#">Lihat Detail Pelatihan</a></div>' +
-                '<button class="btn btn-light btn-md share-button w-30" type="button" title="Bagikan halaman ini"><i class="bi bi-share-fill">&nbsp;&nbsp;</i>Bagikan</button>' +
+          '<div class="mt-3 d-flex justify-content-between course-cta p-3 px-lg-0 w-flex">' +
+                '<div class="px-lg-0 px-1 m-r1 w-70"><a href="'+ data.course_url +'" target="_blank" class="btn btn-primary btn-lg w-100">Lihat Pelatihan</a></div>' +
+                '<button class="btn btn-light btn-md share-button w-30 px-1" type="button" title="Bagikan halaman ini"><i class="bi bi-share-fill">&nbsp;&nbsp;</i>Bagikan</button>' +
           '</div>' +
         '</div></div>' +
         '<div class="col-12 col-md-8 col-lg-8 pe-xl-4">' +
           '<h1 class="mb-3">'+ data.course_title +'</h1>'+
           '<div class="row mt-5 mb-4"> ' +
-            '<div class="col-12 col-md-6 col-lg-4 mb-4 d-flex"> <i class="bi bi-person-badge"></i>' +
+            '<div class="col-12 col-md-6 col-lg-4 mb-3 d-flex"> <i class="bi bi-person-badge"></i>' +
               '<div class="ps-2"> ' +
                 '<h6 class="fs-7 mb-2">Instruktur</h6>' +
                 '<p class="fs-7">'+ data.instructure_name +'</p>' +
               '</div>' +
             '</div>' +
-            '<div class="col-12 col-md-6 col-lg-4 mb-4 d-flex"> <i class="bi bi-clock"> </i>' +
+            '<div class="col-12 col-md-6 col-lg-4 mb-3 d-flex"> <i class="bi bi-clock"> </i>' +
               '<div class="ps-2"> ' +
                 '<h6 class="fs-7 mb-2">Durasi Pelatihan</h6>' +
                 '<p class="fs-7">'+ data.duration +' (Menit)</p>' +
               '</div>' +
             '</div>' +
-            '<div class="col-12 col-md-6 col-lg-4 mb-4 d-flex"> <i class="bi bi-journal-bookmark-fill"> </i>' +
+            '<div class="col-12 col-md-6 col-lg-4 mb-3 d-flex"> <i class="bi bi-journal-bookmark-fill"> </i>' +
               '<div class="ps-2"> ' +
                 '<h6 class="fs-7 mb-2">Modul Pelatihan</h6>' +
                 '<p class="fs-7">'+ data.number_of_materials +'</p>' +
               '</div>' +
             '</div>' +
-            '<div class="col-12 col-md-6 col-lg-4 mb-4 d-flex"> <i class="bi bi-person-video"> </i>' +
+            '<div class="col-12 col-md-6 col-lg-4 mb-3 d-flex"> <i class="bi bi-person-video"> </i>' +
               '<div class="ps-2"> ' +
                 '<h6 class="fs-7 mb-2">Metode Ajar</h6><span class="badge rounded-pill text-bg-warning">'+ data.course_type+ '</span>' +
               '</div>' +
             '</div>' +
-            '<div class="col-12 col-md-6 col-lg-4 mb-4 d-flex"> <i class="bi bi-tag"> </i>' +
+            '<div class="col-12 col-md-6 col-lg-4 mb-3 d-flex"> <i class="bi bi-tag"> </i>' +
               '<div class="ps-2"> ' +
                 '<h6 class="fs-7 mb-2">Kategori</h6>' +
                 // '<p class="fs-7">'+ data.course_category +'</p>' +
                 '<a href="/pelatihan/index.html?topic='+ data.course_category.replace(/\s+/gi, '-').toLowerCase() +'&keyword=&price=&lp=" class="badge text-bg-light text-capitalize text-decoration-none">'+ data.course_category +'</a>' +
               '</div>' +
             '</div>' +
-            '<div class="col-12 col-md-6 col-lg-4 mb-4 d-flex"> <i class="bi bi-link-45deg"></i>' +
+            '<div class="col-12 col-md-6 col-lg-4 mb-3 d-flex"> <i class="bi bi-link-45deg"></i>' +
               '<div class="ps-2 overflow-hidden">' +
                 '<h6 class="fs-7 mb-2">Link Pelatihan</h6><a class="fs-7 d-flex align-items-center" href="'+ data.course_url +'" target="_blank" title="'+ data.course_title +'"> <span class="pds-truncate">'+ data.course_url +'</span><i class="bi bi-arrow-up-right-square-fill"></i></a>' +
               '</div>' +
@@ -657,7 +561,6 @@ function filterWatcher(param, target) {
 
 /** function to check visiblity load more button */
 var checkLoadMore = function(target, paging, currentPage) {
-    
     if (paging > 0 && currentPage < paging) {
         target.removeClass('visually-hidden')
     } else {
@@ -885,9 +788,6 @@ function courseLoaderDetail () {
 
         })
     }
-
-    // })
-    // $(target).html('').append(templateDetail)
 }
 
 /** init function */

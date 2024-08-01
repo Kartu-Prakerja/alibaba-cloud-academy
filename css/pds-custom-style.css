@@ -3239,6 +3239,18 @@ body.freeze {
   margin-left: 10px;
 }
 
+.w-70 {
+  min-width: 70%;
+}
+
+.w-30 {
+  min-width: 30%;
+}
+
+.w-flex .w-100 {
+  width: 100%;
+}
+
 /* media querys */
 @media (max-width: 992px) {
   .page-course-detail .section-footer {

@@ -377,17 +377,19 @@
                 <h4 class="custom-rfs-h4">Gabung Program</h4>
                 <p>
                    Pastikan email yang kamu gunakan sudah terdaftar di <a href="https://dashboard.prakerja.go.id?utm_source=prakerja_x_alibaba_landing&amp;utm_campaign=alibaba_cloud_program&amp;utm_content=link_prakerja" title="Dashboard Prakerja" target="_blank">Prakerja </a>dan <a href="https://edu.alibabacloud.com/elearning?spm=a3c0i.14527127.4363105600.7.7a716d842fAisq#J_4222514620" title="Alibaba Cloud Academy" target="_blank">Alibaba Cloud Academy. </a></p>
-                <form class="row mt-4" name="FormRequest" action="/index.html" method="post">
+                <form class="row mt-4 needs-validation" name="FormRequest" action="/index.html" method="post" novalidate> 
                   <div class="col-lg-6">
                     <div class="mb-3">
                       <label class="form-label" for="NamaLengkap">Nama Lengkap</label>
-                      <input class="form-control" id="NamaLengkap" type="text" placeholder="Andi Soraya" required oninvalid="this.setCustomValidity('Masukan Nama Lengkap Kamu')" oninput="this.setCustomValidity('')">
+                      <input class="form-control" id="NamaLengkap" type="text" placeholder="Andi Soraya" required>
+                      <div class="invalid-feedback">Masukan Nama Lengkap </div>
                     </div>
                   </div>
                   <div class="col-lg-6">
                     <div class="mb-3">
                       <label class="form-label" for="EmailAddress">Alamat Email yang Terdaftar di Prakerja & Alibaba</label>
-                      <input class="form-control" id="EmailAddress" type="email" placeholder="name@example.com" required oninvalid="this.setCustomValidity('Masukan email terdaftar di Prakerja dan Alibaba Cloud Kamu')" oninput="this.setCustomValidity('')">
+                      <input class="form-control" id="EmailAddress" type="email" placeholder="name@example.com" required>
+                      <div class="invalid-feedback">Masukan email terdaftar di Prakerja dan Alibaba Cloud Kamu</div>
                     </div>
                   </div>
                   <div class="col-lg-6">
@@ -395,6 +397,7 @@
                       <label class="form-label" for="IDAlibaba">
                          ID Alibaba Cloud </label><i class="bi bi-info-circle-fill text-info ms-2" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="custom-tooltip" data-bs-title="Untuk mendapatkan ID Alibaba Cloud, daftarkan Individual Account di alibabacloud.com menggunakan email yang sama dengan akun Prakerja. ID Alibaba Cloud bisa ditemukan di halaman Account Management."></i>
                       <input class="form-control" id="IDAlibaba" type="text" placeholder="Masukkan 16 digit ID Alibaba" required oninvalid="this.setCustomValidity('Masukan ID Alibaba Cloud Kamu')" oninput="this.setCustomValidity('')">
+                      <div class="invalid-feedback">Masukan ID Alibaba Cloud Kamu</div>
                     </div>
                   </div>
                   <div class="col-lg-6">

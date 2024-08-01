@@ -9,17 +9,19 @@ section.section-forms.adjust-anchor#JoinNow
             a(href="https://dashboard.prakerja.go.id?utm_source=prakerja_x_alibaba_landing&utm_campaign=alibaba_cloud_program&utm_content=link_prakerja" title="Dashboard Prakerja" target="_blank") Prakerja 
             | dan 
             a(href="https://edu.alibabacloud.com/elearning?spm=a3c0i.14527127.4363105600.7.7a716d842fAisq#J_4222514620" title="Alibaba Cloud Academy" target="_blank") Alibaba Cloud Academy. 
-          form.row.mt-4(name="FormRequest" action="/index.html" method="post")
+          form.row.mt-4.needs-validation(name="FormRequest" action="/index.html" method="post" novalidate) 
             .col-lg-6
               .mb-3
                 label.form-label(for='NamaLengkap') Nama Lengkap
-                input#NamaLengkap.form-control(type='text' placeholder='Andi Soraya' required  oninvalid="this.setCustomValidity('Masukan Nama Lengkap Kamu')" oninput="this.setCustomValidity('')")
-                
+                input#NamaLengkap.form-control(type='text' placeholder='Andi Soraya' required)
+                .invalid-feedback
+                  | Masukan Nama Lengkap 
             .col-lg-6
               .mb-3
                 label.form-label(for='EmailAddress') Alamat Email yang Terdaftar di Prakerja & Alibaba
-                input#EmailAddress.form-control(type='email' placeholder='name@example.com' required oninvalid="this.setCustomValidity('Masukan email terdaftar di Prakerja dan Alibaba Cloud Kamu')" oninput="this.setCustomValidity('')")
-            
+                input#EmailAddress.form-control(type='email' placeholder='name@example.com' required)
+                .invalid-feedback
+                  | Masukan email terdaftar di Prakerja dan Alibaba Cloud Kamu
             .col-lg-6
               .mb-3
                 label.form-label(for='IDAlibaba') 
@@ -27,7 +29,8 @@ section.section-forms.adjust-anchor#JoinNow
                 i.bi.bi-info-circle-fill.text-info.ms-2(data-bs-toggle='tooltip' data-bs-placement='right' data-bs-custom-class='custom-tooltip' data-bs-title='Untuk mendapatkan ID Alibaba Cloud, daftarkan Individual Account di alibabacloud.com menggunakan email yang sama dengan akun Prakerja. ID Alibaba Cloud bisa ditemukan di halaman Account Management.')
 
                 input#IDAlibaba.form-control(type='text' placeholder='Masukkan 16 digit ID Alibaba' required oninvalid="this.setCustomValidity('Masukan ID Alibaba Cloud Kamu')" oninput="this.setCustomValidity('')")
-                
+                .invalid-feedback
+                  | Masukan ID Alibaba Cloud Kamu
             .col-lg-6
               .mb-3
                 label.form-label(for='CourseCat') Kategori Pelatihan
