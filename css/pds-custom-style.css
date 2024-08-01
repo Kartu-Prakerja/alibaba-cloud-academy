@@ -2619,7 +2619,7 @@ body.freeze {
 .search-boxy.is-fixed {
   position: fixed;
   z-index: 121;
-  top: 70px;
+  top: 66px;
   left: 0;
   width: 100%;
   padding-top: 0.5rem;

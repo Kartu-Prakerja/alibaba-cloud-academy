@@ -149,8 +149,8 @@ var templateDetail = function(data) {
     '<div class="container pt-3 pb-5 px-4 px-md-0">' +
       '<div class="row flex-row-reverse">' +
         '<div class="col-12 col-md-4 col-lg-4"><div class="course-cover-sticky"><div class="course-cover"><img loading="lazy" class="w-100 rounded" src="'+ data.course_image +'" alt=""/></div>' +
-          '<div class="mt-3 d-flex justify-content-between course-cta p-3 px-lg-0 w-flex">' +
-                '<div class="px-lg-0 px-1 m-r1 w-70"><a href="'+ data.course_url +'" target="_blank" class="btn btn-primary btn-lg w-100">Lihat Pelatihan</a></div>' +
+          '<div class="mt-3 d-flex justify-content-between course-cta p-3 px-lg-0 w-flex gap-3">' +
+                '<div class="px-lg-0 px-1 m-r1 w-70"><a href="'+ data.course_url +'" target="_blank" class="btn btn-orange btn-lg w-100">Lihat Pelatihan</a></div>' +
                 '<button class="btn btn-light btn-md share-button w-30 px-1" type="button" title="Bagikan halaman ini"><i class="bi bi-share-fill">&nbsp;&nbsp;</i>Bagikan</button>' +
           '</div>' +
         '</div></div>' +
@@ -829,7 +829,11 @@ function courseLoaderDetail () {
         $('body').toggleClass('freeze');
       });
 
-      $(".navbar-custom").on("click", ".nav-link", function(event){
+    //   $(".navbar-custom").on("click", ".nav-link", function(event){
+    //     $('.menu').removeClass('open');
+    //     $('.navbar-custom').removeClass('m-menu');
+    //     $('body').removeClass('freeze');
+      $(".nav-link, .nav-cta").on("click", function(event){
         $('.menu').removeClass('open');
         $('.navbar-custom').removeClass('m-menu');
         $('body').removeClass('freeze');
