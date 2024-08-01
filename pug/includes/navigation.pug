@@ -7,7 +7,7 @@ header.pdt-header
   .container-md.px-4.px-md-0
     .d-flex.justify-content-between.align-items-center.position-relative
       div.d-flex.justify-content-between.align-items-center.col-12.col-lg-auto
-        a(href=baseURL+'index.html' style="padding: 3px 0 3px 0")
+        a(href=baseURL style="padding: 3px 0 3px 0")
           img(src=baseURL+'img/logo-prakerja-alibaba.svg' height='28' alt='Prakerja x Alibaba')
 
         //- if(pageActive !== 'pelatihan')
@@ -18,13 +18,13 @@ header.pdt-header
           .menu.burger-menu(data-menu='13')
             .icon
         li.nav-item.md-hide
-          a.nav-link(href=baseURL+'index.html' class={"nav-link-active" : pageActive === ''}) Beranda
+          a.nav-link(href=baseURL class={"nav-link-active" : pageActive === ''}) Beranda
         li.nav-item.md-hide
-          a.nav-link(href=baseURL+'pelatihan/index.html'  class={"nav-link-active" : pageActive === 'pelatihan'}) Pelatihan
+          a.nav-link(href=baseURL+'pelatihan/'  class={"nav-link-active" : pageActive === 'pelatihan'}) Pelatihan
         li.nav-item.md-hide
-          a.nav-link(href=baseURL+'tanyajawab/index.html' class={"nav-link-active" : pageActive === 'tanyajawab'}) Tanya Jawab
+          a.nav-link(href=baseURL+'tanyajawab/' class={"nav-link-active" : pageActive === 'tanyajawab'}) Tanya Jawab
         li.nav-item.md-hide
-          a.btn.btn-orange.nav-cta(href="../index.html#JoinNow") Gabung Sekarang
+          a.btn.btn-orange.nav-cta(href="../#JoinNow") Gabung Sekarang
   
 
               

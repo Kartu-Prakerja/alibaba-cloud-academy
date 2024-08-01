@@ -772,7 +772,7 @@ function requestForm () {
             var data = response.data;
             button.attr('disabled', false).html(buttonReset);
             $('#enrollSuccess').modal('show');
-            formRequestJoin[0].reset();
+            // formRequestJoin[0].reset();
         })
     }
    })
