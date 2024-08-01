@@ -34,16 +34,15 @@ section.section-forms.adjust-anchor#JoinNow
             .col-lg-6
               .mb-3
                 label.form-label(for='CourseCat') Kategori Pelatihan
-                select#CourseCat.form-select(aria-label='Default select example' placeholder="Pilih")
-                  option(selected='') Pilih
+                select#CourseCat.form-select(aria-label='Default select example' placeholder="Pilih" required)
+                  option(selected='' value='' disabled) Pilih
                   option(value='Cloud Computing') Cloud Computing
                   option(value='Big Data') Big Data
-
             .col-lg-6
               .mb-3
                 label.form-label(for='Background') Status Pekerjaan
-                select#Background.form-select(aria-label='Default select example' placeholder="Pilih")
-                  option(selected='') Pilih
+                select#Background.form-select(aria-label='Default select example' placeholder="Pilih" required)
+                  option(selected='' value='' disabled) Pilih
                   option(value='Mahasiswa Universitas') Mahasiswa Universitas
                   option(value='Dosen atau Staff Pengajar') Dosen atau Staff Pengajar
                   option(value='Karyawan Perusahaan IT') Karyawan Perusahaan IT
@@ -57,8 +56,8 @@ section.section-forms.adjust-anchor#JoinNow
             .col-lg-6
               .mb-3
                 label.form-label(for='Reference') Darimana Kamu Tahu Program Ini
-                select#Reference.form-select(aria-label='Default select example' placeholder="Pilih")
-                  option(selected='') Pilih
+                select#Reference.form-select(aria-label='Default select example' placeholder="Pilih" required)
+                  option(selected='' value='' disabled) Pilih
                   option(value='Media Sosial (Instagram, Facebook, Twitter, LinkedIn)') Media Sosial (Instagram, Facebook, Twitter, LinkedIn)
                   option(value='Email dari Prakerja') Email dari Prakerja
                   option(value='Teman atau Kolega') Teman atau Kolega
@@ -71,8 +70,8 @@ section.section-forms.adjust-anchor#JoinNow
             .col-lg-12
               .mb-3
                 label.form-label(for='ReasontoJoin') Alasan Ikut Beasiswa
-                select#ReasontoJoin.form-select(aria-label='Default select example' placeholder="Pilih")
-                  option(selected='') Pilih
+                select#ReasontoJoin.form-select(aria-label='Default select example' placeholder="Pilih" required)
+                  option(selected='' value='' disabled) Pilih
                   option(value='Untuk meningkatkan keterampilan di bidang Cloud Computing atau Big Data') Untuk meningkatkan keterampilan di bidang Cloud Computing atau Big Data
                   option(value='Mendapatkan sertifikasi ACA dari Alibaba Cloud Academy') Mendapatkan sertifikasi ACA dari Alibaba Cloud Academy
                   option(value='Mencari peluang untuk kolaborasi dan inovasi di bidang cloud computing atau Big Data') Mencari peluang untuk kolaborasi dan inovasi di bidang cloud computing atau Big Data

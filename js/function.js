@@ -33,7 +33,6 @@ Array.prototype.slice.call(forms)
       event.preventDefault()
       event.stopPropagation()
     }
-
     form.classList.add('was-validated')
   }, false)
 })
@@ -732,7 +731,7 @@ function courseLoaderDetail () {
 }
 
 function requestForm () {
-   $(formRequestJoin).on('submit', function(e,val) {
+   $(formRequestJoin).off('submit').on('submit', function(e,val) {
     e.preventDefault();
 
     var name = formRequestJoin.find('#NamaLengkap').val();
@@ -742,6 +741,10 @@ function requestForm () {
     var background = formRequestJoin.find('#Background option:selected').val();
     var reference = formRequestJoin.find('#Reference option:selected').val();
     var reason = formRequestJoin.find('#ReasontoJoin option:selected').val();
+
+    var button = $('#submit-form');
+    var buttonOnSubmitContent = '<span class="spinner-border spinner-border-sm" aria-hidden="true"></span> <span role="status">Loading...</span>';
+    var buttonReset = 'Gabung Program <i class="bi bi-arrow-right"> </i>';
 
     var data = JSON.stringify({
         "NamaLengkap": name,
@@ -754,7 +757,7 @@ function requestForm () {
     });
 
     if (!_.isEmpty(name) && !_.isEmpty(email) && !_.isEmpty(category) && !_.isEmpty(background) && !_.isEmpty(reference) && !_.isEmpty(reason)) {
-        console.log(data);
+        button.attr('disabled', true).html(buttonOnSubmitContent);
         $.ajax({
             dataType: "json",
             contentType : "application/json",
@@ -766,8 +769,10 @@ function requestForm () {
             url: submitURL,
             data: data
         }).done(function (response) {
-            var data = response.data
-            formRequestJoin.reset();
+            var data = response.data;
+            button.attr('disabled', false).html(buttonReset);
+            $('#enrollSuccess').modal('show');
+            formRequestJoin[0].reset();
         })
     }
    })
