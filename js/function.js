@@ -850,7 +850,7 @@ function courseLoaderDetail () {
 
 
     $('.owl-carousel-btb').owlCarousel({
-        loop:false,
+        loop:true,
         margin:24,
         nav:false,
         dots: false,
