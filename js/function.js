@@ -679,14 +679,14 @@ function courseLoaderDetail () {
                     var url = $('.pen-url');
 
                     shareFacebook.attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href)
-                    shareTwitter.attr('href', 'https://twitter.com/intent/tweet?text=Dapatkan voucher pelatihan ' + detail.course_title + ' hanya di Indonesia Skills Week, dan jutaan voucher lainnya&url='+  window.location.href +'&hashtags=IndonesiSKillsWeek')
-                    shareLinkedin.attr('href', 'https://www.linkedin.com/shareArticle?mini=true&url='+ window.location.href +'&title=Voucher pelatihan ' + detail.course_title + '&source=skillsweek.prakerja.go.id&summary=Dapatkan voucher pelatihan ' + detail.course_title + ' melalui Indonesia Skills Week, dan kesempatan untuk mendapatkan jutaan voucher lainnya')
-                    shareEmail.attr('href', 'mailto:contact@email.com?subject=Pelatihan'+detail.course_title+' &body=Dapatkan voucher pelatihan ' + detail.course_title + ' melalui Indonesia Skills Week, dan kesempatan untuk mendapatkan jutaan voucher lainnya!')
+                    shareTwitter.attr('href', 'https://twitter.com/intent/tweet?text=Ikuti pelatihan ' + detail.course_title + ' hanya di Alibaba Cloud Academy, sertifikasi gratis untuk peserta Prakerja dalam bidang Big Data dan Cloud Computing, berlangsung Agustus-Oktober 2024&hashtags=alibaba-cloud-academy')
+                    shareLinkedin.attr('href', 'https://www.linkedin.com/shareArticle?mini=true&url='+ window.location.href +'&title=hanya di Alibaba Cloud Academy, sertifikasi gratis untuk peserta Prakerja dalam bidang Big Data dan Cloud Computing, berlangsung Agustus-Oktober 2024&hashtags=alibaba-cloud-academy')
+                    shareEmail.attr('href', 'mailto:contact@email.com?subject=Pelatihan'+detail.course_title+' &body=hanya di Alibaba Cloud Academy, sertifikasi gratis untuk peserta Prakerja dalam bidang Big Data dan Cloud Computing, berlangsung Agustus-Oktober 2024&hashtags=alibaba-cloud-academy')
                     url.html(window.location.href);
                     
                     if (navigator.share) { 
                         navigator.share({
-                            title: 'Indonesia Skill Week - ' + detail.course_title,
+                            title: 'Prakerja x Alibaba Cloud Academy - ' + detail.course_title,
                             url: window.location.href
                             }).then(() => {
                                 console.log('Thanks for sharing!');
