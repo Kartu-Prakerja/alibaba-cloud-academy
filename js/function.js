@@ -33,10 +33,15 @@ Array.prototype.slice.call(forms)
       event.preventDefault()
       event.stopPropagation()
     }
-    form.classList.add('was-validated')
+    form.classList.add('was-validated');
   }, false)
 })
 
+// Custom email validation
+document.getElementById('EmailAddress').addEventListener('input', function() {
+    const email = this.value;
+    this.setCustomValidity(validateEmail(email) ? '' : 'Format email salah');
+});
 
 // empty state template
 var emptyState = "<div class='col-12 col-md-12'>" +
@@ -730,6 +735,11 @@ function courseLoaderDetail () {
     }
 }
 
+function validateEmail(emailField) {
+    var regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return regEx.test(emailField);
+}
+
 function requestForm () {
    $(formRequestJoin).off('submit').on('submit', function(e,val) {
     e.preventDefault();
@@ -755,8 +765,8 @@ function requestForm () {
         "Reference": reference,
         "ReasontoJoin": reason
     });
-
-    if (!_.isEmpty(name) && !_.isEmpty(email) && !_.isEmpty(category) && !_.isEmpty(background) && !_.isEmpty(reference) && !_.isEmpty(reason)) {
+    
+    if (!_.isEmpty(name) && !_.isEmpty(email) && !_.isEmpty(category) && !_.isEmpty(background) && !_.isEmpty(reference) && !_.isEmpty(reason) && validateEmail(email)) {
         button.attr('disabled', true).html(buttonOnSubmitContent);
         $.ajax({
             dataType: "json",
@@ -772,7 +782,7 @@ function requestForm () {
             var data = response.data;
             button.attr('disabled', false).html(buttonReset);
             $('#enrollSuccess').modal('show');
-            // formRequestJoin[0].reset();
+            formRequestJoin[0].reset();
         })
     }
    })
