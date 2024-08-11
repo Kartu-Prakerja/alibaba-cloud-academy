@@ -37,12 +37,6 @@ Array.prototype.slice.call(forms)
   }, false)
 })
 
-// Custom email validation
-document.getElementById('EmailAddress').addEventListener('input', function() {
-    const email = this.value;
-    this.setCustomValidity(validateEmail(email) ? '' : 'Format email salah');
-});
-
 // empty state template
 var emptyState = "<div class='col-12 col-md-12'>" +
     "<div class='alert alert-info' role='alert'>" +
@@ -740,6 +734,19 @@ function validateEmail(emailField) {
     return regEx.test(emailField);
 }
 
+const el = document.getElementById('EmailAddress');
+if (el) {
+    el.addEventListener('input', function() {
+        const email = this.value;
+    
+        if (validateEmail(email)) {
+        this.setCustomValidity('');
+        } else {
+        this.setCustomValidity('Email not Valid');
+        }
+    });
+}
+
 function requestForm () {
    $(formRequestJoin).off('submit').on('submit', function(e,val) {
     e.preventDefault();
@@ -766,7 +773,7 @@ function requestForm () {
         "ReasontoJoin": reason
     });
     
-    if (!_.isEmpty(name) && !_.isEmpty(email) && !_.isEmpty(category) && !_.isEmpty(background) && !_.isEmpty(reference) && !_.isEmpty(reason) && validateEmail(email)) {
+    if (!_.isEmpty(name) && !_.isEmpty(email) && !_.isEmpty(category) && !_.isEmpty(background) && !_.isEmpty(reference) && !_.isEmpty(reason) && !_.isEmpty(idAlibaba) && validateEmail(email)) {
         button.attr('disabled', true).html(buttonOnSubmitContent);
         $.ajax({
             dataType: "json",
