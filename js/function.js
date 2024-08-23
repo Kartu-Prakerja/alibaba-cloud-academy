@@ -893,6 +893,9 @@ function requestForm () {
     // run script for form
     requestForm();
 
+    const adsModal = new bootstrap.Modal('#adsModal');
+        adsModal.show();
+
 
  })(jQuery);
 
