@@ -404,98 +404,13 @@
         <div class="container py-3 pt-lg-5 pb-lg-5 px-4 px-md-0">
           <div class="d-flex align-items-center justify-content-center mb-3">
             <div class="col-12 col-lg-8"> 
-              <div class="box-forms rounded-4 p-4" data-aos="fade-up" data-aos-once="true" data-aos-delay="50">
-                <h4 class="custom-rfs-h4">Gabung Program</h4>
-                <p>
-                   Pastikan email yang kamu gunakan sudah terdaftar di <a href="https://dashboard.prakerja.go.id?utm_source=prakerja_x_alibaba_landing&amp;utm_campaign=alibaba_cloud_program&amp;utm_content=link_prakerja" title="Dashboard Prakerja" target="_blank">Prakerja </a>dan <a href="https://edu.alibabacloud.com/elearning?spm=a3c0i.14527127.4363105600.7.7a716d842fAisq#J_4222514620" title="Alibaba Cloud Academy" target="_blank">Alibaba Cloud Academy. </a></p>
-                <form class="row mt-4 needs-validation" id="form-join-program" novalidate> 
-                  <div class="col-lg-6">
-                    <div class="mb-3">
-                      <label class="form-label" for="NamaLengkap">Nama Lengkap</label>
-                      <input class="form-control" id="NamaLengkap" type="text" placeholder="Andi Soraya" required>
-                      <div class="invalid-feedback">Masukan Nama Lengkap </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="mb-3">
-                      <label class="form-label" for="EmailAddress">Alamat Email yang Terdaftar di Prakerja & Alibaba</label>
-                      <input class="form-control" id="EmailAddress" type="email" placeholder="name@example.com" required>
-                      <div class="invalid-feedback">Masukan email terdaftar di Prakerja dan Alibaba Cloud Kamu</div>
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="mb-3">
-                      <label class="form-label" for="IDAlibaba">
-                         ID Alibaba Cloud </label><i class="bi bi-info-circle-fill text-info px-3 py-2" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="custom-tooltip" data-bs-title="Untuk mendapatkan ID Alibaba Cloud, daftarkan Individual Account di alibabacloud.com menggunakan email yang sama dengan akun Prakerja. ID Alibaba Cloud bisa ditemukan di halaman Account Management."></i>
-                      <input class="form-control" id="IDAlibaba" type="text" placeholder="Masukkan 16 digit ID Alibaba" required oninvalid="this.setCustomValidity('Masukan ID Alibaba Cloud Kamu')" oninput="this.setCustomValidity('')">
-                      <div class="invalid-feedback">Masukan ID Alibaba Cloud Kamu</div>
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="mb-3">
-                      <label class="form-label" for="CourseCat">Kategori Pelatihan</label>
-                      <select class="form-select" id="CourseCat" aria-label="Default select example" placeholder="Pilih" required>
-                        <option selected="" value="" disabled>Pilih</option>
-                        <option value="Cloud Computing">Cloud Computing</option>
-                        <option value="Big Data">Big Data</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="mb-3">
-                      <label class="form-label" for="Background">Status Pekerjaan</label>
-                      <select class="form-select" id="Background" aria-label="Default select example" placeholder="Pilih" required>
-                        <option selected="" value="" disabled>Pilih</option>
-                        <option value="Mahasiswa Universitas">Mahasiswa Universitas</option>
-                        <option value="Dosen atau Staff Pengajar">Dosen atau Staff Pengajar</option>
-                        <option value="Karyawan Perusahaan IT">Karyawan Perusahaan IT</option>
-                        <option value="Karyawan Perusahaan Startup">Karyawan Perusahaan Startup</option>
-                        <option value="Karyawan Perusahaan Non-IT">Karyawan Perusahaan Non-IT</option>
-                        <option value="Pengusaha atau Pemilik UMKM">Pengusaha atau Pemilik UMKM</option>
-                        <option value="Freelancer di Bidang IT">Freelancer di Bidang IT</option>
-                        <option value="Fresh Graduate">Fresh Graduate</option>
-                        <option value="Lainnya">Lainnya</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="mb-3">
-                      <label class="form-label" for="Reference">Darimana Kamu Tahu Program Ini</label>
-                      <select class="form-select" id="Reference" aria-label="Default select example" placeholder="Pilih" required>
-                        <option selected="" value="" disabled>Pilih</option>
-                        <option value="Media Sosial (Instagram, Facebook, Twitter, LinkedIn)">Media Sosial (Instagram, Facebook, Twitter, LinkedIn)</option>
-                        <option value="Email dari Prakerja">Email dari Prakerja</option>
-                        <option value="Teman atau Kolega">Teman atau Kolega</option>
-                        <option value="Webinar atau Seminar">Webinar atau Seminar</option>
-                        <option value="Kampus">Kampus</option>
-                        <option value="WA komunitas Prakerja">WA komunitas Prakerja</option>
-                        <option value="Komunitas">Komunitas</option>
-                        <option value="Lainnya">Lainnya</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-lg-12">
-                    <div class="mb-3">
-                      <label class="form-label" for="ReasontoJoin">Alasan Ikut Beasiswa</label>
-                      <select class="form-select" id="ReasontoJoin" aria-label="Default select example" placeholder="Pilih" required>
-                        <option selected="" value="" disabled>Pilih</option>
-                        <option value="Untuk meningkatkan keterampilan di bidang Cloud Computing atau Big Data">Untuk meningkatkan keterampilan di bidang Cloud Computing atau Big Data</option>
-                        <option value="Mendapatkan sertifikasi ACA dari Alibaba Cloud Academy">Mendapatkan sertifikasi ACA dari Alibaba Cloud Academy</option>
-                        <option value="Mencari peluang untuk kolaborasi dan inovasi di bidang cloud computing atau Big Data">Mencari peluang untuk kolaborasi dan inovasi di bidang cloud computing atau Big Data</option>
-                        <option value="Menambah nilai tambah dalam CV dan prospek karir">Menambah nilai tambah dalam CV dan prospek karir</option>
-                        <option value="Untuk mengembangkan jaringan profesional di bidang teknologi">Untuk mengembangkan jaringan profesional di bidang teknologi</option>
-                        <option value="Untuk berpartisipasi dalam program bergengsi dan diakui internasional">Untuk berpartisipasi dalam program bergengsi dan diakui internasional</option>
-                        <option value="Ingin berkontribusi dalam pengembangan teknologi di Indonesia">Ingin berkontribusi dalam pengembangan teknologi di Indonesia</option>
-                        <option value="Alasan pribadi lainnya">Alasan pribadi lainnya</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-lg-12">
-                    <div class="mb-3"> 
-                      <button class="btn btn-orange" id="submit-form">Gabung Program <i class="bi bi-arrow-right"> </i></button>
-                    </div>
-                  </div>
-                </form>
+              <div class="box-forms rounded-4 p-4 text-center" data-aos="fade-up" data-aos-once="true" data-aos-delay="50">
+                <h3 class="fs-2 text-info"> <i class="bi bi-info-circle-fill"></i></h3>
+                <h4 class="custom-rfs-h4">Masa Gabung Program Telah Berakhir</h4>
+                <p class="px-lg-4">
+                   Terima kasih atas antusiasme sobat Prakerja.
+                  Bagi kamu yang sudah mendaftar, cek secara berkala untuk informasi pengumuman penerimaan seleksi.
+                </p>
               </div>
             </div>
           </div>
@@ -586,23 +501,6 @@
               <button class="btn btn-primary" type="button" data-bs-dismiss="modal">Mengerti</button>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-    <div class="modal fade show" id="adsModal" aria-hidden="true" aria-labelledby="adsModal" tabindex="-1">
-      <div class="modal-dialog modal-dialog-centered pra-modal">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h6 class="modal-title">Optimizing your Remote Work Through Tech Career Choice in 2024</h6>
-            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body px-lg-5">
-            <section>
-              <div><a href="https://bit.ly/WebinarAlibabaxPrakerja" title="Webinar ISW Juni"><img class="w-100" src="img/alibaba-event-1.webp" alt=""></a></div>
-            </section>
-          </div>
-          <div class="modal-footer d-flex justify-content-center"><a class="btn btn-primary" href="https://bit.ly/WebinarAlibabaxPrakerja" target="_blank">
-               Daftar Seminar Sekarang</a></div>
         </div>
       </div>
     </div><!-- Footer start -->
